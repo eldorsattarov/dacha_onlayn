@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Header from "./Header";
+import Header2 from "./Header2";
 import Footer2 from "./Footer2";
 import {connect} from "react-redux";
 import {updateState,getDacha} from "../redux/action/dachaAction";
@@ -17,7 +18,7 @@ useEffect(()=>{
 
     return (
         <div>
-            {window.location.href.includes("/dachaall") ? <Header/> : ""}
+            {window.location.href.includes("/dachaall") ? <Header2/> : ""}
             <div className="drugidacha">
                 <div className="container">
                     <div className="row">

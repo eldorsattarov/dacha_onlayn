@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
+import Header2 from "./Header2";
 import Footer2 from "./Footer2";
 import {getText,getLanguage} from "../locales";
 
@@ -10,7 +11,7 @@ const Stat = () => {
     return (
         <div>
             <div>
-                {window.location.href.includes("/partner") ? <Header/> : ""}
+                {window.location.href.includes("/partner") ? <Header2/> : ""}
                 <div className="onas">
                     <div className="container">
                         <div className="row">

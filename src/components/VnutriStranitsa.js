@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import Footer2 from "./Footer2";
 import Header from "./Header";
+import Header2 from "./Header2";
 import TopDacha from "./TopDacha";
 import {connect} from "react-redux";
 import {getCategoryPage,getCategory,updateState} from "../redux/action/categoryAction";
@@ -18,7 +19,7 @@ const VnutriStranitsa = (props) => {
 
     return (
         <div>
-            {window.location.href.includes("/inner_page") ? <Header/> : ""}
+            {window.location.href.includes("/inner_page") ? <Header2/> : ""}
             <div className="vnutriStranitsa">
                 <div className="container">
                     {props.cat.map((item,index)=>{

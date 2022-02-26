@@ -32,7 +32,7 @@ export const getId = (id) => (dispatch) => {
 }
 
 export const getIzbrannoe = () => (dispatch) => {
-    const ids_array = JSON.parse(localStorage.getItem("locale"));
+    let ids_array = JSON.parse(localStorage.getItem("locale"));
     let text = "";
      // text = ids_array.toString();
     for (let i = 0; i < ids_array.length; i++) {
