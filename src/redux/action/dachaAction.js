@@ -22,8 +22,7 @@ export const getTopdacha = () => (dispatch) => {
     axios.get(API_PATH + "top-rated")
         .then((res) => {
             console.log(res);
-            dispatch(updateState({topDacha: res.data.data.data, selectedTopDacha: []}));
-
+            dispatch(updateState({topDacha: res.data.data, selectedTopDacha: []}));
         })
 }
 
@@ -38,7 +37,7 @@ export const getIzbrannoe = () => (dispatch) => {
     for (let i = 0; i < ids_array.length; i++) {
    text += "ids_array[]=" + ids_array[i].toString() + "&"
     }
-    console.log(text)
+    console.log(text);
     console.log("ids = "+ids_array);
     // axios.get(API_PATH + `favourites?${"ids_array[]=" + ids_array}`)
     axios.get(API_PATH + `favourites?${text}`)

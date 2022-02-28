@@ -33,7 +33,16 @@ useEffect(()=>{
                                     <Link to="/countryhouse" className="text-decoration-none"
                                           onClick={()=>props.topTan.splice(0,1,item)}>
                                         <div className="card">
-                                            <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                            <div className="cardimgg">
+                                                <div className="cardimgg2"></div>
+                                                <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                            </div>
+                                            <div className="card-img-overlay">
+                                                <div className="summm">
+                                                    {/*<img src="./images/Vector (18).png"/>*/}
+                                                    <span className="summ">{item.cost} {getText("sum")}</span>
+                                                </div>
+                                            </div>
                                             <div className="card-body">
                                                 <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
                                                 <div>
