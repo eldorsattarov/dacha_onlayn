@@ -11,7 +11,7 @@ const Usloviya = () => {
     return (
         <div>
             <div>
-                {window.location.href.includes("/conditions") ? <Header2/> : ""}
+                {window.location.href.includes("/conditions") ? <Header/> : ""}
                 <div className="onas">
                     <div className="container">
                         <div className="row">

@@ -102,6 +102,8 @@ const Header2 = (props) => {
                             <div className="d-flex align-items-center mr-3">
                                 <img src={getLanguage() === "ru" ? "./images/rus.png" : "./images/uzbekistan 1.png"}
                                      className="mr-2"/>
+                                     {/*<button type="button" className="btn btn-success">uz</button>*/}
+                                     {/*<button type="button">ru</button>*/}
                                 <select className="border-0" onChange={changeLanguage}>
                                     <option value="ru" selected={getLanguage() === "ru"}>RU</option>
                                     <option value="uz" selected={getLanguage() === "uz"}>UZB</option>
@@ -154,6 +156,7 @@ const Header2 = (props) => {
                         <button className="link" onClick={openModal}>{getText("sdatdacha")}</button>
                     </div>
                 </div>
+
                 <Modal isOpen={open} toggle={() => setOpen(!open)} className="modal1"
                        style={{width: "", marginTop: "120px", marginLeft: "auto", marginRight: "auto"}}>
                     <div className="card border-0 rounded-0 modalcard">

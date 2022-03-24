@@ -18,7 +18,7 @@ useEffect(()=>{
 
     return (
         <div>
-            {window.location.href.includes("/dachaall") ? <Header2/> : ""}
+            {window.location.href.includes("/dachaall") ? <Header/> : ""}
             <div className="drugidacha">
                 <div className="container">
                     <div className="row">

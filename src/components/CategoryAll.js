@@ -6,15 +6,16 @@ import {BASE_URL} from "../tools/constants";
 import {getLanguage} from "../locales";
 import {connect} from "react-redux";
 import {getCategory, updateState} from "../redux/action/categoryAction";
-
+import Header from "./Header";
 const CategoryAll = (props) => {
     useEffect(()=>{
         props.getCategory();
+        window.scrollTo(0,0);
     },[]);
 
     return (
         <div>
-            <Header2/>
+            <Header/>
 
             <div className="categoryAll">
                 <div className="container">

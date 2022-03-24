@@ -11,7 +11,7 @@ const Stat = () => {
     return (
         <div>
             <div>
-                {window.location.href.includes("/partner") ? <Header2/> : ""}
+                {window.location.href.includes("/partner") ? <Header/> : ""}
                 <div className="onas">
                     <div className="container">
                         <div className="row">

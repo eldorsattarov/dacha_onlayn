@@ -18,8 +18,8 @@ const VnutriStranitsa = (props) => {
     },[]);
 
     return (
-        <div>
-            {window.location.href.includes("/inner_page") ? <Header2/> : ""}
+        <div className="">
+            {window.location.href.includes("/inner_page") ? <Header/> : ""}
             <div className="vnutriStranitsa">
                 <div className="container">
                     {props.cat.map((item,index)=>{
