@@ -26,8 +26,8 @@ const CategoryAll = (props) => {
                                     <div className="col-sm-6 col-md-4 col-6 mt-4">
                                         <Link to="/inner_page"
                                               onClick={()=>props.cat.splice(0,1,item)}>
-                                            <div className="card border-0 rounded-0">
-                                                <img src={BASE_URL + item.image_path} className="w-100"/>
+                                            <div className="card border-0">
+                                                <img src={BASE_URL + item.image_path} className="w-100 twoImg"/>
                                                 <div className="card-img-overlay">
                                                     <span className="">{getLanguage()==="ru" ? item.name_ru : item.name_uz}</span>
                                                 </div>
