@@ -15,8 +15,8 @@ const Stat = () => {
                 <div className="onas">
                     <div className="container">
                         <div className="row">
-                            <div className="col-12">
-                                <h1>{getText("shartStat")}</h1>
+                            <div className="col-12 text-center">
+                                <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("shartStat")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                             </div>
                             <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9 col-12">
                                 <p className="">
