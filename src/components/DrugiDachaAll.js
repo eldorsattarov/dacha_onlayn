@@ -22,8 +22,8 @@ useEffect(()=>{
             <div className="drugidacha">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 d-flex justify-content-between align-items-center">
-                            <h1>{getText("dacha")}</h1>
+                        <div className="col-12 d-flex justify-content-center align-items-center">
+                            <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("dacha")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                         </div>
                     </div>
                     <div className="row mt-4">

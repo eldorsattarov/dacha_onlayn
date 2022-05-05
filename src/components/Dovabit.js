@@ -11,8 +11,7 @@ const Dovabit = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
-                            <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")} <img
-                                src="./images/chiziq.png" className="lineImgg"/></h1>
+                            <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                         </div>
                     </div>
                 </div>
