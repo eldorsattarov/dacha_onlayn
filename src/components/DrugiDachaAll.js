@@ -4,16 +4,16 @@ import Header from "./Header";
 import Header2 from "./Header2";
 import Footer2 from "./Footer2";
 import {connect} from "react-redux";
-import {updateState,getDacha} from "../redux/action/dachaAction";
+import {updateState, getDacha} from "../redux/action/dachaAction";
 import {BASE_URL} from "../tools/constants";
-import {getText,getLanguage} from "../locales";
+import {getText, getLanguage} from "../locales";
 
 const DrugiDachaAll = (props) => {
 
-useEffect(()=>{
-    props.getDacha();
-    window.scrollTo(0,0);
-},[]);
+    useEffect(() => {
+        props.getDacha();
+        window.scrollTo(0, 0);
+    }, []);
 
 
     return (
@@ -22,20 +22,21 @@ useEffect(()=>{
             <div className="drugidacha">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12 d-flex justify-content-center align-items-center">
-                            <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("dacha")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
+                        <div className="col-12 d-flex justify-content-between align-items-center">
+                            <h1>{getText("dacha")}</h1>
                         </div>
                     </div>
                     <div className="row mt-4">
-                        {props.dacha.map((item,index)=>{
-                            return(
+                        {props.dacha.map((item, index) => {
+                            return (
                                 <div className="col-sm-6 col-md-4 col-6 mt-3">
                                     <Link to="/countryhouse" className="text-decoration-none"
-                                          onClick={()=>props.topTan.splice(0,1,item)}>
+                                          onClick={() => props.topTan.splice(0, 1, item)}>
                                         <div className="card">
                                             <div className="cardimgg">
                                                 <div className="cardimgg2"></div>
-                                                <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                                <img src={BASE_URL + item.images[0].image_path}
+                                                     className="card-img-top"/>
                                             </div>
                                             <div className="card-img-overlay">
                                                 <div className="summm">
@@ -62,7 +63,8 @@ useEffect(()=>{
                                                     <span>{item.cost} {getText("sum")}</span>
                                                 </div>
                                                 <div className="mt-2">
-                                                    <Link to="" className="text-secondary text-decoration-none">{getText("podrobni")}</Link>
+                                                    <Link to=""
+                                                          className="text-secondary text-decoration-none">{getText("podrobni")}</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,10 +80,10 @@ useEffect(()=>{
         </div>
     );
 };
-const mapStateToProps = (state) =>{
-    return{
-        dacha : state.dacha.dacha,
+const mapStateToProps = (state) => {
+    return {
+        dacha: state.dacha.dacha,
         topTan: state.dacha.topTan
     }
 }
-export default connect(mapStateToProps,{getDacha,updateState})(DrugiDachaAll);
+export default connect(mapStateToProps, {getDacha, updateState})(DrugiDachaAll);

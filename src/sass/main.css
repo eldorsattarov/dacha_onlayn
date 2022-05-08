@@ -2,6 +2,16 @@
   background: rgba(52, 52, 52, 0.92);
   padding: 8px 0;
 }
+.navbar .loginLink {
+  border: 1px solid #F2931F;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #F2931F;
+  padding: 5px 10px;
+}
+.navbar .loginLink:hover {
+  text-decoration: none;
+}
 @media (max-width: 576px) {
   .navbar {
     padding: 3px 0;
@@ -383,12 +393,51 @@
 .homePage1 .rasmUstiga {
   padding: 30px 0;
 }
+.homePage1 .rasmUstiga .dachaBio {
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 576px) {
+  .homePage1 .rasmUstiga .dachaBio {
+    margin-top: 15px;
+  }
+}
+.homePage1 .rasmUstiga .dachaBio h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 100px;
+  color: #FFFFFF;
+}
+@media (max-width: 576px) {
+  .homePage1 .rasmUstiga .dachaBio h1 {
+    font-size: 24px;
+  }
+}
+.homePage1 .rasmUstiga .dachaBio p {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  color: #FFFFFF;
+}
+@media (max-width: 576px) {
+  .homePage1 .rasmUstiga .dachaBio p {
+    font-size: 16px;
+  }
+}
 .homePage1 .rasmUstiga .texttt {
   margin-top: 50px;
 }
 @media (max-width: 576px) {
   .homePage1 .rasmUstiga .texttt {
     margin-top: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .homePage1 .rasmUstiga {
+    padding: 10px 0;
   }
 }
 .homePage1 .rasmUstiga .input-group {
@@ -686,7 +735,7 @@
   margin-right: 10px;
 }
 .onas h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -695,7 +744,7 @@
 }
 @media (max-width: 576px) {
   .onas h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -731,7 +780,7 @@
   padding-bottom: 40px;
 }
 .topdacha h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -740,7 +789,7 @@
 }
 @media (max-width: 576px) {
   .topdacha h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -874,7 +923,7 @@
   border-radius: 10px;
 }
 .drugidacha h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -883,7 +932,7 @@
 }
 @media (max-width: 576px) {
   .drugidacha h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -997,7 +1046,7 @@
   padding-bottom: 50px;
 }
 .klient h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -1006,7 +1055,7 @@
 }
 @media (max-width: 576px) {
   .klient h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1064,6 +1113,23 @@
 
 .izbrannoe {
   margin: 50px 0;
+}
+.izbrannoe .asss .card {
+  border-radius: 12px 0px 0px 12px;
+}
+.izbrannoe .asss .card-img-top {
+  border-radius: 12px 0px 0px 12px;
+}
+.izbrannoe .asss .card:first-child {
+  border: 0;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+}
+.izbrannoe .asss .card:last-child {
+  border: 0;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  border-radius: 0 12px 12px 0;
 }
 .izbrannoe .col-12 h1 {
   font-family: Playfair Display;
@@ -1138,6 +1204,9 @@
 .izbrannoe .col-4 {
   margin-top: 40px;
 }
+.izbrannoe .cardddd {
+  border-radius: 12px;
+}
 .izbrannoe .cardddd h3 {
   font-family: Manrope;
   font-style: normal;
@@ -1199,7 +1268,7 @@
   border: 1px solid #E0E0E0;
 }
 .dacha h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 48px;
@@ -1208,14 +1277,10 @@
 }
 @media (max-width: 576px) {
   .dacha h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
-    line-height: 32px;
-    /* identical to box height */
-    font-feature-settings: "pnum" on, "lnum" on;
-    /* Color / Orange */
     color: #F2931F;
   }
 }
@@ -1340,7 +1405,7 @@
   }
 }
 .modal1 h2 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -1349,7 +1414,7 @@
 }
 @media (max-width: 576px) {
   .modal1 h2 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1415,7 +1480,7 @@
   }
 }
 .vnutriStranitsa h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -1424,7 +1489,7 @@
 }
 @media (max-width: 576px) {
   .vnutriStranitsa h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1463,7 +1528,7 @@
   height: 290px;
 }
 .vnutriStranitsa2 h1 {
-  font-family: Playfair Display;
+  font-family: Manrope;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -1472,7 +1537,7 @@
 }
 @media (max-width: 576px) {
   .vnutriStranitsa2 h1 {
-    font-family: Playfair Display;
+    font-family: Manrope;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -1645,8 +1710,333 @@
   font-family: Manrope;
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
+  font-size: 48px;
   color: #F2931F;
+}
+
+.login {
+  padding: 30px 0;
+}
+.login h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  color: #F2931F;
+}
+@media (max-width: 576px) {
+  .login h1 {
+    font-size: 22px;
+  }
+}
+.login .card {
+  margin-top: 30px;
+  border: 0;
+}
+@media (max-width: 576px) {
+  .login .card {
+    margin-top: 20px;
+  }
+}
+.login .card-body {
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.login label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .login label {
+    font-size: 12px;
+  }
+}
+.login input {
+  font-size: 16px;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+@media (max-width: 576px) {
+  .login input {
+    font-size: 12px;
+  }
+}
+.login button {
+  background: #F2931F;
+  border-radius: 8px;
+  border: 0;
+  color: white;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 5px 0;
+}
+@media (max-width: 576px) {
+  .login button {
+    font-size: 14px;
+  }
+}
+.login .royxat {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .login .royxat {
+    font-size: 14px;
+  }
+}
+.login .royxat:hover {
+  text-decoration: none;
+}
+
+.register {
+  padding: 30px 0;
+}
+.register h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  color: #F2931F;
+}
+@media (max-width: 576px) {
+  .register h1 {
+    font-size: 22px;
+  }
+}
+.register .card {
+  margin-top: 30px;
+  border: 0;
+}
+@media (max-width: 576px) {
+  .register .card {
+    margin-top: 20px;
+  }
+}
+.register .card-body {
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.register label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .register label {
+    font-size: 12px;
+  }
+}
+.register input {
+  font-size: 16px;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+@media (max-width: 576px) {
+  .register input {
+    font-size: 12px;
+  }
+}
+.register button {
+  background: #F2931F;
+  border-radius: 8px;
+  border: 0;
+  color: white;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 5px 0;
+}
+@media (max-width: 576px) {
+  .register button {
+    font-size: 14px;
+  }
+}
+.register .royxat {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .register .royxat {
+    font-size: 14px;
+  }
+}
+.register .royxat:hover {
+  text-decoration: none;
+}
+
+.profilRedactor {
+  padding: 30px 0;
+}
+.profilRedactor h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 48px;
+  color: #F2931F;
+}
+@media (max-width: 576px) {
+  .profilRedactor h1 {
+    font-size: 22px;
+  }
+}
+.profilRedactor .card {
+  margin-top: 30px;
+  border: 0;
+}
+@media (max-width: 576px) {
+  .profilRedactor .card {
+    margin-top: 20px;
+  }
+}
+.profilRedactor .card-body {
+  background: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+.profilRedactor label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .profilRedactor label {
+    font-size: 12px;
+  }
+}
+.profilRedactor input {
+  font-size: 16px;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+@media (max-width: 576px) {
+  .profilRedactor input {
+    font-size: 12px;
+  }
+}
+.profilRedactor button {
+  background: #F2931F;
+  border-radius: 8px;
+  border: 0;
+  color: white;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 5px 0;
+}
+@media (max-width: 576px) {
+  .profilRedactor button {
+    font-size: 14px;
+  }
+}
+.profilRedactor .royxat {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .profilRedactor .royxat {
+    font-size: 14px;
+  }
+}
+.profilRedactor .royxat:hover {
+  text-decoration: none;
+}
+
+.profil {
+  padding: 30px 0;
+}
+.profil .profImg {
+  width: 110px;
+  height: 110px;
+}
+@media (max-width: 576px) {
+  .profil .profImg {
+    width: 50px;
+    height: 50px;
+  }
+}
+.profil .profLink {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  color: #FFFFFF;
+  background: #F2931F;
+  border-radius: 12px;
+  padding: 5px 25px;
+}
+@media (max-width: 576px) {
+  .profil .profLink {
+    font-size: 12px;
+  }
+}
+.profil .profLink:hover {
+  text-decoration: none;
+}
+.profil h1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 54px;
+  color: #333333;
+  margin-bottom: 20px;
+}
+@media (max-width: 576px) {
+  .profil h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+}
+.profil .label {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .profil .label {
+    font-size: 12px;
+  }
+}
+.profil .label:active {
+  color: #333333;
 }
 
 /*# sourceMappingURL=main.css.map */

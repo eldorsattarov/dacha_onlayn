@@ -13,6 +13,9 @@ const Dovabit = () => {
                         <div className="col-12 text-center">
                             <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                         </div>
+                        <div className="col-12">
+
+                        </div>
                     </div>
                 </div>
             </div>
