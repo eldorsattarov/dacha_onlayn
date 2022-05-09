@@ -6,7 +6,7 @@ import TopDacha from "./TopDacha";
 import DrugiDacha from "./DrugiDacha";
 import Klient from "./Klient";
 import DachaBalance from "./DachaBalance";
-import MobilIlovalari from "./MobilIlovalari";
+
 const Main = () => {
     return (
         <div className="">
@@ -14,8 +14,7 @@ const Main = () => {
             <TopDacha/>
             <DachaBalance/>
             <DrugiDacha/>
-<MobilIlovalari/>
-            {/*<Klient/>*/}
+            <Klient/>
             <Footer/>
         </div>
     );

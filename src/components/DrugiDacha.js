@@ -34,7 +34,7 @@ const DrugiDacha = (props) => {
                                            <div className="card-img-overlay">
                                                <div className="summm">
                                                    {/*<img src="./images/Vector (18).png"/>*/}
-                                                   {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
+                                                   <span className="summ">{item.cost} {getText("sum")}</span>
                                                </div>
                                            </div>
                                            <div className="card-body">

@@ -13,9 +13,12 @@ const TopDacha = (props) => {
 
     useEffect(() => {
         props.getTopdacha();
+
     }, []);
 
     const [activeSlide, setActiveSlide] = useState(0);
+
+
 
 
 
@@ -81,67 +84,67 @@ const TopDacha = (props) => {
                     {/*        itemsToShow={3}*/}
                     {/*        speed={400}*/}
                     {/*    >*/}
-                            {/*{Array.from({ length: 10 }).map((item, index) => (*/}
-                            {/*    <div*/}
-                            {/*    //     style={{*/}
-                            {/*    //         background: "red",*/}
-                            {/*    //         width: 200,*/}
-                            {/*    //         height: 300,*/}
-                            {/*    //         border: "30px solid white",*/}
-                            {/*    //         textAlign: "center",*/}
-                            {/*    //         lineHeight: "240px",*/}
-                            {/*    //         boxSizing: "border-box"*/}
-                            {/*    //     }}*/}
-                            {/*    //     key={index}*/}
-                            {/*    >*/}
-                            {/*       /!*{index}*!/*/}
-                            {/*    </div>*/}
-                            {/*))}*/}
-                            {props.topDacha.map((item, index) => {
-                               while (index<2){
-                                   return (
-                                       <div className="col-sm-6 col-md-4 col-6 mt-3" key={item.id}>
-                                           <Link to="/countryhouse" className="text-decoration-none"
-                                                 onClick={() => props.topTan.splice(0, 1, item)}>
-                                               {/*onClick={()=>{props.updateState({topTan:item})}}>*/}
-                                               <div className="card">
-                                                   <div className="cardimgg">
-                                                       <div className="cardimgg2"></div>
-                                                       <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
-                                                   </div>
+                    {/*{Array.from({ length: 10 }).map((item, index) => (*/}
+                    {/*    <div*/}
+                    {/*    //     style={{*/}
+                    {/*    //         background: "red",*/}
+                    {/*    //         width: 200,*/}
+                    {/*    //         height: 300,*/}
+                    {/*    //         border: "30px solid white",*/}
+                    {/*    //         textAlign: "center",*/}
+                    {/*    //         lineHeight: "240px",*/}
+                    {/*    //         boxSizing: "border-box"*/}
+                    {/*    //     }}*/}
+                    {/*    //     key={index}*/}
+                    {/*    >*/}
+                    {/*       /!*{index}*!/*/}
+                    {/*    </div>*/}
+                    {/*))}*/}
+                    {props.topDacha.map((item, index) => {
+                        while (index<2){
+                            return (
+                                <div className="col-sm-6 col-md-4 col-6 mt-3" key={item.id}>
+                                    <Link to="/countryhouse" className="text-decoration-none"
+                                          onClick={() => props.topTan.splice(0, 1, item)}>
+                                        {/*onClick={()=>{props.updateState({topTan:item})}}>*/}
+                                        <div className="card">
+                                            <div className="cardimgg">
+                                                <div className="cardimgg2"></div>
+                                                <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                            </div>
 
-                                                   <div className="card-img-overlay">
-                                                       <div className="summm">
-                                                           {/*<img src="./images/Vector (18).png"/>*/}
-                                                           <span className="summ">{item.cost} {getText("sum")}</span>
-                                                       </div>
-                                                   </div>
-                                                   <div className="card-body">
-                                                       <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
-                                                       <div>
-                                                           <img src="./images/Vector (18).png"/>
-                                                           <span>{item.room_count} {getText("komnat")}</span>
-                                                       </div>
-                                                       <div>
-                                                           <img src="./images/Vector (18).png"/>
-                                                           <span>{item.bathroom_count} {getText("danniy")}</span>
-                                                       </div>
-                                                       <div>
-                                                           <img src="./images/Vector (18).png"/>
-                                                           <span>{item.capacity} {getText("gost")}</span>
-                                                       </div>
-                                                       <div className="mt-2">
-                                                           <Link to="/countryhouse"
-                                                                 className="text-secondary text-decoration-none">
-                                                               {getText("podrobni")}</Link>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </Link>
-                                       </div>
-                                   )
-                               }
-                            })}
+                                            <div className="card-img-overlay">
+                                                <div className="summm">
+                                                    {/*<img src="./images/Vector (18).png"/>*/}
+                                                    <span className="summ">{item.cost} {getText("sum")}</span>
+                                                </div>
+                                            </div>
+                                            <div className="card-body">
+                                                <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
+                                                <div>
+                                                    <img src="./images/Vector (18).png"/>
+                                                    <span>{item.room_count} {getText("komnat")}</span>
+                                                </div>
+                                                <div>
+                                                    <img src="./images/Vector (18).png"/>
+                                                    <span>{item.bathroom_count} {getText("danniy")}</span>
+                                                </div>
+                                                <div>
+                                                    <img src="./images/Vector (18).png"/>
+                                                    <span>{item.capacity} {getText("gost")}</span>
+                                                </div>
+                                                <div className="mt-2">
+                                                    <Link to="/countryhouse"
+                                                          className="text-secondary text-decoration-none">
+                                                        {getText("podrobni")}</Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        }
+                    })}
 
                     {/*    </Carousel>*/}
                     {/*</div>*/}
@@ -163,3 +166,5 @@ const mapStateToProps = (state) => {
     }
 }
 export default connect(mapStateToProps, {getTopdacha, updateState})(TopDacha);
+
+
