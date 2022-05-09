@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "../Header";
 import {Link} from "react-router-dom";
 import Izbronnoe from "../Izbronnoe";
@@ -9,7 +9,14 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-const Profil = () => {
+import {connect} from "react-redux";
+import {getIzbrannoe} from "../../redux/action/dachaAction";
+
+const Profil = (props) => {
+
+    useEffect(()=>{
+        props.getIzbrannoe();
+    },[])
 
     const [value, setValue] = React.useState('1');
 
@@ -53,4 +60,4 @@ const Profil = () => {
     );
 };
 
-export default Profil;
+export default connect(null,{getIzbrannoe})(Profil);

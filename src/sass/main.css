@@ -373,6 +373,9 @@
     display: none;
   }
 }
+.navSm .rasssm {
+  filter: invert(53%) sepia(83%) saturate(425%) hue-rotate(89deg) brightness(94%) contrast(5%);
+}
 .navSm .navbarRight select {
   color: black;
 }
@@ -1654,6 +1657,11 @@
   height: 100vh;
   background: linear-gradient(270deg, rgba(0, 9, 90, 0) 0%, rgba(0, 0, 0, 0.9) 80%);
 }
+@media (max-width: 576px) {
+  .mobilIlovalar .mobilIlovalar1 {
+    padding: 0;
+  }
+}
 .mobilIlovalar .mobilIlovalar1 p {
   font-family: Manrope;
   font-style: normal;
@@ -1712,6 +1720,125 @@
   font-weight: 500;
   font-size: 48px;
   color: #F2931F;
+}
+@media (max-width: 576px) {
+  .dovabitDacha h1 {
+    font-size: 20px;
+  }
+}
+.dovabitDacha label {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .dovabitDacha label {
+    font-size: 12px;
+  }
+}
+.dovabitDacha .input1 {
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  border-radius: 10px;
+}
+@media (max-width: 576px) {
+  .dovabitDacha .input1 {
+    font-size: 12px;
+  }
+}
+.dovabitDacha .input1:focus {
+  box-shadow: none;
+}
+.dovabitDacha .input1 option {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333333;
+}
+@media (max-width: 576px) {
+  .dovabitDacha .input1 option {
+    font-size: 12px;
+  }
+}
+.dovabitDacha .input2 {
+  width: 250px;
+  height: 150px;
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  border-radius: 10px;
+}
+@media (max-width: 576px) {
+  .dovabitDacha .input2 {
+    font-size: 12px;
+    height: 100px;
+    width: 150px;
+  }
+}
+.dovabitDacha .checkk1 {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  color: #5F5F5F;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 576px) {
+  .dovabitDacha .checkk1 {
+    font-size: 10px;
+  }
+}
+.dovabitDacha .checkk {
+  margin-right: 5px;
+  border-radius: 2px;
+}
+.dovabitDacha .inputArea {
+  background: #FBFBFB;
+  border: 1px solid #E8E8E8;
+  border-radius: 10px;
+  height: 250px;
+  text-align: start;
+}
+@media (max-width: 576px) {
+  .dovabitDacha .inputArea {
+    font-size: 12px;
+    height: 100px;
+  }
+}
+.dovabitDacha .inputArea:focus {
+  box-shadow: none;
+}
+.dovabitDacha .inputArea::placeholder {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #BDBDBD;
+}
+.dovabitDacha button {
+  background: #F2931F;
+  border-radius: 10px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+@media (max-width: 576px) {
+  .dovabitDacha button {
+    font-size: 12px;
+  }
+}
+.dovabitDacha button:focus {
+  box-shadow: none;
+  color: #FFFFFF;
+}
+.dovabitDacha button:hover {
+  box-shadow: none;
+  color: #FFFFFF;
 }
 
 .login {
@@ -1902,7 +2029,7 @@
 }
 @media (max-width: 576px) {
   .profilRedactor h1 {
-    font-size: 22px;
+    font-size: 18px;
   }
 }
 .profilRedactor .card {

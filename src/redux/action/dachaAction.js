@@ -22,7 +22,7 @@ export const getTopdacha = () => (dispatch) => {
     axios.get(API_PATH + "top-rated")
         .then((res) => {
             console.log(res);
-            dispatch(updateState({topDacha: res.data.data, selectedTopDacha: []}));
+            dispatch(updateState({topDacha: res.data.data.data, selectedTopDacha: []}));
         })
 }
 

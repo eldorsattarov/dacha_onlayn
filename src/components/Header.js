@@ -150,6 +150,9 @@ const Header = (props) => {
                         </div>
                         <div className="navbarRight d-flex align-items-center">
                             <div className="mr-2">
+                                <Link to="/profil" className="mr-3 rasssm">
+                                    <img src="./images/newImg/rassss.svg"/>
+                                </Link>
                                 <button type="button"  type="button" onClick={()=>changeLanguage('uz')} className="border-0 bg-transparent">
                                     <img src={"./images/uzbekistan 1.png"}
                                          className="mr-2"/>
