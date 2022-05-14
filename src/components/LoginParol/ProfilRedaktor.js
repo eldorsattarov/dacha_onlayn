@@ -26,7 +26,7 @@ const ProfilRedaktor = () => {
                                         </div>
                                         <div className="mt-2">
                                             <label>Телефонный номер</label>
-                                            <input type="password" className="form-control" name="password"/>
+                                            <input type="text" className="form-control" name="password"/>
                                         </div>
                                         <div className="mt-2">
                                             <label>Изображение</label>

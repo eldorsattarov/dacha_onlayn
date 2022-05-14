@@ -18,7 +18,7 @@ const Izbronnoe = (props) => {
     }, []);
     return (
         <div className="">
-            <Header/>
+            {/*<Header/>*/}
             <div className="izbrannoe">
                 <div className="container">
                     {props.izbran.map((item, index) => {

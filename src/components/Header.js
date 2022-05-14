@@ -134,7 +134,7 @@ const Header = (props) => {
                             {/*</div>*/}
                             {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
 
-                            <Link to="/login" className="loginLink">
+                            <Link to="/register" className="loginLink">
                                 Регистрация
                             </Link>
 
@@ -197,7 +197,7 @@ const Header = (props) => {
                         </li>
                     </ul>
                     <div className="d-flex justify-content-center mt-3">
-                        <Link to="/login" className="loginLink">
+                        <Link to="/register" className="loginLink">
                             Регистрация
                         </Link>
                         {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
