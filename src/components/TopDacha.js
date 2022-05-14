@@ -18,10 +18,6 @@ const TopDacha = (props) => {
 
     const [activeSlide, setActiveSlide] = useState(0);
 
-
-
-
-
     return (
         <div className="topdacha">
             <div className="container">

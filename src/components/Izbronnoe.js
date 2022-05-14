@@ -18,7 +18,7 @@ const Izbronnoe = (props) => {
     }, []);
     return (
         <div className="">
-            <Header/>
+            {/*<Header/>*/}
             <div className="izbrannoe">
                 <div className="container">
                     {props.izbran.map((item, index) => {
@@ -86,6 +86,7 @@ const mapStateToProps = (state) => {
         topTan: state.dacha.topTan,
         ids_array: state.dacha.ids_array
     }
+
 }
-export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
+    export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
 
