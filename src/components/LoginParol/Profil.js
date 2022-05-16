@@ -2,39 +2,38 @@ import React, {useEffect, useState} from 'react';
 import Header from "../Header";
 import {Link} from "react-router-dom";
 import Izbronnoe from "../Izbronnoe";
-
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-
 import {connect} from "react-redux";
 import {getIzbrannoe} from "../../redux/action/dachaAction";
+import {updateState} from "../../redux/action/loginAction";
 import axios from "axios";
 import {API_PATH, TOKEN_NAME_LOGIN} from "../../tools/constants";
 
 const Profil = (props) => {
 
-    const [user ,  setUser] = useState([]);
+    // const [user ,  setUser] = useState([]);
     useEffect(()=>{
-        props.getIzbrannoe();
+        // props.getIzbrannoe();
         if (localStorage.getItem(TOKEN_NAME_LOGIN)) {
-            axios.get("https://work.bingo99.uz/api/user", {
+            axios.get(API_PATH + "user", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
                 }
             })
                 .then(res => {
                     console.log(res)
-                    setUser(res.data)
-                    // setUser(res.data.data)
+                    props.updateState({user : res.data})
+                    // setUser(res.data)
                 })
                 .catch(err => {
                     // console.log(err)
                 })
         }
-    },[])
+    },[]);
 
     const [value, setValue] = React.useState('1');
 
@@ -50,7 +49,7 @@ const Profil = (props) => {
                     <div className="row">
                         <div className="col-12 text-center">
                             <img src="./images/newImg/profilll.png" className="profImg"/>
-                            <h1 className="">{user.name}</h1>
+                            <h1 className="">{props.user.name}</h1>
                             <Link to="/profil_redactor" className="profLink">Редактировать профиль</Link>
                         </div>
                     </div>
@@ -66,7 +65,10 @@ const Profil = (props) => {
                                         </TabList>
                                     </Box>
                                     <TabPanel value="1">Мои объявления</TabPanel>
-                                    <TabPanel value="2"><Izbronnoe/></TabPanel>
+                                    <TabPanel value="2">
+                                        Избранное
+                                        {/*<Izbronnoe/>*/}
+                                    </TabPanel>
                                 </TabContext>
                             </Box>
                         </div>
@@ -77,5 +79,9 @@ const Profil = (props) => {
         </div>
     );
 };
-
-export default connect(null,{getIzbrannoe})(Profil);
+const mapStateToProps = (state) =>{
+    return{
+        user : state.login.user
+    }
+}
+export default connect(mapStateToProps,{getIzbrannoe,updateState})(Profil);

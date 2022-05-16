@@ -477,9 +477,9 @@ body {
   .rasmUstiga {
     .dachaBio {
       @media(max-width: 576px) {
-        margin-top: 15px;
+        margin-top: 10px;
       }
-      margin-top: 50px;
+      margin-top: 100px;
       text-align: center;
       width: 100%;
 
@@ -1840,7 +1840,7 @@ body {
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 20px;
+      font-size: 26px;
       color: #FFFFFF;
       margin: 0;
     }
@@ -1852,8 +1852,10 @@ body {
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 40px;
+      font-size: 48px;
       color: #FFFFFF;
+      margin-top: 20px;
+      margin-bottom: 40px;
     }
 
     span {
@@ -1863,7 +1865,7 @@ body {
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 20px;
       color: #FFFFFF;
     }
 
@@ -1892,7 +1894,7 @@ body {
 
   h1 {
     @media(max-width: 576px) {
-      font-size: 20px;
+      font-size: 15px;
     }
     font-family: Manrope;
     font-style: normal;
@@ -2182,7 +2184,7 @@ button{
 
   h1 {
     @media(max-width: 576px) {
-      font-size: 18px;
+      font-size: 15px;
     }
     font-family: Manrope;
     font-style: normal;

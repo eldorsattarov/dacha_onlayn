@@ -11,7 +11,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 
-import {API_PATH, LANGUAGE} from "../tools/constants";
+import {API_PATH, LANGUAGE, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../tools/constants";
 import {getText, getLanguage} from "../locales";
 import {wrapMapToPropsConstant} from "react-redux/lib/connect/wrapMapToProps";
 import {toast,ToastContainer} from "react-toastify";
@@ -22,7 +22,6 @@ const Header = (props) => {
         const changeLanguage = (e) => {
             console.log(e);
             // localStorage.setItem(LANGUAGE, e.target.value);
-
             localStorage.setItem(LANGUAGE, e);
             document.location.reload(true);
         }
@@ -105,15 +104,15 @@ const Header = (props) => {
                                 {/*<li className="nav-item">*/}
                                 {/*    <Link to="/favorite" className="nav-link navlink">{getText("izb")}</Link>*/}
                                 {/*</li>*/}
-                                <li className="nav-item">
-                                <Link to="/add_dacha" className="nav-link navlink">{getText("dovabit")}</Link>
-                            </li>
+                                {localStorage.getItem(TOKEN_NAME_LOGIN) ?
+                                    <li className="nav-item"><Link to="/add_dacha" className="nav-link navlink">{getText("dovabit")}</Link></li>
+                                : ""}
                             </ul>
                         </div>
                         <div className="navbarRight d-flex align-items-center">
-                            <Link to="/profil" className="mr-3">
+                            {localStorage.getItem(TOKEN_NAME_LOGIN) ? <Link to="/profil" className="mr-3">
                                 <img src="./images/newImg/profill2.png"/>
-                            </Link>
+                            </Link> : ""}
                             <div className="mr-2">
                                 <button type="button"  type="button" onClick={()=>changeLanguage('uz')} className="border-0 bg-transparent">
                                     <img src={"./images/uzbekistan 1.png"}
@@ -134,10 +133,9 @@ const Header = (props) => {
                             {/*</div>*/}
                             {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
 
-                            <Link to="/register" className="loginLink">
-                                Регистрация
-                            </Link>
-
+                           {localStorage.getItem(TOKEN_NAME_REGISTER)||localStorage.getItem(TOKEN_NAME_LOGIN) ? "" :
+                               <Link to="/register" className="loginLink">Регистрация</Link>
+                           }
                         </div>
                     </div>
                 </div>
@@ -150,9 +148,11 @@ const Header = (props) => {
                         </div>
                         <div className="navbarRight d-flex align-items-center">
                             <div className="mr-2">
-                                <Link to="/profil" className="mr-3 rasssm">
+                                {localStorage.getItem(TOKEN_NAME_LOGIN) ?
+                                    <Link to="/profil" className="mr-3 rasssm">
                                     <img src="./images/newImg/rassss.svg"/>
                                 </Link>
+                                    : ""}
                                 <button type="button"  type="button" onClick={()=>changeLanguage('uz')} className="border-0 bg-transparent">
                                     <img src={"./images/uzbekistan 1.png"}
                                          className="mr-2"/>
@@ -192,14 +192,14 @@ const Header = (props) => {
                         {/*<li className="nav-item"><Link to="/favorite"*/}
                         {/*                               className="nav-link navlink">{getText("izb")}</Link>*/}
                         {/*</li>*/}
-                        <li className="nav-item">
-                            <Link to="/add_dacha" className="nav-link navlink">{getText("dovabit")}</Link>
-                        </li>
+                        {localStorage.getItem(TOKEN_NAME_LOGIN) ?
+                            <li className="nav-item"><Link to="/add_dacha" className="nav-link navlink">{getText("dovabit")}</Link></li>
+                        : ""}
                     </ul>
                     <div className="d-flex justify-content-center mt-3">
-                        <Link to="/register" className="loginLink">
+                        {localStorage.getItem(TOKEN_NAME_REGISTER)||localStorage.getItem(TOKEN_NAME_LOGIN) ? "" : <Link to="/register" className="loginLink">
                             Регистрация
-                        </Link>
+                        </Link>}
                         {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
                     </div>
                 </div>

@@ -93,7 +93,7 @@ const Dacha = (props) => {
                                                    {getText("izbranText")}<br/>
                                                     {item.phone}
                                                 </p>
-                                                <button className="btn izbran w-100 rounded-0" onClick={()=>props.locale.push(item.id)}>{getText("izbrannoe")}</button>
+                                                <button className="btn izbran w-100" onClick={()=>props.locale.push(item.id)}>{getText("izbrannoe")}</button>
                                                 {/*<button className="btn izbran w-100 rounded-0"*/}
                                                 {/*        onClick={()=>props.locale.push(item.id)}>*/}
                                                 {/*    <a href={`${"tel:" + item.phone}`}>{item.phone}</a>*/}
