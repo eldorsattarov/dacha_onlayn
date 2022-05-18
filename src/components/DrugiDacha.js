@@ -61,7 +61,6 @@ const DrugiDacha = (props) => {
                                            </div>
                                        </div>
                                    </Link>
-
                                </div>
                            )
                        }

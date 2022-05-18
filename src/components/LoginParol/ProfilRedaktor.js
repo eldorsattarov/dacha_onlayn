@@ -39,21 +39,27 @@ const ProfilRedaktor = (props) => {
     // const [token, setToken] = useState(null)
 
     const initialValues = {
-        name : "",
-        phone: "",
+        name : props.user.name,
+        phone: props.user.phone,
+        _method : "put"
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
         phone: Yup.string().required('телефон ...'),
+        _method: Yup.string().required('method ...'),
     })
     const onSubmit = (values) => {
         console.log(values)
-        axios.put(API_PATH + "user",
+        axios.post(API_PATH + "user-update", {
+            name : values.name,
+            phone : values.phone,
+            _method : "put"
+            },
             {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
             }
-        }
+        } ,
         )
             .then(res => {
                 console.log(res)
@@ -105,6 +111,7 @@ const ProfilRedaktor = (props) => {
                                                                             name = "name"
                                                                             autoComplete="off"
                                                                             className="form-control"
+
                                                                         />
                                                                         <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
                                                                     </div>
