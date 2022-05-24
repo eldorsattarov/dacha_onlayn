@@ -17,6 +17,7 @@ import RoyxatdanOtish from "./components/LoginParol/RoyxatdanOtish";
 import Kirish from "./components/LoginParol/Kirish";
 import Profil from "./components/LoginParol/Profil";
 import ProfilRedaktor from "./components/LoginParol/ProfilRedaktor";
+import DachaNew from "./components/DachaNew";
 
 function App(props) {
     return (
@@ -42,6 +43,7 @@ function App(props) {
                 <Route path="/profil_redactor" element={<ProfilRedaktor/>}/>
 
 
+                <Route path="/filter_dacha" element={<DachaNew/>}/>
             </Routes>
             </div>
     )

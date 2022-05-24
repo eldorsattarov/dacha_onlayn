@@ -23,12 +23,15 @@ const HomePage1 = (props) => {
             <Header/>
             <div className="rasmUstiga">
               <div className="d-flex justify-content-center w-100">
-                <div className="input-group bg-transparent mt-4">
-                  {/*<div className="input-group-append">*/}
-                  <img src="./images/newImg/Icon.png" className="input-group-append"/>
-                  {/*</div>*/}
-                  <input type="search" className="form-control bg-transparent" placeholder="Dacha qidirish"/>
-                </div>
+                <Link to="/add_dacha" className="text-decoration-none">
+                  <div className="input-group bg-transparent mt-4">
+                    {/*<div className="input-group-append">*/}
+                    <img src="./images/newImg/Icon.png" className="input-group-append"/>
+                    {/*</div>*/}
+                    <input type="search" className="form-control bg-transparent" placeholder="Dacha qidirish"/>
+                  </div>
+                </Link>
+
               </div>
               <div className="dachaBio">
                 <h1>Dacha online</h1>

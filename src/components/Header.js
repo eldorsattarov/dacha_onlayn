@@ -99,7 +99,8 @@ const Header = (props) => {
                                     <Link to="/" className="nav-link navlink">{getText("glav")}</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/countryhouse" className="nav-link navlink">{getText("dachi")}</Link>
+                                    {/*<Link to="/countryhouse" className="nav-link navlink">{getText("dachi")}</Link>*/}
+                                    <Link to="/filter_dacha" className="nav-link navlink">{getText("dachi")}</Link>
                                 </li>
                                 {/*<li className="nav-item">*/}
                                 {/*    <Link to="/favorite" className="nav-link navlink">{getText("izb")}</Link>*/}
@@ -186,9 +187,10 @@ const Header = (props) => {
                         <li className="nav-item"><Link to="/"
                                                        className="nav-link navlink">{getText("glav")}</Link>
                         </li>
-                        <li className="nav-item"><Link to="/countryhouse"
-                                                       className="nav-link navlink">{getText("dachi")}</Link>
-                        </li>
+                        <li className="nav-item"><Link to="/filter_dacha" className="nav-link navlink">{getText("dachi")}</Link></li>
+                        {/*<li className="nav-item"><Link to="/countryhouse" className="nav-link navlink">{getText("dachi")}</Link></li>*/}
+
+
                         {/*<li className="nav-item"><Link to="/favorite"*/}
                         {/*                               className="nav-link navlink">{getText("izb")}</Link>*/}
                         {/*</li>*/}

@@ -8,7 +8,7 @@ import {getText,getLanguage} from "../locales";
 const DrugiDacha = (props) => {
     useEffect(()=>{
         props.getDacha();
-        window.scrollTo(0,0);
+        // window.scrollTo(0,0);
     },[]);
     return (
         <div className="drugidacha">
