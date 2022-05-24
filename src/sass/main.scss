@@ -2418,3 +2418,139 @@ button{
     }
   }
 }
+
+
+.dacha_filter{
+  padding: 50px 0;
+
+  h1 {
+    @media(max-width: 576px) {
+      font-size: 15px;
+    }
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    color: #F2931F;
+  }
+
+  label {
+    @media(max-width: 576px) {
+      font-size: 12px;
+    }
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333333;
+  }
+  .input1 {
+    @media(max-width: 576px) {
+      font-size: 12px;
+    }
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+
+    &:focus{
+      box-shadow: none;
+    }
+    option {
+      @media(max-width: 576px) {
+        font-size: 12px;
+      }
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      color: #333333;
+    }
+  }
+
+  .input2 {
+    @media(max-width: 576px) {
+      font-size: 12px;
+      height: 100px;
+      width: 150px;
+    }
+    width: 250px;
+    height: 150px;
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+  }
+
+  .checkk1 {
+    @media(max-width: 576px) {
+      font-size: 10px;
+    }
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #5F5F5F;
+    display: flex;
+    align-items: center;
+  }
+  .checkk{
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+  .inputArea{
+    @media(max-width: 576px) {
+      font-size: 12px;
+      height: 100px;
+    }
+    &:focus{
+      box-shadow: none;
+    }
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    height: 250px;
+    //display: flex;
+    text-align: start;
+    &::placeholder{
+      //position: absolute;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      color: #BDBDBD;
+    }
+  }
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img{
+      @media(max-width: 576px) {
+        transform: scale(0.5);
+      }
+      transform: scale(0.8);
+      //margin-right: 10px;
+    }
+    @media(max-width: 576px) {
+      font-size: 12px;
+      padding: 1px 5px;
+    }
+    background: #F2931F;
+    border-radius: 10px;
+    border: 0;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 4px 10px;
+    &:focus{
+      box-shadow: none;
+      color: #FFFFFF;
+    }
+    &:hover{
+      box-shadow: none;
+      color: #FFFFFF;
+    }
+  }
+}

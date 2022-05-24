@@ -16,25 +16,6 @@ const ProfilRedaktor = (props) => {
 
     const navigate = useNavigate()
 
-    // useEffect(()=>{
-    //     props.getIzbrannoe();
-    //     if (localStorage.getItem(TOKEN_NAME_LOGIN)) {
-    //         axios.put(API_PATH + "user", {
-    //             headers: {
-    //                 'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
-    //             }
-    //         })
-    //             .then(res => {
-    //                 console.log(res)
-    //                 props.updateState({user : res.data})
-    //                 // setUser(res.data)
-    //             })
-    //             .catch(err => {
-    //                 // console.log(err)
-    //             })
-    //     }
-    // },[])
-
     // formik
     // const [token, setToken] = useState(null)
 
