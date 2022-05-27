@@ -23,7 +23,7 @@ const HomePage1 = (props) => {
             <Header/>
             <div className="rasmUstiga">
               <div className="d-flex justify-content-center w-100">
-                <Link to="/add_dacha" className="text-decoration-none">
+                <Link to="/filter_dacha" className="text-decoration-none">
                   <div className="input-group bg-transparent mt-4">
                     {/*<div className="input-group-append">*/}
                     <img src="./images/newImg/Icon.png" className="input-group-append"/>
