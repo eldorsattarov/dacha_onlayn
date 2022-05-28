@@ -20,3 +20,21 @@ export function login(event, errors, values) {
             });
     }
 }
+
+
+export function onSubmitOne(event,errors,values) {
+    console.log(values)
+return function (dispatch) {
+    axios.post("https://work.bingo99.uz/api/login" , values)
+        .then((res) => {
+            // console.log(res)
+            // console.log(res.data.token)
+            // setToken(res.data.token);
+            // localStorage.setItem(TOKEN_NAME, res.data.accessToken);
+            toast.success("Успешный !");
+        })
+        .catch(err => {
+            toast.error("Ошибка ?");
+        })
+}
+}

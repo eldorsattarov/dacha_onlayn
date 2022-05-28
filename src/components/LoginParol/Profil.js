@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../Header";
 import {Link} from "react-router-dom";
 import Izbronnoe from "../Izbronnoe";
@@ -11,11 +11,29 @@ import TabPanel from '@mui/lab/TabPanel';
 
 import {connect} from "react-redux";
 import {getIzbrannoe} from "../../redux/action/dachaAction";
+import axios from "axios";
+import {API_PATH, TOKEN_NAME_LOGIN} from "../../tools/constants";
 
 const Profil = (props) => {
 
+    const [user ,  setUser] = useState([]);
     useEffect(()=>{
         props.getIzbrannoe();
+        if (localStorage.getItem(TOKEN_NAME_LOGIN)) {
+            axios.get("https://work.bingo99.uz/api/user", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+                }
+            })
+                .then(res => {
+                    console.log(res)
+                    setUser(res.data)
+                    // setUser(res.data.data)
+                })
+                .catch(err => {
+                    // console.log(err)
+                })
+        }
     },[])
 
     const [value, setValue] = React.useState('1');
@@ -32,7 +50,7 @@ const Profil = (props) => {
                     <div className="row">
                         <div className="col-12 text-center">
                             <img src="./images/newImg/profilll.png" className="profImg"/>
-                            <h1 className="">John Doe</h1>
+                            <h1 className="">{user.name}</h1>
                             <Link to="/profil_redactor" className="profLink">Редактировать профиль</Link>
                         </div>
                     </div>

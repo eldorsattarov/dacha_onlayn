@@ -18,7 +18,7 @@ import Kirish from "./components/LoginParol/Kirish";
 import Profil from "./components/LoginParol/Profil";
 import ProfilRedaktor from "./components/LoginParol/ProfilRedaktor";
 
-function App() {
+function App(props) {
     return (
         <div className="">
             <Routes>
