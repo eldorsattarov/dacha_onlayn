@@ -477,9 +477,9 @@ body {
   .rasmUstiga {
     .dachaBio {
       @media(max-width: 576px) {
-        margin-top: 15px;
+        margin-top: 10px;
       }
-      margin-top: 50px;
+      margin-top: 100px;
       text-align: center;
       width: 100%;
 
@@ -967,6 +967,23 @@ body {
     .card-img-overlay {
       //position: relative;
       .summm {
+        top: 25px!important;
+        .bbb {
+          @media(max-width: 576px) {
+              font-size: 12px;
+              color: #FFFFFF;
+              padding: 3px 8px;
+          }
+          background: #F2931F;
+          border-radius: 7px;
+          border: 0;
+          font-family: 'Manrope';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          color: #FFFFFF;
+          padding: 5px 12px;
+        }
         width: 100%;
         opacity: 1;
         position: absolute;
@@ -974,7 +991,7 @@ body {
         padding-left: 6px;
         top: 45%;
         @media(max-width: 576px) {
-          top: 25%;
+          top: 15px!important;
         }
       }
 
@@ -1828,11 +1845,10 @@ body {
     @media(max-width: 576px) {
       padding: 0;
     }
-    padding: 50px 0;
+    padding: 30px 0;
     width: 100%;
     height: 100vh;
     background: linear-gradient(270deg, rgba(0, 9, 90, 0) 0%, rgba(0, 0, 0, 0.9) 80%);
-
     p {
       @media(max-width: 576px) {
         font-size: 12px;
@@ -1840,7 +1856,7 @@ body {
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 20px;
+      font-size: 26px;
       color: #FFFFFF;
       margin: 0;
     }
@@ -1852,18 +1868,21 @@ body {
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 40px;
+      font-size: 48px;
       color: #FFFFFF;
+      margin-top: 20px;
+      margin-bottom: 40px;
     }
 
     span {
       @media(max-width: 576px) {
         font-size: 10px;
       }
+      //background: red;
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 20px;
       color: #FFFFFF;
     }
 
@@ -1892,7 +1911,7 @@ body {
 
   h1 {
     @media(max-width: 576px) {
-      font-size: 20px;
+      font-size: 15px;
     }
     font-family: Manrope;
     font-style: normal;
@@ -2182,7 +2201,7 @@ button{
 
   h1 {
     @media(max-width: 576px) {
-      font-size: 18px;
+      font-size: 15px;
     }
     font-family: Manrope;
     font-style: normal;
@@ -2259,6 +2278,12 @@ button{
       text-decoration: none;
     }
   }
+  .exitButton{
+    background: red;
+    &:hover{
+      color: white;
+    }
+  }
 }
 
 .profil {
@@ -2313,9 +2338,238 @@ button{
     font-weight: 500;
     font-size: 20px;
     color: #333333;
-
     &:active {
       color: #333333;
+    }
+  }
+  .card {
+    border-radius: 15px 15px 15px 15px;
+    &:hover {
+      .card-img-top {
+        transform: scale(1.1);
+      }
+    }
+
+    .cardimgg {
+      overflow: hidden;
+      position: relative;
+      border-radius: 15px 15px 0px 0px;
+
+      .cardimgg2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4));
+
+      }
+    }
+
+    .card-img-top {
+      transition: all 0.4s linear;
+      height: 240px;
+      @media(max-width: 576px) {
+        height: 110px;
+      }
+    }
+
+    .card-body {
+      background: #FBFBFB;
+      box-sizing: border-box;
+      border-radius: 0px 0px 15px 15px;
+    }
+
+    .card-img-overlay {
+      .summm {
+        width: 100%;
+        opacity: 1;
+        position: absolute;
+        left: 0;
+        padding-left: 7px;
+        @media(max-width: 576px) {
+          //top: 0;
+        }
+      }
+      .summ {
+        font-family: Manrope;
+        font-weight: 600;
+        font-size: 25px;
+        color: white;
+        @media(max-width: 576px) {
+          font-size: 16px;
+        }
+      }
+    }
+
+
+    h3 {
+      @media (max-width: 576px) {
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 22px;
+        color: #333333;
+      }
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 36px;
+      color: #333333;
+    }
+
+    span {
+      @media (max-width: 576px) {
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 14px;
+        color: #4F4F4F;
+      }
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 26px;
+      color: #4F4F4F;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+.dacha_filter{
+  padding: 50px 0;
+
+  h1 {
+    @media(max-width: 576px) {
+      font-size: 15px;
+    }
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    color: #F2931F;
+  }
+
+  label {
+    @media(max-width: 576px) {
+      font-size: 12px;
+    }
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333333;
+  }
+  .input1 {
+    @media(max-width: 576px) {
+      font-size: 12px;
+    }
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+
+    &:focus{
+      box-shadow: none;
+    }
+    option {
+      @media(max-width: 576px) {
+        font-size: 12px;
+      }
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      color: #333333;
+    }
+  }
+
+  .input2 {
+    @media(max-width: 576px) {
+      font-size: 12px;
+      height: 100px;
+      width: 150px;
+    }
+    width: 250px;
+    height: 150px;
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+  }
+
+  .checkk1 {
+    @media(max-width: 576px) {
+      font-size: 10px;
+    }
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #5F5F5F;
+    display: flex;
+    align-items: center;
+  }
+  .checkk{
+    margin-right: 5px;
+    border-radius: 2px;
+  }
+  .inputArea{
+    @media(max-width: 576px) {
+      font-size: 12px;
+      height: 100px;
+    }
+    &:focus{
+      box-shadow: none;
+    }
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 10px;
+    height: 250px;
+    //display: flex;
+    text-align: start;
+    &::placeholder{
+      //position: absolute;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      color: #BDBDBD;
+    }
+  }
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img{
+      @media(max-width: 576px) {
+        transform: scale(0.5);
+      }
+      transform: scale(0.8);
+      //margin-right: 10px;
+    }
+    @media(max-width: 576px) {
+      font-size: 12px;
+      padding: 1px 5px;
+    }
+    background: #F2931F;
+    border-radius: 10px;
+    border: 0;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 4px 10px;
+    &:focus{
+      box-shadow: none;
+      color: #FFFFFF;
+    }
+    &:hover{
+      box-shadow: none;
+      color: #FFFFFF;
     }
   }
 }

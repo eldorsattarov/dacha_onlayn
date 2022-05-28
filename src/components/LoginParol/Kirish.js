@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
+
 import {getText} from "../../locales";
 import Header from "../Header";
 import {Link, useHref, HistoryRouterProps} from "react-router-dom";
@@ -11,15 +13,14 @@ import * as Yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
 import {connect} from "react-redux";
 import {onSubmitOne} from "../../redux/action/loginAction";
-import {useHistory} from 'react-router-dom';
-import Main from "../Main";
 
 toast.configure();
 
-const Kirish = (props) => {
+const Kirish = () => {
 // const Kirish = ({ setUser }) => {
 
-    const history = useHref("/");
+    const navigate = useNavigate()
+
 
     // formik
     const [token, setToken] = useState(null)
@@ -39,45 +40,18 @@ const Kirish = (props) => {
             password: values.password
         })
             .then((res) => {
-                // console.log(res)
                 console.log(res.data.token)
                 setToken(res.data.token);
                 localStorage.setItem(TOKEN_NAME_LOGIN, res.data.token);
                 // props.history.push("/");
-                nextPage();
+                // nextPage();
+                navigate("/profil");
                 toast.success("Успешный !");
             })
             .catch(err => {
                 toast.error("Ошибка ?");
             })
     }
-    const nextPage = () => {
-        if (token) {
-            return <Main to={{ pathname: '/'}} />
-        }
-        else{
-            return <Main to={{ pathname: '/' }} />
-        }
-    }
-
-    // useEffect(() => {
-    // if (localStorage.getItem(TOKEN_NAME_LOGIN)) {
-    //     axios.get("https://work.bingo99.uz/api/user", {
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`}
-    //     })
-    //         .then(res => {
-    //             console.log(res)
-    //             setUser(res.data.data)
-    //         })
-    //         .catch(err => {
-    //             // console.log(err)
-    //         })
-    // }
-    // }, [token, setUser])
-
-    // formik
-
 
     return (
         <div>
@@ -118,7 +92,6 @@ const Kirish = (props) => {
                                                                             type="text"
                                                                             id="phone"
                                                                             name="phone"
-                                                                            placeholder="Phone ni kiriting"
                                                                             autoComplete="off"
                                                                             className="form-control"
                                                                         />
@@ -134,7 +107,6 @@ const Kirish = (props) => {
                                                                             type="password"
                                                                             id="password"
                                                                             name="password"
-                                                                            placeholder="Parolni kiriting"
                                                                             autoComplete="off"
                                                                             className="form-control"
                                                                         />
@@ -164,7 +136,6 @@ const Kirish = (props) => {
 
                                         </Formik>
                                     </div>
-
 
                                 </div>
                             </div>

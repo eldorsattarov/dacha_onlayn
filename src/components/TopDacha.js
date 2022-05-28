@@ -13,7 +13,6 @@ const TopDacha = (props) => {
 
     useEffect(() => {
         props.getTopdacha();
-
     }, []);
 
     const [activeSlide, setActiveSlide] = useState(0);
@@ -105,29 +104,37 @@ const TopDacha = (props) => {
                                         {/*onClick={()=>{props.updateState({topTan:item})}}>*/}
                                         <div className="card">
                                             <div className="cardimgg">
-                                                <div className="cardimgg2"></div>
+                                                {/*<div className="cardimgg2"></div>*/}
                                                 <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
                                             </div>
 
                                             <div className="card-img-overlay">
                                                 <div className="summm">
-                                                    {/*<img src="./images/Vector (18).png"/>*/}
-                                                    <span className="summ">{item.cost} {getText("sum")}</span>
+                                                    {
+                                                        item?.top_rated == 1 ?
+                                                            <button type="button" className="bbb">Top</button>
+                                                            : ""
+                                                    }
+
                                                 </div>
                                             </div>
                                             <div className="card-body">
                                                 <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
                                                 <div>
-                                                    <img src="./images/Vector (18).png"/>
+                                                    <img src="./images/newImagesTwo/Vector (14).png"/>
                                                     <span>{item.room_count} {getText("komnat")}</span>
                                                 </div>
                                                 <div>
-                                                    <img src="./images/Vector (18).png"/>
+                                                    <img src="./images/newImagesTwo/Vector (15).png"/>
                                                     <span>{item.bathroom_count} {getText("danniy")}</span>
                                                 </div>
                                                 <div>
-                                                    <img src="./images/Vector (18).png"/>
+                                                    <img src="./images/newImagesTwo/Vector (16).png"/>
                                                     <span>{item.capacity} {getText("gost")}</span>
+                                                </div>
+                                                <div>
+                                                    <img src="./images/newImagesTwo/Vector (17).png"/>
+                                                    <span>{item.cost} {getText("sum")}</span>
                                                 </div>
                                                 <div className="mt-2">
                                                     <Link to="/countryhouse"

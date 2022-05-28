@@ -1,8 +1,68 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../Header";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {API_PATH, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../../tools/constants";
+import axios from "axios";
+import {getIzbrannoe} from "../../redux/action/dachaAction";
+import {updateState} from "../../redux/action/loginAction";
+import {connect} from "react-redux";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import * as Yup from "yup";
+import {toast} from "react-toastify";
 
-const ProfilRedaktor = () => {
+
+toast.configure();
+
+const ProfilRedaktor = (props) => {
+
+
+    const navigate = useNavigate()
+
+    // formik
+    // const [token, setToken] = useState(null)
+
+    const initialValues = {
+        name : props.user.name,
+        phone: props.user.phone,
+        _method : "put"
+    }
+    const validationSchema = Yup.object({
+        name: Yup.string().required('название ...'),
+        phone: Yup.string().required('телефон ...'),
+        _method: Yup.string().required('method ...'),
+    })
+    const onSubmit = (values) => {
+        console.log(values)
+        axios.post(API_PATH + "user-update", {
+            name : values.name,
+            phone : values.phone,
+            _method : "put"
+            },
+            {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+            }
+        } ,
+        )
+            .then(res => {
+                console.log(res)
+                // props.updateState({user : res.data})
+                toast.success("Успешный !");
+                navigate("/profil");
+            })
+            .catch(err => {
+                toast.error("Ошибка ?");
+            })
+    }
+    const exitProfile = () =>{
+        localStorage.removeItem(TOKEN_NAME_LOGIN);
+        localStorage.removeItem(TOKEN_NAME_REGISTER);
+        navigate("/");
+        toast.warning("Выйти из профиля !");
+    }
+    // console.log(localStorage.getItem(TOKEN_NAME_REGISTER))
+    // console.log(localStorage.getItem(TOKEN_NAME_LOGIN))
+
     return (
         <div>
             <Header/>
@@ -19,35 +79,77 @@ const ProfilRedaktor = () => {
                         <div className="col-sm-4 col-8 offset-2 offset-sm-4">
                             <div className="card">
                                 <div className="card-body">
-                                    <form>
-                                        <div className="">
-                                            <label>Полное имя</label>
-                                            <input type="text" className="form-control" name="number"/>
-                                        </div>
-                                        <div className="mt-2">
-                                            <label>Телефонный номер</label>
-                                            <input type="text" className="form-control" name="password"/>
-                                        </div>
-                                        <div className="mt-2">
-                                            <label>Изображение</label>
-                                            <input type="file" className="form-control" name="password"/>
-                                        </div>
+                                    {/*formik*/}
 
-                                        <div className="mt-3">
-                                            <button type="button">Сохранять</button>
-                                        </div>
-                                        {/*<div className="w-100 text-center mt-2">*/}
-                                        {/*    <Link to="/login" className="royxat">Войти в аккаунт</Link>*/}
-                                        {/*</div>*/}
-                                    </form>
+                                    <div className="login_forms">
+                                        <Formik
+                                            initialValues={initialValues}
+                                            onSubmit={onSubmit}
+                                            validationSchema={validationSchema}
+                                        >
+                                            {
+                                                formik => {
+                                                    return <Form>
+                                                        <div className="login_page_inputs">
+                                                            <div className="login_inputs_wrapper">
+                                                                <div className="login_control">
+                                                                    <label className="login_label" >Полное имя</label>
+                                                                    <div className="login_input">
+                                                                        <Field
+                                                                            type = "text"
+                                                                            id = "name"
+                                                                            name = "name"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+
+                                                                        />
+                                                                        <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="login_control mt-2">
+                                                                    <label className="login_label" >Телефонный номер</label>
+                                                                    <div className="parol_input">
+                                                                        <Field
+                                                                            type="phone"
+                                                                            id = "phone"
+                                                                            name = "phone"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <ErrorMessage name = "phone" component = 'div' style={{color: 'red'}} className = "error" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <button
+                                                            type='submit'
+                                                            className="in_button mt-4"
+                                                        >
+                                                            Сохранять
+                                                        </button>
+                                                    </Form>
+                                                }
+                                            }
+
+                                        </Formik>
+
+                                        <button type="button" className="btn exitButton mt-3" onClick={exitProfile}>Выход</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
-
-export default ProfilRedaktor;
+const mapStateToProps =(state)=>{
+    return{
+        user : state.login.user
+    }
+}
+export default connect(mapStateToProps,{getIzbrannoe,updateState})(ProfilRedaktor);

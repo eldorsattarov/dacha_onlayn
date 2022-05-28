@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import Header from "../Header";
 import axios from "axios";
 // import {API_PATH, BASE_URL} from "../../tools/constants";
+import { useNavigate } from "react-router-dom";
+
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -15,6 +17,8 @@ import {TOKEN_NAME_REGISTER} from "../../tools/constants";
 toast.configure();
 
 const RoyxatdanOtish = () => {
+
+    const navigate = useNavigate()
 
     const [token1, setToken1] = useState(null)
 
@@ -39,6 +43,7 @@ const RoyxatdanOtish = () => {
                 // setToken(res.data.accessToken)
                 localStorage.setItem(TOKEN_NAME_REGISTER, res.data.token);
                 toast.success("Успешный !");
+                navigate("/login");
             })
             .catch(err => {
                 toast.error("Ошибка ?");
