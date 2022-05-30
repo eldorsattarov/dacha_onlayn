@@ -2009,6 +2009,41 @@ button{
     color: #FFFFFF;
   }
 }
+  .filters{
+    img{
+      @media(max-width: 576px) {
+        transform: scale(0.7);
+      }
+    }
+    padding: 0 8px;
+    background: #FBFBFB;
+    border-radius: 8px;
+    height: 45px;
+    justify-content: space-between;
+    @media(max-width: 576px) {
+      height: 35px;
+    }
+    span{
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      color: #333333;
+      @media(max-width: 576px) {
+       font-size: 10px;
+      }
+    }
+    .filterField{
+      width: 50px;
+      height: 30px;
+      font-size: 14px;
+      @media(max-width: 576px) {
+        width: 40px;
+        height: 25px;
+        font-size: 9px;
+      }
+    }
+  }
 }
 
 .login {

@@ -16,6 +16,16 @@ import "bootstrap/dist/css/bootstrap-grid.css";
 import {getLanguage, getText} from "../../locales";
 
 const Profil = (props) => {
+    const [userDacha , setUserDacha] = useState([]);
+    useEffect(()=>{
+        axios.get(API_PATH + "user/dacha" , {headers: {
+                'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+            }})
+            .then((res)=>{
+                console.log("userDacha " , res.data.data.data)
+                setUserDacha(res.data.data.data)
+            })
+    },[])
 
     // const [user ,  setUser] = useState([]);
     useEffect(()=>{
@@ -27,7 +37,7 @@ const Profil = (props) => {
                 }
             })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     props.updateState({user : res.data})
                     // setUser(res.data)
                 })
@@ -68,98 +78,57 @@ const Profil = (props) => {
                                     </Box>
                                     <TabPanel value="1">
                                         <div className="row">
-                                            <div className="col-sm-6 col-md-4 col-6 mt-3">
-                                                <Link to="/countryhouse" className="text-decoration-none"
-                                                      // onClick={()=>props.topTan.splice(0,1,item)}>
-                                                      onClick={()=>props.topTan.splice(0,1)}>
-                                                    <div className="card">
-                                                        <div className="cardimgg">
-                                                            <div className="cardimgg2"></div>
-                                                            <img src="./images/image1.jpg" className="card-img-top"/>
-                                                            {/*<img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>*/}
-                                                        </div>
-                                                        <div className="card-img-overlay">
-                                                            <div className="summm">
-                                                                {/*<img src="./images/Vector (18).png"/>*/}
-                                                                {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
+                                            {userDacha.map((item , index)=>{
+                                                return(
+                                                    <div className="col-sm-6 col-md-4 col-6 mt-3">
+                                                        <Link to="/countryhouse" className="text-decoration-none"
+                                                            // onClick={()=>props.topTan.splice(0,1,item)}>
+                                                              onClick={()=>props.topTan.splice(0,1,item)}>
+                                                            <div className="card">
+                                                                <div className="cardimgg">
+                                                                    <div className="cardimgg2"></div>
+                                                                    {/*<img src="./images/image1.jpg" className="card-img-top"/>*/}
+                                                                    <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                                                </div>
+                                                                <div className="card-img-overlay">
+                                                                    <div className="summm">
+                                                                        {/*<img src="./images/Vector (18).png"/>*/}
+                                                                        {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="card-body">
+                                                                    <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
+                                                                    <h3>{item.name}</h3>
+                                                                    <div>
+                                                                        <img src="./images/Vector (18).png"/>
+                                                                        <span>{item.room_count} {getText("komnat")}</span>
+                                                                        {/*<span>sasas</span>*/}
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src="./images/Vector (18).png"/>
+                                                                        <span>{item.bathroom_count} {getText("danniy")}</span>
+                                                                        {/*<span>sasasas</span>*/}
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src="./images/Vector (18).png"/>
+                                                                        <span>{item.capacity} {getText("gost")}</span>
+                                                                        {/*<span>saacasc</span>*/}
+                                                                    </div>
+                                                                    <div>
+                                                                        <img src="./images/Vector (18).png"/>
+                                                                        <span>{item.cost} {getText("sum")}</span>
+                                                                        {/*<span>saasxasxas</span>*/}
+                                                                    </div>
+                                                                    <div className="mt-2">
+                                                                        <Link to="/countryhouse" className="text-secondary text-decoration-none">{getText("podrobni")}</Link>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="card-body">
-                                                            {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
-                                                            <h3>DAcha</h3>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.room_count} {getText("komnat")}</span>*/}
-                                                                <span>sasas</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.bathroom_count} {getText("danniy")}</span>*/}
-                                                                <span>sasasas</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.capacity} {getText("gost")}</span>*/}
-                                                                <span>saacasc</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.cost} {getText("sum")}</span>*/}
-                                                                <span>saasxasxas</span>
-                                                            </div>
-                                                            <div className="mt-2">
-                                                                <Link to="/countryhouse" className="text-secondary text-decoration-none">{getText("podrobni")}</Link>
-                                                            </div>
-                                                        </div>
+                                                        </Link>
                                                     </div>
-                                                </Link>
-                                            </div>
-                                            <div className="col-sm-6 col-md-4 col-6 mt-3">
-                                                <Link to="/countryhouse" className="text-decoration-none"
-                                                    // onClick={()=>props.topTan.splice(0,1,item)}>
-                                                      onClick={()=>props.topTan.splice(0,1)}>
-                                                    <div className="card">
-                                                        <div className="cardimgg">
-                                                            <div className="cardimgg2"></div>
-                                                            <img src="./images/image1.jpg" className="card-img-top"/>
-                                                            {/*<img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>*/}
-                                                        </div>
-                                                        <div className="card-img-overlay">
-                                                            <div className="summm">
-                                                                {/*<img src="./images/Vector (18).png"/>*/}
-                                                                {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
-                                                            </div>
-                                                        </div>
-                                                        <div className="card-body">
-                                                            {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
-                                                            <h3>DAcha</h3>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.room_count} {getText("komnat")}</span>*/}
-                                                                <span>sasas</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.bathroom_count} {getText("danniy")}</span>*/}
-                                                                <span>sasasas</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.capacity} {getText("gost")}</span>*/}
-                                                                <span>saacasc</span>
-                                                            </div>
-                                                            <div>
-                                                                <img src="./images/Vector (18).png"/>
-                                                                {/*<span>{item.cost} {getText("sum")}</span>*/}
-                                                                <span>saasxasxas</span>
-                                                            </div>
-                                                            <div className="mt-2">
-                                                                <Link to="/countryhouse" className="text-secondary text-decoration-none">{getText("podrobni")}</Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
+                                                )
+                                            })}
+
 
                                         </div>
                                     </TabPanel>
