@@ -21,6 +21,7 @@ export const getDacha = () => (dispatch) => {
 export const getTopdacha = () => (dispatch) => {
     axios.get(API_PATH + "top-rated")
         .then((res) => {
+            console.log("top dacha bu")
             console.log(res);
             dispatch(updateState({topDacha: res.data.data.data, selectedTopDacha: []}));
         })

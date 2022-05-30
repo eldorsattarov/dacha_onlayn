@@ -938,6 +938,7 @@ body {
     }
 
     .cardimgg {
+
       border-radius: 15px 15px 0px 0px;
       overflow: hidden;
       position: relative;
@@ -954,7 +955,7 @@ body {
       transition: all 0.4s linear;
       height: 240px;
       @media(max-width: 576px) {
-        height: 110px;
+        height: 140px;
       }
     }
 
@@ -967,6 +968,23 @@ body {
     .card-img-overlay {
       //position: relative;
       .summm {
+        top: 25px!important;
+        .bbb {
+          @media(max-width: 576px) {
+            font-size: 12px;
+            color: #FFFFFF;
+            padding: 3px 8px;
+          }
+          background: #F2931F;
+          border-radius: 7px;
+          border: 0;
+          font-family: 'Manrope';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          color: #FFFFFF;
+          padding: 5px 12px;
+        }
         width: 100%;
         opacity: 1;
         position: absolute;
@@ -974,7 +992,7 @@ body {
         padding-left: 6px;
         top: 45%;
         @media(max-width: 576px) {
-          top: 25%;
+          top: 15px!important;
         }
       }
 
@@ -1101,7 +1119,7 @@ body {
       transition: all 0.4s linear;
       height: 240px;
       @media(max-width: 576px) {
-        height: 110px;
+        height: 140px;
       }
     }
 
@@ -1817,7 +1835,7 @@ body {
 
 .mobilIlovalar {
   @media(max-width: 576px) {
-   display: none;
+    display: none;
   }
   background-image: url("../../public/images/Rectangle 1.png");
   background-size: 100%;
@@ -1828,11 +1846,10 @@ body {
     @media(max-width: 576px) {
       padding: 0;
     }
-    padding: 50px 0;
+    padding: 30px 0;
     width: 100%;
     height: 100vh;
     background: linear-gradient(270deg, rgba(0, 9, 90, 0) 0%, rgba(0, 0, 0, 0.9) 80%);
-
     p {
       @media(max-width: 576px) {
         font-size: 12px;
@@ -1862,6 +1879,7 @@ body {
       @media(max-width: 576px) {
         font-size: 10px;
       }
+      //background: red;
       font-family: Manrope;
       font-style: normal;
       font-weight: 500;
@@ -1989,20 +2007,25 @@ body {
     }
   }
 
-button{
-  @media(max-width: 576px) {
-    font-size: 12px;
-  }
-  background: #F2931F;
-  border-radius: 10px;
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  color: #FFFFFF;
-  &:focus{
-    box-shadow: none;
+  button{
+    @media(max-width: 576px) {
+      font-size: 12px;
+    }
+    background: #F2931F;
+    border-radius: 10px;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
     color: #FFFFFF;
+    &:focus{
+      box-shadow: none;
+      color: #FFFFFF;
+    }
+    &:hover{
+      box-shadow: none;
+      color: #FFFFFF;
+    }
   }
   &:hover{
     box-shadow: none;
@@ -2042,9 +2065,12 @@ button{
         height: 25px;
         font-size: 9px;
       }
+      &:focus{
+        box-shadow: none;
+      }
     }
   }
-}
+
 
 .login {
   padding: 30px 0;
@@ -2362,6 +2388,7 @@ button{
   }
   .card {
     border-radius: 15px 15px 15px 15px;
+
     &:hover {
       .card-img-top {
         transform: scale(1.1);
@@ -2369,16 +2396,16 @@ button{
     }
 
     .cardimgg {
+
+      border-radius: 15px 15px 0px 0px;
       overflow: hidden;
       position: relative;
-      border-radius: 15px 15px 0px 0px;
 
       .cardimgg2 {
         position: absolute;
         width: 100%;
         height: 100%;
         background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4));
-
       }
     }
 
@@ -2386,7 +2413,7 @@ button{
       transition: all 0.4s linear;
       height: 240px;
       @media(max-width: 576px) {
-        height: 110px;
+        height: 140px;
       }
     }
 
@@ -2399,14 +2426,31 @@ button{
     .card-img-overlay {
       //position: relative;
       .summm {
+        top: 25px!important;
+        .bbb {
+          @media(max-width: 576px) {
+            font-size: 12px;
+            color: #FFFFFF;
+            padding: 3px 8px;
+          }
+          background: #F2931F;
+          border-radius: 7px;
+          border: 0;
+          font-family: 'Manrope';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          color: #FFFFFF;
+          padding: 5px 12px;
+        }
         width: 100%;
         opacity: 1;
         position: absolute;
         left: 0;
-        padding-left: 7px;
-        top: 43%;
+        padding-left: 6px;
+        top: 45%;
         @media(max-width: 576px) {
-          top: 25%;
+          top: 15px!important;
         }
       }
 
@@ -2421,7 +2465,6 @@ button{
         }
       }
     }
-
 
     h3 {
       @media (max-width: 576px) {

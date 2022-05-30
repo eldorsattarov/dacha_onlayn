@@ -90,6 +90,7 @@ const mapStateToProps = (state) => {
         topTan: state.dacha.topTan,
         ids_array: state.dacha.ids_array
     }
+
 }
-export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
+    export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
 

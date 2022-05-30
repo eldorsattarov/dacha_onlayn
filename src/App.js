@@ -1,4 +1,3 @@
-
 import React from "react";
 import {Route,Routes} from "react-router-dom";
 import Main from "./components/Main";
@@ -41,8 +40,6 @@ function App(props) {
                 <Route path="/login" element={<Kirish/>}/>
                 <Route path="/profil" element={<Profil/>}/>
                 <Route path="/profil_redactor" element={<ProfilRedaktor/>}/>
-
-
                 <Route path="/filter_dacha" element={<DachaFilterNewPage/>}/>
             </Routes>
             </div>
