@@ -10,14 +10,14 @@ const initialState = {
     locale : [],
     izbran : [],
     ids_array : []
-}
+};
 
-export const dachaReducer = (state=initialState,action)=>{
+export const dachaReducer = (state = initialState,action)=>{
     if (action.types === DACHA){
         return{
             ...state,
             ...action.payload
-        }
+        };
     }
     return state
-}
+};

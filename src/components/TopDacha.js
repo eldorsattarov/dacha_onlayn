@@ -11,8 +11,10 @@ import Carousel from "react-simply-carousel";
 
 const TopDacha = (props) => {
 
+
     useEffect(() => {
         props.getTopdacha();
+        console.log(props);
     }, []);
 
     const [activeSlide, setActiveSlide] = useState(0);
@@ -24,7 +26,8 @@ const TopDacha = (props) => {
                     <div className="col-12 d-flex justify-content-between align-items-center">
                         <div className="text-center w-100">
                             <h1 className="">
-                                <img src="./images/chiziq.png" className="lineImgg"/> {getText("topDacha")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
+                                <img src="./images/chiziq.png" className="lineImgg"/> {getText("topDacha")} <img
+                                src="./images/chiziq.png" className="lineImgg"/></h1>
                         </div>
                         {/*<div className="d-flex justify-content-between">*/}
                         {/*    <button className="nextprev mr-2 "><img src="./images/Vector (16).png"/></button>*/}
@@ -96,7 +99,7 @@ const TopDacha = (props) => {
                     {/*    </div>*/}
                     {/*))}*/}
                     {props.topDacha.map((item, index) => {
-                        while (index<2){
+                        while (index < 2) {
                             return (
                                 <div className="col-sm-6 col-md-4 col-6 mt-3" key={item.id}>
                                     <Link to="/countryhouse" className="text-decoration-none"
@@ -105,7 +108,8 @@ const TopDacha = (props) => {
                                         <div className="card">
                                             <div className="cardimgg">
                                                 {/*<div className="cardimgg2"></div>*/}
-                                                <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                                <img src={BASE_URL + item.images[0].image_path}
+                                                     className="card-img-top"/>
                                             </div>
 
                                             <div className="card-img-overlay">
@@ -151,7 +155,6 @@ const TopDacha = (props) => {
 
                     {/*    </Carousel>*/}
                     {/*</div>*/}
-
 
 
                 </div>
