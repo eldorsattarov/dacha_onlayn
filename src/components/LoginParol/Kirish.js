@@ -14,8 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import {connect} from "react-redux";
 import {onSubmitOne} from "../../redux/action/loginAction";
 
-import Main from "../Main";
-
 toast.configure();
 
 const Kirish = () => {
@@ -45,6 +43,8 @@ const Kirish = () => {
                 console.log(res.data.token)
                 setToken(res.data.token);
                 localStorage.setItem(TOKEN_NAME_LOGIN, res.data.token);
+                // props.history.push("/");
+                // nextPage();
                 navigate("/profil");
                 toast.success("Успешный !");
             })
@@ -53,26 +53,6 @@ const Kirish = () => {
                 toast.error("Ошибка ?");
             })
     }
-
-
-    // useEffect(() => {
-        // if (localStorage.getItem(TOKEN_NAME_LOGIN)) {
-        //     axios.get("https://work.bingo99.uz/api/user", {
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`}
-        //     })
-        //         .then(res => {
-        //             console.log(res)
-        //             setUser(res.data.data)
-        //         })
-        //         .catch(err => {
-        //             // console.log(err)
-        //         })
-        // }
-    // }, [token, setUser])
-
-    // formik
-
 
     return (
         <div>
@@ -157,7 +137,6 @@ const Kirish = () => {
 
                                         </Formik>
                                     </div>
-
 
                                 </div>
                             </div>

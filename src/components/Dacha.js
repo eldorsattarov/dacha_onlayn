@@ -6,10 +6,11 @@ import TopDacha from "./TopDacha";
 import {connect} from "react-redux";
 import {getTopdacha,getId, updateState,getIzbrannoe} from "../redux/action/dachaAction";
 import {getText, getLanguage} from "../locales";
-import {BASE_URL} from "../tools/constants";
+import {API_PATH, BASE_URL, TOKEN_NAME_LOGIN} from "../tools/constants";
 import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 toast.configure();
 const Dacha = (props) => {
     console.log(props.topTan);
@@ -26,6 +27,18 @@ const Dacha = (props) => {
         // props.updateState({ids_array : JSON.parse(localStorage.getItem("locale"))});
     }, []);
 
+    const addFovourite = (dacha_id) =>{
+        axios.post(API_PATH + `favourite-add/${dacha_id}` , {} ,{
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+            }
+        })
+            .then((res)=>{
+                console.log(res)
+            })
+    }
+
+
     return (
         <div>
             <Header/>
@@ -40,7 +53,7 @@ const Dacha = (props) => {
                                     </div>
                                 </div>
                                 <div className="mt-4 imagesRow">
-                                    {props.topTan[index].images.map((item2, index2) => {
+                                    {props.topTan[index].images?.map((item2, index2) => {
                                         return (
                                             <div className="col-9 col-sm-3">
                                                 <img src={BASE_URL + item2.image_path} className=""/>
@@ -93,7 +106,11 @@ const Dacha = (props) => {
                                                    {getText("izbranText")}<br/>
                                                     {item.phone}
                                                 </p>
-                                                <button className="btn izbran w-100" onClick={()=>props.locale.push(item.id)}>{getText("izbrannoe")}</button>
+                                                {/*<button className="btn izbran w-100" onClick={()=>props.locale.push(item.id)}>{getText("izbrannoe")}</button>*/}
+                                                <button className="btn izbran w-100" onClick={()=>addFovourite(item.id)}>{getText("izbrannoe")}</button>
+
+
+
                                                 {/*<button className="btn izbran w-100 rounded-0"*/}
                                                 {/*        onClick={()=>props.locale.push(item.id)}>*/}
                                                 {/*    <a href={`${"tel:" + item.phone}`}>{item.phone}</a>*/}

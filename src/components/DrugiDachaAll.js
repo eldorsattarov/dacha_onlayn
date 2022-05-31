@@ -44,21 +44,22 @@ const DrugiDachaAll = (props) => {
                             </div>
                           </div>
                           <div className="card-body">
-                            <h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>
+                            {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
+                            <h3>{item.name}</h3>
                             <div>
-                              <img src="./images/Vector (18).png"/>
+                              <img src="./images/newImagesTwo/Vector (14).png"/>
                               <span>{item.room_count} {getText("komnat")}</span>
                             </div>
                             <div>
-                              <img src="./images/Vector (18).png"/>
+                              <img src="./images/newImagesTwo/Vector (15).png"/>
                               <span>{item.bathroom_count} {getText("danniy")}</span>
                             </div>
                             <div>
-                              <img src="./images/Vector (18).png"/>
+                              <img src="./images/newImagesTwo/Vector (16).png"/>
                               <span>{item.capacity} {getText("gost")}</span>
                             </div>
                             <div>
-                              <img src="./images/Vector (18).png"/>
+                              <img src="./images/newImagesTwo/Vector (17).png"/>
                               <span>{item.cost} {getText("sum")}</span>
                             </div>
                             <div className="mt-2">

@@ -216,8 +216,7 @@ const Header = (props) => {
                             <form className="mt-5">
                                 <input className="rounded-0 form-control mt-4" type="text" name="name" placeholder={getText("imya")}
                                          required errorMessage={getText("majburiy")}
-                                       value={formValue.name}
-                                       onChange={handleChange}/>
+                                       value={formValue.name} onChange={handleChange}/>
                                 <input className="rounded-0 form-control mt-4" type="text" name="phone" placeholder={getText("tel")}
                                          required errorMessage={getText("majburiy")}
                                        value={formValue.phone}
@@ -229,17 +228,6 @@ const Header = (props) => {
                                 {/*<button type="submit" className="btn rounded-0 w-100 mt-4 mb-3">{getText("zvanok")}</button>*/}
                                 <Button className="btn rounded-0 w-100 mt-4 mb-3" onClick={handleSubmit}>{getText("zvanok")}</Button>
                             </form>
-
-                            {/*<form className="mt-5" onSubmit={props.login}>*/}
-                            {/*    <input className="rounded-0" type="text" name="name" placeholder={getText("imya")}*/}
-                            {/*             required errorMessage={getText("majburiy")}/>*/}
-                            {/*    <input className="rounded-0" type="phone" name="phone" placeholder={getText("tel")}*/}
-                            {/*             required errorMessage={getText("majburiy")}/>*/}
-                            {/*    <input className="rounded-0" type="textarea" name="description"*/}
-                            {/*             placeholder={getText("koment")} required errorMessage={getText("majburiy")}/>*/}
-                            {/*    <button type="submit" className="btn rounded-0 w-100 mt-4"*/}
-                            {/*            style={{background: "#F2931F", color: "white"}}>{getText("zvanok")}</button>*/}
-                            {/*</form>*/}
 
                         </div>
                     </div>

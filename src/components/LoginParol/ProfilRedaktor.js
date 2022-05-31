@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../Header";
 import {Link, useNavigate} from "react-router-dom";
-import {API_PATH, TOKEN_NAME_LOGIN} from "../../tools/constants";
+import {API_PATH, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../../tools/constants";
 import axios from "axios";
 import {getIzbrannoe} from "../../redux/action/dachaAction";
 import {updateState} from "../../redux/action/loginAction";
@@ -10,9 +10,11 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {toast} from "react-toastify";
 
+
 toast.configure();
 
 const ProfilRedaktor = (props) => {
+
 
     const navigate = useNavigate()
 
@@ -52,7 +54,14 @@ const ProfilRedaktor = (props) => {
                 toast.error("Ошибка ?");
             })
     }
-
+    const exitProfile = () =>{
+        localStorage.removeItem(TOKEN_NAME_LOGIN);
+        localStorage.removeItem(TOKEN_NAME_REGISTER);
+        navigate("/");
+        toast.warning("Выйти из профиля !");
+    }
+    // console.log(localStorage.getItem(TOKEN_NAME_REGISTER))
+    // console.log(localStorage.getItem(TOKEN_NAME_LOGIN))
 
     return (
         <div>
@@ -125,6 +134,8 @@ const ProfilRedaktor = (props) => {
                                             }
 
                                         </Formik>
+
+                                        <button type="button" className="btn exitButton mt-3" onClick={exitProfile}>Выход</button>
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +143,7 @@ const ProfilRedaktor = (props) => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

@@ -18,11 +18,7 @@ const MobilIlovalari = () => {
                                     molestiae numquam quia quis sunt tenetur veritatis.
                                     Eligendi magnam maxime mollitia odio. Natus, veniam.
                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Asperiores consequuntur delectus deserunt dolorum ex in
-                                    labore molestias, natus, porro quis reiciendis sunt tempora
-                                    temporibus totam unde voluptatem voluptatum. Ab ad, atque blanditiis dolorem doloribus dolorum earum
-                                    et eveniet explicabo hic illo inventore modi necessitatibus nihil reiciendis sed sequi tempora voluptatem.
-                                </span>
+                                  </span>
                                 <div className="d-flex align-items-center justify-content-start mobilLink">
                                     <a href="https://play.google.com/store" target="_blank"><img
                                         src="./images/newImg/google-play-png-transparent-6 1.png"/></a>

@@ -69,91 +69,89 @@ const RoyxatdanOtish = () => {
                                 <div className="card-body">
                                     {/*formik*/}
 
-                                        <div className="login_forms">
-                                            <Formik
-                                                initialValues = {initialValues}
-                                                onSubmit = {onSubmit}
-                                                validationSchema = {validationSchema}
-                                            >
-                                                {
-                                                    formik => {
-                                                        return <Form>
-                                                            <div className="login_page_inputs">
-                                                                <div className="login_inputs_wrapper">
-                                                                    <div className="login_control">
-                                                                        <label className="login_label" >Полное имя</label>
-                                                                        <div className="login_input">
-                                                                            <Field
-                                                                                type = "text"
-                                                                                id = "name"
-                                                                                name = "name"
-                                                                                autoComplete="off"
-                                                                                className="form-control"
-                                                                            />
-                                                                            <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                                        </div>
+                                    <div className="login_forms">
+                                        <Formik
+                                            initialValues = {initialValues}
+                                            onSubmit = {onSubmit}
+                                            validationSchema = {validationSchema}
+                                        >
+                                            {
+                                                formik => {
+                                                    return <Form>
+                                                        <div className="login_page_inputs">
+                                                            <div className="login_inputs_wrapper">
+                                                                <div className="login_control">
+                                                                    <label className="login_label" >Полное имя</label>
+                                                                    <div className="login_input">
+                                                                        <Field
+                                                                            type = "text"
+                                                                            id = "name"
+                                                                            name = "name"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
                                                                     </div>
-                                                                    <div className="login_control">
-                                                                        <label className="login_label" >Телефонный номер</label>
-                                                                        <div className="parol_input">
-                                                                            <Field
-                                                                                type="phone"
-                                                                                id = "phone"
-                                                                                name = "phone"
-                                                                                autoComplete="off"
-                                                                                className="form-control"
-                                                                            />
-                                                                            <ErrorMessage name = "phone" component = 'div' style={{color: 'red'}} className = "error" />
-                                                                        </div>
+                                                                </div>
+                                                                <div className="login_control">
+                                                                    <label className="login_label" >Телефонный номер</label>
+                                                                    <div className="parol_input">
+                                                                        <Field
+                                                                            type="phone"
+                                                                            id = "phone"
+                                                                            name = "phone"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <ErrorMessage name = "phone" component = 'div' style={{color: 'red'}} className = "error" />
                                                                     </div>
-                                                                    <div className="login_control">
-                                                                        <label className="login_label" >Пароль</label>
-                                                                        <div className="parol_input">
-                                                                            <Field
-                                                                                type="text"
-                                                                                id = "password"
-                                                                                name = "password"
-                                                                                autoComplete="off"
-                                                                                className="form-control"
-                                                                            />
-                                                                            <ErrorMessage name = "password" component = 'div' style={{color: 'red'}} className = "error" />
-                                                                        </div>
+                                                                </div>
+                                                                <div className="login_control">
+                                                                    <label className="login_label" >Пароль</label>
+                                                                    <div className="parol_input">
+                                                                        <Field
+                                                                            type="text"
+                                                                            id = "password"
+                                                                            name = "password"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <ErrorMessage name = "password" component = 'div' style={{color: 'red'}} className = "error" />
                                                                     </div>
-                                                                    <div className="login_control">
-                                                                        <label className="login_label" >Подтвердить Пароль</label>
-                                                                        <div className="parol_input">
-                                                                            <Field
-                                                                                type="text"
-                                                                                id = "very_password"
-                                                                                name = "very_password"
-                                                                                autoComplete="off"
-                                                                                className="form-control"
-                                                                            />
-                                                                            <ErrorMessage name = "very_password" component = 'div' style={{color: 'red'}} className = "error" />
-                                                                        </div>
+                                                                </div>
+                                                                <div className="login_control">
+                                                                    <label className="login_label" >Подтвердить Пароль</label>
+                                                                    <div className="parol_input">
+                                                                        <Field
+                                                                            type="text"
+                                                                            id = "very_password"
+                                                                            name = "very_password"
+                                                                            autoComplete="off"
+                                                                            className="form-control"
+                                                                        />
+                                                                        <ErrorMessage name = "very_password" component = 'div' style={{color: 'red'}} className = "error" />
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
 
 
-                                                            <button
-                                                                type = 'submit'
-                                                                className = "in_button mt-3"
-                                                            >
-                                                                Зарегистрироваться
-                                                            </button>
-                                                            <div className="w-100 text-center mt-2">
-                                                                <Link to="/login" className="royxat">Войти в аккаунт</Link>
-                                                            </div>
+                                                        <button
+                                                            type = 'submit'
+                                                            className = "in_button mt-3"
+                                                        >
+                                                            Зарегистрироваться
+                                                        </button>
+                                                        <div className="w-100 text-center mt-2">
+                                                            <Link to="/login" className="royxat">Войти в аккаунт</Link>
+                                                        </div>
 
-                                                        </Form>
-                                                    }
+                                                    </Form>
                                                 }
+                                            }
 
-                                            </Formik>
-                                        </div>
-
-
+                                        </Formik>
+                                    </div>
 
                                 </div>
                             </div>
