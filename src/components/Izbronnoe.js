@@ -92,5 +92,5 @@ const mapStateToProps = (state) => {
     }
 
 }
-    export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
+export default connect(mapStateToProps, {getIzbrannoe, updateState})(Izbronnoe);
 
