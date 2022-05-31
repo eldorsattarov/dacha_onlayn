@@ -49,6 +49,7 @@ const Kirish = () => {
                 toast.success("Успешный !");
             })
             .catch(err => {
+                console.log(err);
                 toast.error("Ошибка ?");
             })
     }

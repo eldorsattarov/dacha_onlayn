@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const loginReducer = (state = initialState, action) => {
-    if (action.type ===LOGIN){
+    if (action.type === LOGIN){
         return {
             ...state,
             ...action.payload

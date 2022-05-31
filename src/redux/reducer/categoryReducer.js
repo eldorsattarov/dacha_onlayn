@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const categoryReducer = (state=initialState,action)=>{
-    if (action.types = CATEGORY){
+    if (action.types === CATEGORY){
         return{
             ...state,
             ...action.payload

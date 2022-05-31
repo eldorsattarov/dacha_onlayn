@@ -24,10 +24,10 @@ export const getCategory = () => (dispatch) => {
             dispatch(updateState({category: res.data.data}));
             // dispatch(updateState({selectedCategory: res.data.data[0]}));
         })
-}
+};
 export const getCategoryPage = () => (dispatch) => {
     axios.get(API_PATH + "category")
         .then((res) => {
             // dispatch(updateState({cat: res.data.data}));
         })
-}
+};

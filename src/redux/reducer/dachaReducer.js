@@ -13,7 +13,7 @@ const initialState = {
 }
 
 export const dachaReducer = (state=initialState,action)=>{
-    if (action.types = DACHA){
+    if (action.types === DACHA){
         return{
             ...state,
             ...action.payload
