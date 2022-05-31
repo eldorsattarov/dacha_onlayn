@@ -11,8 +11,22 @@ import axios from "axios";
 import {API_PATH, TOKEN_NAME_LOGIN} from "../tools/constants";
 // import {Input, Select, DatePicker, TreeSelect, Switch} from 'antd';
 import {Link} from "react-router-dom";
+import {Option} from "antd/es/mentions";
 
 const Dovabit = () => {
+
+    const [image_path , setImages] = useState([]);
+    const [currency , setCurrency] = useState("");
+    const tanladi = (e) =>{
+        setCurrency(e.target.value)
+        console.log(currency)
+    }
+   const handleImageChange = (e) => {
+       console.log(e)
+       setImages(e.target.files)
+    }
+    console.log(image_path)
+
     const initialValues = {
         name : "",
         phone: "",
@@ -24,20 +38,29 @@ const Dovabit = () => {
         advertiser_name : "",
         currency : "",
         comment : "",
-        image_path : ""
-
-        // _method : "put"
+        image_path : "",
+        _method : "method"
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
         phone: Yup.string().required('телефон ...'),
+        category_id: Yup.string().required('категория ...'),
+        room_count: Yup.string().required('количество комнат ...'),
+        bathroom_count: Yup.string().required('ванная комната ...'),
+        capacity: Yup.string().required('вместимость ...'),
+        cost: Yup.string().required('Стоимость ...'),
+        advertiser_name: Yup.string().required('имя рекламодателя ...'),
+        currency: Yup.string().required('валюта ...'),
+        comment: Yup.string().required('комментарий ...'),
+        image_path: Yup.string().required('путь изображения ...'),
         // _method: Yup.string().required('method ...'),
-    })
+    });
+
     const onSubmit = (values) => {
         console.log(values);
         axios.post(API_PATH + "dacha", {
-                name : values.name,
-                phone : values.phone,
+                // name : values.name,
+                // phone : values.phone,
                 // _method : "put"
             },
             {
@@ -65,17 +88,20 @@ const Dovabit = () => {
                 // console.log(res.data.data)
                 setLocation(res.data.data);
             })
-    },[])
+    },[]);
+
 
     const chan = (e) =>{
         console.log(e.target.value)
     }
+
     return (
         <div>
             <Header/>
             <div className="dovabitDacha">
                 <div className="container">
                     <div className="row">
+
                         <div className="col-12 text-center">
                             <h1>
                                 <img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")} <img
@@ -131,20 +157,19 @@ const Dovabit = () => {
                                                           }
                                                       </select>
 
-
-
                                                       <ErrorMessage name = "category_id" component = 'div' style={{color: 'red'}}  className = "error" />
                                                   </div>
                                                   <div className="col-12 mt-2">
                                                       <label>Изображение</label>
                                                       <Field
                                                           type="file"
-                                                          id = "images"
+                                                          id = "image_path"
                                                           autoComplete="off"
                                                           className="form-control input2"
-                                                          name="images"
+                                                          name="image_path"
+                                                          onChange={handleImageChange}
                                                       />
-                                                      <ErrorMessage name = "images" component = 'div' style={{color: 'red'}}  className = "error" />
+                                                      <ErrorMessage name ="image_path" component = 'div' style={{color: 'red'}}  className = "error" />
                                                   </div>
                                                   <div className="col-12 mt-2">
                                                       <label>Добавить фильтры</label>
@@ -254,23 +279,13 @@ const Dovabit = () => {
                                                       />
                                                       <ErrorMessage name = "cost" component = 'div' style={{color: 'red'}}  className = "error" />
                                                   </div>
-                                                  {/*<Select>*/}
-                                                  {/*    <Select.Option value="y.e" className="form-control input1">*/}
-                                                  {/*        <span style={{color:"#bfbfbf"}}>y.e</span>*/}
-                                                  {/*    </Select.Option>*/}
-                                                  {/*    <Select.Option value="cyм">*/}
-                                                  {/*        <span style={{color:"#bfbfbf"}}>cyм</span>*/}
-                                                  {/*    </Select.Option>*/}
-                                                  {/*</Select>*/}
-
                                                   <div className="col-3 col-sm-2 mt-2">
                                                       <label>.</label><br/>
-                                                      <select className="form-control input1">
-                                                          <option>y.e</option>
-                                                          <option>cyм</option>
+                                                      <select className="form-control input1" name="currency" onChange={tanladi} value={currency}>
+                                                          <option value="y">y.e</option>
+                                                          <option value="s">cyм</option>
                                                       </select>
                                                   </div>
-
 
                                                   <div className="col-12 col-sm-7 mt-2">
                                                       <label>Номер телефона</label>

@@ -26,75 +26,12 @@ const TopDacha = (props) => {
                             <h1 className="">
                                 <img src="./images/chiziq.png" className="lineImgg"/> {getText("topDacha")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                         </div>
-                        {/*<div className="d-flex justify-content-between">*/}
-                        {/*    <button className="nextprev mr-2 "><img src="./images/Vector (16).png"/></button>*/}
-                        {/*    <button className="nextprev"><img src="./images/Vector (17).png"/></button>*/}
-                        {/*</div>*/}
                     </div>
                 </div>
 
 
                 <div className="row mt-4 d-flex position-relative">
 
-                    {/*<div>*/}
-                    {/*    <Carousel*/}
-                    {/*        updateOnItemClick*/}
-                    {/*        containerProps={{*/}
-                    {/*            style: {*/}
-                    {/*                width: "100%",*/}
-                    {/*            }*/}
-                    {/*        }}*/}
-                    {/*        activeSlideIndex={activeSlide}*/}
-                    {/*        activeSlideProps={{*/}
-                    {/*            style: {*/}
-                    {/*         */}
-                    {/*            }*/}
-                    {/*        }}*/}
-                    {/*        onRequestChange={setActiveSlide}*/}
-                    {/*        forwardBtnProps={{*/}
-                    {/*            children: ">",*/}
-                    {/*            style: {*/}
-                    {/*                position : "absolute",*/}
-                    {/*                top :"-80px",*/}
-                    {/*                right:0,*/}
-                    {/*                width: 50,*/}
-                    {/*                height: 40,*/}
-                    {/*                minWidth: 45,*/}
-                    {/*                alignSelf: "center"*/}
-                    {/*            }*/}
-                    {/*        }}*/}
-                    {/*        backwardBtnProps={{*/}
-                    {/*            children: "<",*/}
-                    {/*            style: {*/}
-                    {/*                position : "absolute",*/}
-                    {/*                top :"-80px",*/}
-                    {/*                right:0,*/}
-                    {/*                marginRight:"70px",*/}
-                    {/*                width: 50,*/}
-                    {/*                height: 40,*/}
-                    {/*                minWidth: 45,*/}
-                    {/*                alignSelf: "center"*/}
-                    {/*            }*/}
-                    {/*        }}*/}
-                    {/*        itemsToShow={3}*/}
-                    {/*        speed={400}*/}
-                    {/*    >*/}
-                    {/*{Array.from({ length: 10 }).map((item, index) => (*/}
-                    {/*    <div*/}
-                    {/*    //     style={{*/}
-                    {/*    //         background: "red",*/}
-                    {/*    //         width: 200,*/}
-                    {/*    //         height: 300,*/}
-                    {/*    //         border: "30px solid white",*/}
-                    {/*    //         textAlign: "center",*/}
-                    {/*    //         lineHeight: "240px",*/}
-                    {/*    //         boxSizing: "border-box"*/}
-                    {/*    //     }}*/}
-                    {/*    //     key={index}*/}
-                    {/*    >*/}
-                    {/*       /!*{index}*!/*/}
-                    {/*    </div>*/}
-                    {/*))}*/}
                     {props.topDacha.map((item, index) => {
                         while (index<2){
                             return (
