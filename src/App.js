@@ -17,12 +17,15 @@ import Kirish from "./components/LoginParol/Kirish";
 import Profil from "./components/LoginParol/Profil";
 import ProfilRedaktor from "./components/LoginParol/ProfilRedaktor";
 import DachaFilterNewPage from "./components/DachaFilterNewPage";
+import Carousell from "./components/Carousell";
+import SimpleSlider from "./components/Carousell";
 
 function App(props) {
     return (
         <div className="">
             <Routes>
                 <Route path="/" element={<Main/>}/>
+                <Route path="/carousel" element={<SimpleSlider/>}/>
                 <Route path="/about" element={<Onas/>}/>
                 <Route path="/conditions" element={<Usloviya/>}/>
                 <Route path="/partner" element={<Stat/>}/>

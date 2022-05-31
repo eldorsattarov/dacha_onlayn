@@ -632,6 +632,14 @@ body {
     top: 0;
     padding: 45px 0;
 
+    .slick-prev{
+      transform: scale(2);
+      position: absolute;
+      top: -30px!important;
+    }
+    .slick-next{
+
+    }
     .card {
       img {
         height: 300px;
@@ -968,7 +976,6 @@ body {
     .card-img-overlay {
       //position: relative;
       .summm {
-        top: 25px!important;
         .bbb {
           @media(max-width: 576px) {
             font-size: 12px;
@@ -988,9 +995,9 @@ body {
         width: 100%;
         opacity: 1;
         position: absolute;
-        left: 0;
+        left: 10px;
+        top: 10px;
         padding-left: 6px;
-        top: 45%;
         @media(max-width: 576px) {
           top: 15px!important;
         }

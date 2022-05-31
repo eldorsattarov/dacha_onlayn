@@ -1,54 +1,89 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect} from 'react'
+import styled from 'styled-components'
+import Slider from "react-slick"
+
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import {Link} from "react-router-dom";
-// import Slider from "react-slick";
-import axios from "axios";
-import {API_PATH, BASE_URL} from "../tools/constants";
-import {getText, getLanguage} from "../locales";
-import {connect} from "react-redux";
-import {updateState, getTopdacha} from "../redux/action/dachaAction";
-import Carousel from "react-simply-carousel";
-import SimpleSlider from "./Carousell";
+import {BASE_URL} from "../tools/constants";
+import {getText} from "../locales";
 
 
-const TopDacha = (props) => {
-
-
-    const [activeSlide, setActiveSlide] = useState(0);
-    const [topDacha, setTopDacha] = useState([]);
-
+export default function SimpleSlider(props) {
     useEffect(() => {
-        props.getTopdacha();
-        console.log(props);
-        axios.get(API_PATH + "top-rated")
-            .then((res) => {
-                setTopDacha(res.data.data.data);
-            })
+
     }, []);
+    function SampleNextArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style, display: "block", background: "#BDBDBD", borderRadius: "50%", position: "absolute", top: "-31px", right: "0" }}
+                onClick={onClick}
+            />
+        );
+    }
+
+    function SamplePrevArrow(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style, display: "block", background: "#BDBDBD", borderRadius: "50%", position: "absolute", top: "-31px", left: "1000px" }}
+                onClick={onClick}
+            />
+        );
+    }
+    var settings = {
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        nextArrow: <SampleNextArrow />,
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
+    console.log(props.topDacha);
 
     return (
-        <div className="topdacha">
-            <div className="container position-relative">
-                <div className="row">
-                    <div className="col-12 d-flex justify-content-between align-items-center">
-                        <div className="text-center w-100">
-                            <h1 className="">
-                                <img src="./images/chiziq.png" className="lineImgg"/> {getText("topDacha")} <img
-                                src="./images/chiziq.png" className="lineImgg"/></h1>
-                        </div>
-                        {/*<div className="d-flex justify-content-between">*/}
-                        {/*    <button className="nextprev mr-2 "><img src="./images/Vector (16).png"/></button>*/}
-                        {/*    <button className="nextprev"><img src="./images/Vector (17).png"/></button>*/}
-                        {/*</div>*/}
-                    </div>
-                </div>
+        <div className="container">
+            <StyledCarousel>
+                <Slider {...settings}>
 
-                <SimpleSlider topDacha={topDacha}/>
-                <div className="row mt-4 d-flex position-relative">
-
-                    {topDacha.map((item, index) => {
-                        return (
-                            <div className="col-sm-6 col-md-4 col-6 mt-3" key={item.id}>
-                                <Link to="/countryhouse" className="text-decoration-none"
+                    {props.topDacha.map((item, index) => {
+                        return(
+                            <div className="p-3 mt-3" key={item.id}>
+                                <Link to="/countryhouse" className="text-decoration-none px-2"
                                       onClick={() => props.topTan.splice(0, 1, item)}>
                                     {/*onClick={()=>{props.updateState({topTan:item})}}>*/}
                                     <div className="card">
@@ -98,21 +133,58 @@ const TopDacha = (props) => {
                         )
                     })}
 
-
-                </div>
-
-
-            </div>
+                </Slider>
+            </StyledCarousel>
         </div>
-    );
-};
-const mapStateToProps = (state) => {
-    return {
-        topDacha: state.dacha.topDacha,
-        topTan: state.dacha.topTan,
-        locale: state.dacha.locale
-    }
+    )
 }
-export default connect(mapStateToProps, {getTopdacha, updateState})(TopDacha);
 
+const StyledCarousel = styled.div`
+    
+.item {
+  background-color: #f7f3ea;
+  border-radius: 30px;
+  height: 450px;
+  margin: 50px 10px;
+  padding: 16px 10px;
 
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    h3 {
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 13px;
+      color: #333333;
+    }
+
+    .image {
+      width: 50px;
+      height: 50px;
+
+      img {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .bottom {
+    h3 {
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 20px;
+      color: #b08c2b;
+      margin-top: 16px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 20px;
+    }
+  }
+}
+`
