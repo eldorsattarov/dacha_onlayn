@@ -5,6 +5,7 @@ import Slider from "react-slick"
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import {Link} from "react-router-dom";
 import {BASE_URL} from "../tools/constants";
 import {getText} from "../locales";
@@ -138,6 +139,7 @@ export default function SimpleSlider(props) {
         </div>
     )
 }
+
 
 const StyledCarousel = styled.div`
     

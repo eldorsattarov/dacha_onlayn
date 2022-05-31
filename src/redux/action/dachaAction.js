@@ -17,7 +17,6 @@ export const getDacha = () => (dispatch) => {
         })
 };
 
-
 export const getTopdacha = () => (dispatch) => {
     axios.get(API_PATH + "top-rated")
         .then((res) => {
