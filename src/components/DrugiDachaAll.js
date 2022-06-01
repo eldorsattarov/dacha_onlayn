@@ -5,15 +5,24 @@ import Header2 from "./Header2";
 import Footer2 from "./Footer2";
 import {connect} from "react-redux";
 import {updateState,getDacha} from "../redux/action/dachaAction";
-import {BASE_URL} from "../tools/constants";
+import {API_PATH, BASE_URL} from "../tools/constants";
 import {getText,getLanguage} from "../locales";
+import axios from "axios";
 
 const DrugiDachaAll = (props) => {
 
   useEffect(()=>{
     props.getDacha();
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0);
   },[]);
+
+  const [drugiDacha , setDrugiDacha] = useState([]);
+  useEffect(() => {
+    axios.get(API_PATH + "dacha")
+        .then((res) => {
+          setDrugiDacha(res.data.data.data)
+        })
+  }, []);
 
 
   return (
@@ -27,7 +36,8 @@ const DrugiDachaAll = (props) => {
               </div>
             </div>
             <div className="row mt-4">
-              {props.dacha.map((item,index)=>{
+              {/*{props.dacha.map((item,index)=>{*/}
+              {drugiDacha?.map((item,index)=>{
                 return(
                     <div className="col-sm-6 col-md-4 col-6 mt-3">
                       <Link to="/countryhouse" className="text-decoration-none"
@@ -39,8 +49,11 @@ const DrugiDachaAll = (props) => {
                           </div>
                           <div className="card-img-overlay">
                             <div className="summm">
-                              {/*<img src="./images/Vector (18).png"/>*/}
-                              {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
+                              {
+                                item?.top_rated == 1 ?
+                                    <button type="button" className="bbb">Top</button>
+                                    : ""
+                              }
                             </div>
                           </div>
                           <div className="card-body">

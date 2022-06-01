@@ -4,6 +4,7 @@ import Slider from "react-slick"
 import {connect} from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import {Link} from "react-router-dom";
 import {BASE_URL} from "../tools/constants";
 import {getText} from "../locales";
@@ -162,6 +163,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {updateState, getTopdacha})(SimpleSlider);
+
+
 
 const StyledCarousel = styled.div`
     

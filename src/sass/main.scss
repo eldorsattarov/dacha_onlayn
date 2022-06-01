@@ -1145,14 +1145,30 @@ body {
     .card-img-overlay {
       //position: relative;
       .summm {
+        .bbb {
+          @media(max-width: 576px) {
+            font-size: 12px;
+            color: #FFFFFF;
+            padding: 3px 8px;
+          }
+          background: #F2931F;
+          border-radius: 7px;
+          border: 0;
+          font-family: 'Manrope';
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          color: #FFFFFF;
+          padding: 5px 12px;
+        }
         width: 100%;
         opacity: 1;
         position: absolute;
-        left: 0;
-        padding-left: 7px;
-        top: 43%;
+        left: 10px;
+        top: 10px;
+        padding-left: 6px;
         @media(max-width: 576px) {
-          top: 25%;
+          top: 15px!important;
         }
       }
 

@@ -49,7 +49,8 @@ const Dacha = (props) => {
                                 <div className="row">
                                     <div className="col-12">
                                         {/*<h3>{localStorage.locales}</h3>*/}
-                                        <h1>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h1>
+                                        {/*<h1>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h1>*/}
+                                        <h1>{item.name}</h1>
                                     </div>
                                 </div>
                                 <div className="mt-4 imagesRow">
