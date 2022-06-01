@@ -141,6 +141,7 @@ export default function SimpleSlider(props) {
 }
 
 
+
 const StyledCarousel = styled.div`
     
 .item {

@@ -1,15 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {updateState,getDacha} from "../redux/action/dachaAction";
-import {BASE_URL} from "../tools/constants";
+import {API_PATH, BASE_URL} from "../tools/constants";
 import {getText,getLanguage} from "../locales";
+import axios from "axios";
 
 const DrugiDacha = (props) => {
+
     useEffect(()=>{
         props.getDacha();
         // window.scrollTo(0,0);
     },[]);
+
+    const [drugiDacha , setDrugiDacha] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "dacha")
+            .then((res) => {
+                setDrugiDacha(res.data.data.data)
+            })
+    }, []);
+
     return (
         <div className="drugidacha">
             <div className="container">
@@ -20,7 +31,8 @@ const DrugiDacha = (props) => {
                 </div>
                 <div className="row mt-4">
 
-                    {props.dacha?.map((item,index)=>{
+                    {/*{props.dacha?.map((item,index)=>{*/}
+                    {drugiDacha?.map((item,index)=>{
                        while (index<6){
                            return(
                                <div className="col-sm-6 col-md-4 col-6 mt-3">
@@ -67,34 +79,6 @@ const DrugiDacha = (props) => {
                            )
                        }
                     })}
-
-                    {/*<div className="col-sm-6 col-md-4 col-6 mt-3">*/}
-                    {/*    <div className="card">*/}
-                    {/*        <img src="./images/Rectangle 10.png" className="card-img-top"/>*/}
-                    {/*        <div className="card-body">*/}
-                    {/*            <h3>Дача #124</h3>*/}
-                    {/*            <div>*/}
-                    {/*                <img src="./images/Vector (18).png"/>*/}
-                    {/*                <span>4 комнат</span>*/}
-                    {/*            </div>*/}
-                    {/*            <div>*/}
-                    {/*                <img src="./images/Vector (18).png"/>*/}
-                    {/*                <span>1 ванных комнат</span>*/}
-                    {/*            </div>*/}
-                    {/*            <div>*/}
-                    {/*                <img src="./images/Vector (18).png"/>*/}
-                    {/*                <span>8-10 гостей</span>*/}
-                    {/*            </div>*/}
-                    {/*            <div>*/}
-                    {/*                <img src="./images/Vector (18).png"/>*/}
-                    {/*                <span>2.400.000 сум</span>*/}
-                    {/*            </div>*/}
-                    {/*            <div className="mt-2">*/}
-                    {/*                <Link to="" className="text-secondary text-decoration-none">подробнее</Link>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
 
                 </div>
                 <div className="row">

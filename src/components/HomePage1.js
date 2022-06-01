@@ -4,15 +4,26 @@ import Header2 from "./Header2";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {updateState, getCategory} from "../redux/action/categoryAction";
-import {BASE_URL} from "../tools/constants";
+import {API_PATH, BASE_URL} from "../tools/constants";
 // import {BASE_URL} from "../tools/constants";
 import {getText, getLanguage} from "../locales";
 import ReactPlayer from "react-player";
+import axios from "axios";
 
 const HomePage1 = (props) => {
+  // console.log(props.category)
   useEffect(() => {
     props.getCategory();
   }, []);
+
+  const [categorye , setCategorye] = useState([]);
+  useEffect(()=>{
+    axios.get(API_PATH + "category")
+        .then((res) => {
+          // dispatch(updateState({category: res.data.data}));
+          setCategorye(res.data.data);
+        })
+  },[])
 
   return (
       <div className="homePage1">
@@ -44,7 +55,8 @@ const HomePage1 = (props) => {
         <div className="homePageDown">
           <div className="container">
             <div className="row">
-              {props.category.map((item, index) => {
+              {/*{props.category.map((item, index) => {*/}
+              {categorye?.map((item, index) => {
                 while (index < 2) {
                   return (
                       <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-3">
@@ -76,7 +88,8 @@ const HomePage1 = (props) => {
               {/*    </Link>*/}
               {/*</div>*/}
 
-              {props.category.map((item, index) => {
+              {/*{props.category.map((item, index) => {*/}
+              {categorye?.map((item, index) => {
                 if (index != 0 && index != 1 && index < 5) {
                   return (
                       <div className="col-sm-6 col-md-4 col-6 mt-4">
@@ -115,6 +128,7 @@ const mapStateToProps = (state) => {
     // selectedCategory: state.category.selectedCategory
   }
 }
-  export default connect(mapStateToProps,{getCategory,updateState})(HomePage1);
+
+export default connect(mapStateToProps,{getCategory,updateState})(HomePage1);
 
 

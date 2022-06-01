@@ -1,17 +1,27 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header2 from "./Header2";
 import Footer2 from "./Footer2";
 import {Link} from "react-router-dom";
-import {BASE_URL} from "../tools/constants";
+import {API_PATH, BASE_URL} from "../tools/constants";
 import {getLanguage} from "../locales";
 import {connect} from "react-redux";
 import {getCategory, updateState} from "../redux/action/categoryAction";
 import Header from "./Header";
+import axios from "axios";
 const CategoryAll = (props) => {
     useEffect(()=>{
         props.getCategory();
         window.scrollTo(0,0);
     },[]);
+
+    const [categorye , setCategorye] = useState([]);
+    useEffect(()=>{
+        axios.get(API_PATH + "category")
+            .then((res) => {
+                // dispatch(updateState({category: res.data.data}));
+                setCategorye(res.data.data);
+            })
+    },[])
 
     return (
         <div>
@@ -20,8 +30,8 @@ const CategoryAll = (props) => {
             <div className="categoryAll">
                 <div className="container">
                     <div className="row">
-                        {props.category.map((item,index)=>{
-                            // if (index!=0 && index!=1&& index<5){
+                        {/*{props.category.map((item,index)=>{*/}
+                         {categorye.map((item,index)=>{
                                 return(
                                     <div className="col-sm-6 col-md-4 col-6 mt-4">
                                         <Link to="/inner_page"
@@ -49,7 +59,6 @@ const mapStateToProps = (state) =>{
     return{
         category : state.category.category,
         cat : state.category.cat
-        // selectedCategory: state.category.selectedCategory
     }
 }
 export default connect(mapStateToProps,{getCategory,updateState})(CategoryAll);
