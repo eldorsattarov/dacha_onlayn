@@ -632,10 +632,16 @@ body {
     top: 0;
     padding: 45px 0;
 
+    .slick-arrow{
+      @media (max-width: 1200px) {
+        display: none!important;
+      }
+    }
     .slick-prev{
       transform: scale(2);
       position: absolute;
       top: -30px!important;
+
     }
     .slick-next{
 

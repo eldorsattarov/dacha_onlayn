@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Slider from "react-slick"
-
-
+import {connect} from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {Link} from "react-router-dom";
 import {BASE_URL} from "../tools/constants";
 import {getText} from "../locales";
+import {getTopdacha, updateState} from "../redux/action/dachaAction";
 
-
-export default function SimpleSlider(props) {
+function SimpleSlider(props) {
     useEffect(() => {
 
     }, []);
@@ -35,7 +34,17 @@ export default function SimpleSlider(props) {
             />
         );
     }
-    var settings = {
+    function Responsive(props) {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style, display: "none"}}
+                onClick={onClick}
+            />
+        );
+    }
+    const settings = {
         dots: true,
         infinite: true,
         autoplay: true,
@@ -47,12 +56,14 @@ export default function SimpleSlider(props) {
         prevArrow: <SamplePrevArrow />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1200,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    nextArrow: <Responsive/>,
+                    prevArrow: <Responsive/>
                 }
             },
             {
@@ -60,27 +71,31 @@ export default function SimpleSlider(props) {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    initialSlide: 2
+                    initialSlide: 2,
+                    nextArrow: <Responsive/>,
+                    prevArrow: <Responsive/>
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    nextArrow: <Responsive/>,
+                    prevArrow: <Responsive/>
                 }
             }
         ]
     };
 
-    console.log(props.topDacha);
+    console.log(props.topDacha1);
 
     return (
         <div className="container">
             <StyledCarousel>
                 <Slider {...settings}>
 
-                    {props.topDacha.map((item, index) => {
+                    {props.topDacha1.map((item, index) => {
                         return(
                             <div className="p-3 mt-3" key={item.id}>
                                 <Link to="/countryhouse" className="text-decoration-none px-2"
@@ -138,6 +153,15 @@ export default function SimpleSlider(props) {
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        topDacha: state.dacha.topDacha,
+        topTan: state.dacha.topTan,
+        locale: state.dacha.locale
+    }
+};
+
+export default connect(mapStateToProps, {updateState, getTopdacha})(SimpleSlider);
 
 const StyledCarousel = styled.div`
     
