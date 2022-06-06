@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import {BASE_URL} from "../tools/constants";
 import {getText} from "../locales";
 import {getTopdacha, updateState} from "../redux/action/dachaAction";
+import "../css/style.css";
 
 function SimpleSlider(props) {
     useEffect(() => {
@@ -133,7 +134,7 @@ function SimpleSlider(props) {
                                                 <img src="./images/newImagesTwo/Vector (16).png"/>
                                                 <span>{item.capacity} {getText("gost")}</span>
                                             </div>
-                                            <div>
+                                            <div className="d-flex">
                                                 <img src="./images/newImagesTwo/Vector (17).png"/>
                                                 <span>{item.cost} {getText("sum")}</span>
                                             </div>
