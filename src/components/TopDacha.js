@@ -12,7 +12,6 @@ import SimpleSlider from "./Carousell";
 
 const TopDacha = (props) => {
 
-
     const [activeSlide, setActiveSlide] = useState(0);
     const [topDacha, setTopDacha] = useState([]);
 
