@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import {BASE_URL} from "../tools/constants";
 import {getText} from "../locales";
 import {getTopdacha, updateState} from "../redux/action/dachaAction";
+import "../css/style.css";
 
 function SimpleSlider(props) {
     useEffect(() => {
@@ -94,7 +95,6 @@ function SimpleSlider(props) {
         <div className="container">
             <StyledCarousel>
                 <Slider {...settings}>
-
                     {props.topDacha1.map((item, index) => {
                         return(
                             <div className="p-3 mt-3" key={item.id}>
@@ -132,7 +132,11 @@ function SimpleSlider(props) {
                                                 <img src="./images/newImagesTwo/Vector (16).png"/>
                                                 <span>{item.capacity} {getText("gost")}</span>
                                             </div>
+
+                                            <div className="d-flex"></div>
+
                                             <div className="d-flex align-items-center">
+
                                                 <img src="./images/newImagesTwo/Vector (17).png"/>
                                                 <span className="ml-3">{item.cost} {getText("sum")}</span>
                                             </div>

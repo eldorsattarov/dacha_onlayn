@@ -28,8 +28,9 @@ const HomePage1 = (props) => {
   return (
       <div className="homePage1">
         <div className="card border-0">
-          <img src="./images/Rectangle 1.png" className="card-img-top w-100 imgBackk"/>
+          {/*<img src="./images/Rectangle 1.png" className="card-img-top w-100 imgBackk"/>*/}
           {/*<video src="./video/video.mp4" autoplay="true" loop={true}/>*/}
+          <video src="./video/wash.mp4" autoplay="true" loop={true}/>
           <div className="card-img-overlay p-0 cardImgOverlay">
             <Header/>
             <div className="rasmUstiga">
@@ -46,7 +47,7 @@ const HomePage1 = (props) => {
               </div>
               <div className="dachaBio">
                 <h1>Dacha online</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Arzon va sifatli, halol, pokiza, dachalar taqdim etamiz.</p>
               </div>
             </div>
           </div>
