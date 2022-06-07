@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {toast} from "react-toastify";
+import {getText} from "../../locales";
 
 
 toast.configure();
@@ -28,7 +29,14 @@ const ProfilRedaktor = (props) => {
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
-        phone: Yup.string().required('телефон ...'),
+        // phone: Yup.string().required('телефон ...'),
+        phone: Yup.string()
+            .matches(
+                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                "Номер телефона недействителен"
+            )
+            .min(12 , "минимум 12 символов")
+            .required('телефон...'),
         _method: Yup.string().required('method ...'),
     })
     const onSubmit = (values) => {
@@ -72,7 +80,7 @@ const ProfilRedaktor = (props) => {
                         <div className="col-12">
                             <div className="text-center w-100">
                                 <h1 className="">
-                                    <img src="./images/chiziq.png" className="lineImgg"/> Редактировать профиль <img src="./images/chiziq.png" className="lineImgg"/></h1>
+                                    <img src="./images/chiziq.png" className="lineImgg"/> {getText("redaktitle")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                             </div>
                         </div>
 
@@ -93,7 +101,7 @@ const ProfilRedaktor = (props) => {
                                                         <div className="login_page_inputs">
                                                             <div className="login_inputs_wrapper">
                                                                 <div className="login_control">
-                                                                    <label className="login_label" >Полное имя</label>
+                                                                    <label className="login_label" >{getText("redakimya")}</label>
                                                                     <div className="login_input">
                                                                         <Field
                                                                             type = "text"
@@ -107,7 +115,7 @@ const ProfilRedaktor = (props) => {
                                                                     </div>
                                                                 </div>
                                                                 <div className="login_control mt-2">
-                                                                    <label className="login_label" >Телефонный номер</label>
+                                                                    <label className="login_label" >{getText("redaktel")}</label>
                                                                     <div className="parol_input">
                                                                         <Field
                                                                             type="phone"
@@ -127,7 +135,7 @@ const ProfilRedaktor = (props) => {
                                                             type='submit'
                                                             className="in_button mt-4"
                                                         >
-                                                            Сохранять
+                                                            {getText("reaksox")}
                                                         </button>
                                                     </Form>
                                                 }
@@ -135,7 +143,7 @@ const ProfilRedaktor = (props) => {
 
                                         </Formik>
 
-                                        <button type="button" className="btn exitButton mt-3" onClick={exitProfile}>Выход</button>
+                                        <button type="button" className="btn exitButton mt-3" onClick={exitProfile}>{getText("redchiqish")}</button>
                                     </div>
                                 </div>
                             </div>

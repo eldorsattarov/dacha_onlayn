@@ -51,12 +51,11 @@ const Dacha = (props) => {
             })
     }
 
-
     return (
         <div>
             <Header/>
             <div className="dacha">
-                {props.topTan.map((item, index) => {
+                {props.topTan?.map((item, index) => {
                     return (
                         <div className="container" key={item.id}>
                             <div className="row">

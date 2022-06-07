@@ -25,18 +25,32 @@ const Kirish = () => {
     // formik
     const [token, setToken] = useState(null)
 
+
+
     const initialValues = {
-        phone: '',
+        phone: '998',
         password: ''
     }
     const validationSchema = Yup.object({
-        phone: Yup.string().required('телефон ...'),
-        password: Yup.string().required('пароль ...'),
+        // phone: Yup.number().typeError("Это не похоже на номер телефона")
+        // .positive("Номер телефона не может начинаться с минуса")
+        // .integer("Номер телефона не может содержать десятичную точку")
+        // .min(12 , "минимум 12 символов")
+        // .required('телефон...'),
+        phone: Yup.string()
+            .matches(
+                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                "Номер телефона недействителен"
+            )
+            .min(12 , "минимум 12 символов")
+            .required('телефон...'),
+        password: Yup.string().min(6 , "минимум 6 символов").required('пароль ...'),
     })
 
     const onSubmit = (values) => {
         axios.post("https://work.bingo99.uz/api/login", {
-            phone: values.phone,
+            phone : values.phone,
+            // phone : values.phone.slice(1,values.phone.length),
             password: values.password
         })
             .then((res) => {
@@ -63,7 +77,7 @@ const Kirish = () => {
                         <div className="col-12">
                             <div className="text-center w-100">
                                 <h1 className="">
-                                    <img src="./images/chiziq.png" className="lineImgg"/> Войти в аккаунт <img
+                                    <img src="./images/chiziq.png" className="lineImgg"/> {getText("logtitle")} <img
                                     src="./images/chiziq.png" className="lineImgg"/></h1>
                             </div>
                         </div>
@@ -86,8 +100,7 @@ const Kirish = () => {
                                                         <div className="login_page_inputs">
                                                             <div className="login_inputs_wrapper">
                                                                 <div className="login_control">
-                                                                    <label className="login_label">Телефонный
-                                                                        номер</label>
+                                                                    <label className="login_label">{getText("logtel")}</label>
                                                                     <div className="login_input">
                                                                         <Field
                                                                             type="text"
@@ -102,7 +115,7 @@ const Kirish = () => {
                                                                     </div>
                                                                 </div>
                                                                 <div className="login_control mt-2">
-                                                                    <label className="login_label">Пароль</label>
+                                                                    <label className="login_label">{getText("logparol")}</label>
                                                                     <div className="parol_input">
                                                                         <Field
                                                                             type="password"
@@ -125,11 +138,11 @@ const Kirish = () => {
                                                             type='submit'
                                                             className="in_button mt-4"
                                                         >
-                                                            Войти
+                                                            {getText("logg")}
                                                         </button>
                                                         <div className="w-100 text-center mt-2">
                                                             <Link to="/register"
-                                                                  className="royxat">Зарегистрироваться</Link>
+                                                                  className="royxat">{getText("logre")}</Link>
                                                         </div>
                                                     </Form>
                                                 }

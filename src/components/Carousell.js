@@ -57,9 +57,9 @@ function SimpleSlider(props) {
         prevArrow: <SamplePrevArrow />,
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1000,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
@@ -70,7 +70,7 @@ function SimpleSlider(props) {
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1,
                     initialSlide: 2,
                     nextArrow: <Responsive/>,
@@ -95,7 +95,7 @@ function SimpleSlider(props) {
         <div className="container">
             <StyledCarousel>
                 <Slider {...settings}>
-                    {props.topDacha1.map((item, index) => {
+                    {props.topDacha1?.map((item, index) => {
                         return(
                             <div className="p-3 mt-3" key={item.id}>
                                 <Link to="/countryhouse" className="text-decoration-none px-2"
