@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {Alert} from "reactstrap";
 import {Modal} from "reactstrap";
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import {Formik , Form , Field , ErrorMessage} from 'formik';
 import {Select} from "antd"
 // import { Alert } from 'antd';
 import * as Yup from "yup";
@@ -19,9 +19,11 @@ import Apelsin from "../images/Apelsin_02.png";
 import {Link} from "react-router-dom";
 import {Option} from "antd/es/mentions";
 import 'antd/dist/antd.css';
+import {toast} from "react-toastify";
 
+
+toast.configure();
 const Dovabit = () => {
-
 
 
     const [image_path, setImages] = useState([]);
@@ -34,7 +36,7 @@ const Dovabit = () => {
         console.log(e)
         setImages(e.target.files)
     }
-    console.log(image_path)
+    // console.log(image_path)
 
     const initialValues = {
         name: "",
@@ -47,13 +49,19 @@ const Dovabit = () => {
         advertiser_name: "",
         currency: "",
         comment: "",
-        image_path: "",
+        image_path: [],
         _method: "method"
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
-        phone: Yup.string().required('телефон ...'),
-        category_id: Yup.string().required('категория ...'),
+        phone: Yup.string()
+            .matches(
+                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                "Номер телефона недействителен"
+            )
+            .min(12 , "минимум 12 символов")
+            .required('телефон...'),
+        // category_id: Yup.string().required('категория ...'),
         room_count: Yup.string().required('количество комнат ...'),
         bathroom_count: Yup.string().required('ванная комната ...'),
         capacity: Yup.string().required('вместимость ...'),
@@ -66,7 +74,7 @@ const Dovabit = () => {
     });
 
     const onSubmit = (values) => {
-        console.log(values);
+        console.log("value = ", values);
         axios.post(API_PATH + "dacha", {
                 // name : values.name,
                 // phone : values.phone,
@@ -85,7 +93,7 @@ const Dovabit = () => {
                 // navigate("/profil");
             })
             .catch(err => {
-                // toast.error("Ошибка ?");
+                toast.error("Ошибка ?");
             })
     }
 
@@ -100,7 +108,7 @@ const Dovabit = () => {
 
 
     const chan = (e) => {
-        console.log(e.target.value)
+        console.log(e.target.value);
     }
 
 
@@ -112,7 +120,6 @@ const Dovabit = () => {
             }
         })
             .then((res) => {
-                // console.log("user" , res.data)
                 setUserinfo(res?.data);
             })
     }, []);
@@ -141,7 +148,8 @@ const Dovabit = () => {
                                     <Alert color="success" className="pt-3 pb-3 payalert">
                                         <div className="d-flex justify-content-between align-items-center">
                                             <span>{getText("alerttext2")}</span>
-                                            <button type="button" className="btn-danger ml-2" onClick={payModal}>{getText("tolov")}</button>
+                                            <button type="button" className="btn-danger ml-2"
+                                                    onClick={payModal}>{getText("tolov")}</button>
                                         </div>
                                     </Alert>
                                     :
@@ -149,7 +157,8 @@ const Dovabit = () => {
                                         <Alert color="danger" className="pt-3 pb-3 payalert">
                                             <div className="d-flex justify-content-between align-items-center">
                                                 <span>{getText("alerttext")}</span>
-                                                <button type="button" className="btn-danger ml-2" onClick={payModal}>{getText("tolov")}</button>
+                                                <button type="button" className="btn-danger ml-2"
+                                                        onClick={payModal}>{getText("tolov")}</button>
                                             </div>
                                         </Alert> : "")
                             }
@@ -168,6 +177,7 @@ const Dovabit = () => {
                                         <div className="login_page_inputs">
                                             <div className="login_inputs_wrapper">
                                                 <div className="row">
+
                                                     <div className="col-sm-6 col-12 mt-2">
                                                         <label>{getText("dovnazvani")}</label>
                                                         <Field
@@ -180,11 +190,13 @@ const Dovabit = () => {
                                                         <ErrorMessage name="name" component='div' style={{color: 'red'}}
                                                                       className="error"/>
                                                     </div>
+                                                    {/*select*/}
                                                     <div className="col-sm-6 col-12 mt-2">
                                                         <label>{getText("dovadres")}</label>
                                                         <select onChange={chan} type="select" id="category_id"
                                                                 autoComplete="off" className="form-control input1"
-                                                                name="category_id">
+                                                                name="category_id"
+                                                        >
                                                             {
                                                                 location.map((item, index) => {
                                                                     return (
@@ -194,11 +206,14 @@ const Dovabit = () => {
                                                             }
                                                         </select>
 
-                                                        <ErrorMessage name="category_id" component='div'
-                                                                      style={{color: 'red'}} className="error"/>
+                                                        {/*<ErrorMessage name="category_id" component='div'*/}
+                                                        {/*              style={{color: 'red'}} className="error"/>*/}
                                                     </div>
+                                                    {/*images*/}
+
                                                     <div className="col-12 mt-2">
                                                         <label>{getText("dovizb")}</label>
+
                                                         <Field
                                                             type="file"
                                                             id="image_path"
@@ -210,6 +225,7 @@ const Dovabit = () => {
                                                         <ErrorMessage name="image_path" component='div'
                                                                       style={{color: 'red'}} className="error"/>
                                                     </div>
+
                                                     <div className="col-12 mt-2">
                                                         <label>{getText("dovfilter")}</label>
                                                     </div>
@@ -229,6 +245,7 @@ const Dovabit = () => {
 
                                                         </div>
                                                     </div>
+
                                                     <div className="col-sm-3 col-6 mt-2 mb-2">
                                                         <div className="d-flex align-items-center filters">
                                                             <img src="./images/newImg/Swimming Pool.png"/>
@@ -244,6 +261,7 @@ const Dovabit = () => {
 
                                                         </div>
                                                     </div>
+
                                                     <div className="col-sm-3 col-6 mt-2 mb-2">
                                                         <div className="d-flex align-items-center filters">
                                                             <img src="./images/newImg/Vector (3).png"/>
@@ -259,48 +277,49 @@ const Dovabit = () => {
 
                                                         </div>
                                                     </div>
+
                                                     <div className="col-sm-3 col-12 mt-2 mb-2"></div>
 
-                                                    <div className="col-sm-2 col-6 mt-2">
-                                                        <label className="checkk1"><Field type="checkbox" name="1"
-                                                                                          className="checkk"/>{getText("bassen")}
-                                                        </label><br/>
-                                                        <label className="checkk1"><Field type="checkbox" name="2"
-                                                                                          className="checkk"/>{getText("zimbassen")}
-                                                        </label>
-                                                    </div>
-                                                    <div className="col-sm-2 col-6 mt-2">
-                                                        <label className="checkk1"><Field type="checkbox" name="3"
-                                                                                          className="checkk"/>{getText("bilyard")}
-                                                        </label><br/>
-                                                        <label className="checkk1"><Field type="checkbox" name="4"
-                                                                                          className="checkk"/>{getText("play")}
-                                                        </label>
-                                                    </div>
-                                                    <div className="col-sm-2 col-6 mt-2">
-                                                        <label className="checkk1"><Field type="checkbox" name="5"
-                                                                                          className="checkk"/>{getText("sauna")}
-                                                        </label><br/>
-                                                        <label className="checkk1"><Field type="checkbox" name="6"
-                                                                                          className="checkk"/>{getText("karoke")}
-                                                        </label>
-                                                    </div>
-                                                    <div className="col-sm-2 col-6 mt-2">
-                                                        <label className="checkk1"><Field type="checkbox" name="7"
-                                                                                          className="checkk"/>{getText("tenis")}
-                                                        </label><br/>
-                                                        <label className="checkk1"><Field type="checkbox" name="8"
-                                                                                          className="checkk"/>{getText("play")}
-                                                        </label>
-                                                    </div>
-                                                    <div className="col-sm-2 col-6 mt-2">
-                                                        <label className="checkk1"><Field type="checkbox" name="9"
-                                                                                          className="checkk"/>{getText("con")}
-                                                        </label><br/>
-                                                        <label className="checkk1"><Field type="checkbox" name="10"
-                                                                                          className="checkk"/>{getText("wife")}
-                                                        </label>
-                                                    </div>
+                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="1"*/}
+                                                    {/*                                      className="checkk"/>{getText("bassen")}*/}
+                                                    {/*    </label><br/>*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="2"*/}
+                                                    {/*                                      className="checkk"/>{getText("zimbassen")}*/}
+                                                    {/*    </label>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="3"*/}
+                                                    {/*                                      className="checkk"/>{getText("bilyard")}*/}
+                                                    {/*    </label><br/>*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="4"*/}
+                                                    {/*                                      className="checkk"/>{getText("play")}*/}
+                                                    {/*    </label>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="5"*/}
+                                                    {/*                                      className="checkk"/>{getText("sauna")}*/}
+                                                    {/*    </label><br/>*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="6"*/}
+                                                    {/*                                      className="checkk"/>{getText("karoke")}*/}
+                                                    {/*    </label>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="7"*/}
+                                                    {/*                                      className="checkk"/>{getText("tenis")}*/}
+                                                    {/*    </label><br/>*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="8"*/}
+                                                    {/*                                      className="checkk"/>{getText("play")}*/}
+                                                    {/*    </label>*/}
+                                                    {/*</div>*/}
+                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="9"*/}
+                                                    {/*                                      className="checkk"/>{getText("con")}*/}
+                                                    {/*    </label><br/>*/}
+                                                    {/*    <label className="checkk1"><Field type="checkbox" name="10"*/}
+                                                    {/*                                      className="checkk"/>{getText("wife")}*/}
+                                                    {/*    </label>*/}
+                                                    {/*</div>*/}
 
                                                     <div className="col-12 mt-2">
                                                         <label>{getText("dovopis")}</label>
@@ -316,6 +335,7 @@ const Dovabit = () => {
                                                     <div className="col-12 mt-3">
                                                         <label>{getText("dovkomm")}</label>
                                                     </div>
+
                                                     <div className="col-sm-7 col-12 mt-2">
                                                         <label>{getText("dovimya")}</label>
                                                         <Field
@@ -328,6 +348,7 @@ const Dovabit = () => {
                                                         <ErrorMessage name="advertiser_name" component='div'
                                                                       style={{color: 'red'}} className="error"/>
                                                     </div>
+
                                                     <div className="col-9 col-sm-3 mt-2">
                                                         <label>{getText("dovsena")}</label>
                                                         <Field
@@ -340,6 +361,7 @@ const Dovabit = () => {
                                                         <ErrorMessage name="cost" component='div' style={{color: 'red'}}
                                                                       className="error"/>
                                                     </div>
+
                                                     <div className="col-3 col-sm-2 mt-2">
                                                         <label>.</label><br/>
                                                         <select className="form-control input1" name="currency"
@@ -368,7 +390,7 @@ const Dovabit = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                           </Form>
+                                    </Form>
                                 }
                             }
 
@@ -376,41 +398,59 @@ const Dovabit = () => {
                     </div>
 
                 </div>
-                <Modal isOpen={pay} toggle={() => setPay(!pay)} className="payModal1" >
-                    <div className="payModal p-4" style={{borderRadius:"50px"}}>
+                <Modal isOpen={pay} toggle={() => setPay(!pay)} className="payModal1">
+                    <div className="payModal p-4" style={{borderRadius: "50px"}}>
                         <div className="title">
-                            <h2 style={{fontFamily : "Manrope" , color:"#F2931F"}}>{getText("paymodaltitle")}</h2>
+                            <h2 style={{fontFamily: "Manrope", color: "#F2931F"}}>{getText("paymodaltitle")}</h2>
                         </div>
                         <div className="imgs d-flex align-items-center justify-content-between">
                             <div className="d-flex align-items-center justify-content-center"
-                                style={{width:"100px",height:"60px" , border:"2px solid #E8E8E8" , borderRadius:"10px"}}>
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
                                 <a href={`https://my.click.uz/services/pay?service_id=23092&merchant_id=15939&amount=5000&transaction_param=${userinfo.id}`}
                                    target="_blank"
                                    className="">
-                                    <img src={Click} className="" style={{width:"60px" , height:"50px"}}/>
+                                    <img src={Click} className="" style={{width: "60px", height: "50px"}}/>
                                 </a>
                             </div>
                             <div className="d-flex align-items-center justify-content-center"
-                                 style={{width:"100px",height:"60px" , border:"2px solid #E8E8E8" , borderRadius:"10px"}}>
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
                                 <a href="#"
-                                   // target="_blank"
+                                    // target="_blank"
                                    className="">
-                                    <img src={Payme} className="" style={{width:"65px" , height:"50px"}}/>
+                                    <img src={Payme} className="" style={{width: "65px", height: "50px"}}/>
                                 </a>
                             </div>
                             <div className="d-flex align-items-center justify-content-center"
-                                 style={{width:"100px",height:"60px" , border:"2px solid #E8E8E8" , borderRadius:"10px"}}>
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
                                 <a href="#"
-                                   // target="_blank"
+                                    // target="_blank"
                                    className="">
-                                    <img src={Apelsin} className="" style={{width:"70px" , height:"30px"}}/>
+                                    <img src={Apelsin} className="" style={{width: "70px", height: "30px"}}/>
                                 </a>
                             </div>
                         </div>
                         <div className="text mt-3">
-                            <p className="mb-0" style={{fontFamily:"Manrope" , color:"#858585"}}>{getText("paymodal")}</p>
-                            <p className="mb-0" style={{fontFamily:"Manrope" , color:"#858585"}}>{getText("paymodal2")}</p>
-                            <p className="mb-0" style={{fontFamily:"Manrope" , color:"#858585"}}>{getText("paymodal3")}</p>
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal")}</p>
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal2")}</p>
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal3")}</p>
                         </div>
                     </div>
                 </Modal>

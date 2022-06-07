@@ -1500,6 +1500,7 @@ body {
         height: 200px;
       }
     }
+    padding: 20px 0;
     overflow-y: hidden;
     display: flex;
     justify-content: start;
@@ -1507,7 +1508,8 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none; /* for Firefox */
     &::-webkit-scrollbar {
-      display: none; /* for Chrome, Safari, and Opera */
+      height: 7px;
+      //display: none; /* for Chrome, Safari, and Opera */
     }
 
     @media(max-width: 576px) {
