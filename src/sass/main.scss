@@ -6,6 +6,31 @@
 //    <orderEntry type="sourceFolder" forTests="false" />
 //  </component>
 //</module>
+
+
+/*scroll bar color and .. */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #F2931F;
+  border-radius: 30px;
+}
+
 body {
   //background-image: url("../../public/images/back.jpg");
 }
@@ -474,10 +499,19 @@ body {
 
 
 .homePage1 {
+  .sa {
+    //background-image: url("../../public/video/wash.mp4");
+    .videoPlayer {
+
+    }
+  }
+
   .rasmUstiga {
     .dachaBio {
+      margin-top: 10% !important;
+
       @media(max-width: 576px) {
-        margin-top: 10px;
+        margin-top: 2% !important;
       }
       margin-top: 100px;
       text-align: center;
@@ -493,11 +527,12 @@ body {
         font-weight: 300;
         font-size: 100px;
         color: #FFFFFF;
+        text-align: center;
       }
 
       p {
         @media(max-width: 576px) {
-          font-size: 16px;
+          font-size: 14px;
         }
         font-family: Manrope;
         font-style: normal;
@@ -1465,7 +1500,6 @@ body {
         height: 200px;
       }
     }
-
     overflow-y: hidden;
     display: flex;
     justify-content: start;
@@ -1954,6 +1988,42 @@ body {
 }
 
 .dovabitDacha {
+  .payModal{
+    background: red;
+    .imgs{
+      display: flex;
+      align-items: center;
+      img{
+        width:20px;
+        height: 20px;
+      }
+    }
+  }
+  .payalert {
+    span{
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      color: #5F5F5F;
+    }
+    button {
+      font-size: 14px;
+      border: 0;
+      border-radius: 5px !important;
+      padding: 5px 10px;
+      &:hover {
+        background:#F2931F;
+        color: white;
+      }
+      &:focus {
+        background:#F2931F !important;
+        color: white !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+
   padding: 50px 0;
 
   h1 {
@@ -2626,7 +2696,6 @@ body {
       }
 
       img {
-
         @media (max-width: 576px) {
 
         }

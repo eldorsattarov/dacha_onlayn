@@ -45,10 +45,14 @@ const DrugiDacha = (props) => {
                                            </div>
                                            <div className="card-img-overlay">
                                                <div className="summm">
-                                                   {/*<img src="./images/Vector (18).png"/>*/}
-                                                   {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
+                                                   {
+                                                       item?.top_rated == 1 ?
+                                                           <button type="button" className="bbb">Top</button>
+                                                           : ""
+                                                   }
                                                </div>
                                            </div>
+
                                            <div className="card-body">
                                                {/*<h3>{getLanguage() === "ru" ? item.advertiser_name}</h3>*/}
                                                {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}

@@ -92,4 +92,92 @@ export const uz = {
         " Har bir yozgi uylarda yaxshi hordiq chiqarishingiz uchun kerakli bo'lgan barcha sharoitlar mavjud: keng va yorug' xonalar, qishki va yozgi basseynlar, ko'ngilochar mashg'ulotlar uchun barcha jihozlar, qishki va yozgi oshxona, mini stadion.",
     dovabit:"Qo'shish",
     reklama:"Reklama joylashtiring",
+    registerr : "Roʻyxatdan oʻtish",
+
+    place : "Dacha qidirish",
+    titledacha : "Dacha online",
+    titlehaqida : "Arzon va sifatli, halol, pokiza, dachalar taqdim etamiz.",
+
+
+    // poisk dacha
+    dachapoisk : "Dacha qidiring...",
+    lupa : "Qidirish",
+    sena : "Narx",
+    sena1 : "dan",
+    sena2 : "gacha",
+    gorod : "Shahar",
+    chislo : "Odamlar soni",
+    bassen : "Basseyn",
+    bilyard : "Bilyard",
+    sauna : "Sauna",
+    tenis : "Stol tennis",
+    con : "Konditsioner",
+    zimbassen : "Qishki basseyn",
+    play : "PlayStation 3/4/5",
+    karoke : "Karaoke",
+    wife : "WI FI",
+
+
+    // dovabit
+    dovtitle : "Reklama joylashtiring",
+    dovnazvani : "Sarlavhani kiriting",
+    dovadres : "Joylashuv manzili",
+    dovizb : "Rasm",
+    dovfilter : "Filtrlar qo'shing",
+    dovkolich1 : "Yotoq xonalari soni",
+    dovkolich2 : "Basseynlar soni",
+    dovkolich3 : "Odamlar soni",
+    dovopis : "Tavsif",
+    dovopisplace : "E'loningiz tavsifini yozing",
+    dovkomm : "Aloqa",
+    dovimya : "Reklama beruvchi nomi",
+    dovsena : "Narxi",
+    dovnomer : "Telefon raqami",
+    dovv : "Qo'shish",
+
+
+    // login
+
+    logtitle : "Tizimga kirish",
+    logtel : "Telefon raqami",
+    logparol : "Parol",
+    logg : "Kirish",
+    logre : "Roʻyxatdan oʻtish",
+
+
+    // register
+
+    regtitle : "Roʻyxatdan oʻtish",
+    regimya : "To'liq nomi",
+    regnomer : "Telefon raqami",
+    regparol : "Parol",
+    regparol2 : "Parolni tasdiqlang",
+    regg : "Roʻyxatdan oʻtish",
+    regglogin : "Kirish",
+
+
+    // profik redaktor
+
+    redaktitle : "Profilni tahrirlash",
+    redakimya : "To'liq nomi",
+    redaktel : "Telefon raqami",
+    reaksox : "Saqlash",
+    redchiqish : "Chiqish",
+
+
+    // profil
+
+    protitle : "Profilni tahrirlash",
+    profmoy : "Mening e'lonlarim",
+    profizb : "Sevimlilar",
+
+
+    paymodaltitle :"Iltimos, toʻlang !",
+    paymodal :"*Bildirgi",
+    paymodal2: "1. Birinchi qo'shayotgan dachangiz tekin.",
+    paymodal3: " 2. Ikki va undan ortiq dachalarni qo'shish har bir dacha uchun 5000 so'm (besh ming).",
+    alerttext : "Dacha qo'shish uchun to'lov qiling!",
+    alerttext2 : "Siz dacha qo'shishingiz mumkin",
+    tolov : "to'lov"
+
 }
