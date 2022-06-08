@@ -107,8 +107,10 @@ const Dovabit = () => {
     }, []);
 
 
+    const [category , setCategory] = useState(null);
     const chan = (e) => {
         console.log(e.target.value);
+        setCategory(e.target.value);
     }
 
 
@@ -193,9 +195,24 @@ const Dovabit = () => {
                                                     {/*select*/}
                                                     <div className="col-sm-6 col-12 mt-2">
                                                         <label>{getText("dovadres")}</label>
-                                                        <select onChange={chan} type="select" id="category_id"
-                                                                autoComplete="off" className="form-control input1"
-                                                                name="category_id"
+                                                        {/*<select onChange={chan} type="select" id="category_id"*/}
+                                                        {/*        autoComplete="off" className="form-control input1"*/}
+                                                        {/*        name="category_id"*/}
+                                                        {/*        value={category}*/}
+                                                        {/*>*/}
+                                                        {/*    {*/}
+                                                        {/*        location.map((item, index) => {*/}
+                                                        {/*            return (*/}
+                                                        {/*                <option value={item.id}>{item.name_ru}</option>*/}
+                                                        {/*            )*/}
+                                                        {/*        })*/}
+                                                        {/*    }*/}
+                                                        {/*</select>*/}
+                                                        <Field
+                                                            type="text"
+                                                            name="category_id"
+                                                            as="select"
+                                                            className="form-control input1"
                                                         >
                                                             {
                                                                 location.map((item, index) => {
@@ -204,7 +221,7 @@ const Dovabit = () => {
                                                                     )
                                                                 })
                                                             }
-                                                        </select>
+                                                        </Field>
 
                                                         {/*<ErrorMessage name="category_id" component='div'*/}
                                                         {/*              style={{color: 'red'}} className="error"/>*/}
@@ -364,11 +381,21 @@ const Dovabit = () => {
 
                                                     <div className="col-3 col-sm-2 mt-2">
                                                         <label>.</label><br/>
-                                                        <select className="form-control input1" name="currency"
-                                                                onChange={tanladi} value={currency}>
-                                                            <option value="y">y.e</option>
-                                                            <option value="s">cyм</option>
-                                                        </select>
+                                                        {/*<select className="form-control input1" name="currency"*/}
+                                                        {/*        onChange={tanladi} value={currency}>*/}
+                                                        {/*    <option value="y">y.e</option>*/}
+                                                        {/*    <option value="s">cyм</option>*/}
+                                                        {/*</select>*/}
+                                                        <Field
+                                                            type={"text"}
+                                                            name="currency"
+                                                            as="select"
+                                                            className="form-control input1"
+                                                            onChange={tanladi}
+                                                        >
+                                                                <option value="y.e">y.e</option>
+                                                                <option value="cyм">cyм</option>
+                                                        </Field>
                                                     </div>
 
                                                     <div className="col-12 col-sm-7 mt-2">
