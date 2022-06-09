@@ -49,14 +49,12 @@ const RoyxatdanOtish = () => {
     })
 
     const onSubmit = (values) => {
-        console.log(values.phone);
-        console.log(values.phone.slice(1,values.phone.length));
         axios.post("https://work.bingo99.uz/api/register" ,
             {
             name : values.name,
             phone : values.phone,
             // phone : values.phone.slice(1,values.phone.length),
-            // password : values.password,
+            password : values.password,
             very_password : values.very_password
         }
         )

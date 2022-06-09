@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {getText} from "../locales";
+import {getLanguage, getText} from "../locales";
 import Header from "./Header";
 import Footer from "./Footer";
 import {Alert} from "reactstrap";
 import {Modal} from "reactstrap";
-import {Formik , Form , Field , ErrorMessage} from 'formik';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {Select} from "antd"
 // import { Alert } from 'antd';
 import * as Yup from "yup";
@@ -19,24 +19,15 @@ import Apelsin from "../images/Apelsin_02.png";
 import {Link} from "react-router-dom";
 import {Option} from "antd/es/mentions";
 import 'antd/dist/antd.css';
+import {Upload} from 'antd';
+import ImgCrop from 'antd-img-crop';
 import {toast} from "react-toastify";
 
 
 toast.configure();
+
+
 const Dovabit = () => {
-
-
-    const [image_path, setImages] = useState([]);
-    const [currency, setCurrency] = useState("");
-    const tanladi = (e) => {
-        setCurrency(e.target.value)
-        console.log(currency)
-    }
-    const handleImageChange = (e) => {
-        console.log(e)
-        setImages(e.target.files)
-    }
-    // console.log(image_path)
 
     const initialValues = {
         name: "",
@@ -50,7 +41,8 @@ const Dovabit = () => {
         currency: "",
         comment: "",
         image_path: [],
-        _method: "method"
+        // comforts : [],
+        // _method: "method"
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
@@ -59,7 +51,7 @@ const Dovabit = () => {
                 /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
                 "Номер телефона недействителен"
             )
-            .min(12 , "минимум 12 символов")
+            .min(12, "минимум 12 символов")
             .required('телефон...'),
         // category_id: Yup.string().required('категория ...'),
         room_count: Yup.string().required('количество комнат ...'),
@@ -75,11 +67,7 @@ const Dovabit = () => {
 
     const onSubmit = (values) => {
         console.log("value = ", values);
-        axios.post(API_PATH + "dacha", {
-                // name : values.name,
-                // phone : values.phone,
-                // _method : "put"
-            },
+        axios.post(API_PATH + "dacha", values,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
@@ -88,8 +76,7 @@ const Dovabit = () => {
         )
             .then(res => {
                 // console.log(res)
-                // // props.updateState({user : res.data})
-                // toast.success("Успешный !");
+                toast.success("Успешный !");
                 // navigate("/profil");
             })
             .catch(err => {
@@ -106,14 +93,17 @@ const Dovabit = () => {
             })
     }, []);
 
+    const [comfort, setComfort] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "comfort")
+            .then((res) => {
+                // console.log(res.data.data)
+                setComfort(res.data.data);
+            })
+    }, [])
 
-    const [category , setCategory] = useState(null);
-    const chan = (e) => {
-        console.log(e.target.value);
-        setCategory(e.target.value);
-    }
 
-
+    // tolov ni tekshirish uchun
     const [userinfo, setUserinfo] = useState([]);
     useEffect(() => {
         axios.get(API_PATH + "user", {
@@ -131,6 +121,38 @@ const Dovabit = () => {
         setPay(!pay);
     }
 
+
+// img qo'shish uchun
+    const [fileList, setFileList] = useState([
+        // {
+        //   uid: '-1',
+        //   name: 'image.png',
+        //   status: 'done',
+        //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        // },
+    ]);
+
+    const onChange = ({fileList: newFileList}) => {
+        setFileList(newFileList);
+    };
+
+    const onPreview = async (file) => {
+        let src = file.url;
+
+        if (!src) {
+            src = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj);
+
+                reader.onload = () => resolve(reader.result);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+    };
+// img qo'shish uchun
 
     return (
         <div>
@@ -195,29 +217,19 @@ const Dovabit = () => {
                                                     {/*select*/}
                                                     <div className="col-sm-6 col-12 mt-2">
                                                         <label>{getText("dovadres")}</label>
-                                                        {/*<select onChange={chan} type="select" id="category_id"*/}
-                                                        {/*        autoComplete="off" className="form-control input1"*/}
-                                                        {/*        name="category_id"*/}
-                                                        {/*        value={category}*/}
-                                                        {/*>*/}
-                                                        {/*    {*/}
-                                                        {/*        location.map((item, index) => {*/}
-                                                        {/*            return (*/}
-                                                        {/*                <option value={item.id}>{item.name_ru}</option>*/}
-                                                        {/*            )*/}
-                                                        {/*        })*/}
-                                                        {/*    }*/}
-                                                        {/*</select>*/}
                                                         <Field
                                                             type="text"
                                                             name="category_id"
+                                                            as="select"
                                                             as="select"
                                                             className="form-control input1"
                                                         >
                                                             {
                                                                 location.map((item, index) => {
                                                                     return (
-                                                                        <option value={item.id}>{item.name_ru}</option>
+                                                                        <option value={item.id} key={index}>
+                                                                            {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                                        </option>
                                                                     )
                                                                 })
                                                             }
@@ -227,20 +239,34 @@ const Dovabit = () => {
                                                         {/*              style={{color: 'red'}} className="error"/>*/}
                                                     </div>
                                                     {/*images*/}
-
                                                     <div className="col-12 mt-2">
                                                         <label>{getText("dovizb")}</label>
+                                                    </div>
+                                                    <div className="col-12 mt-2">
+                                                        {/*<label>{getText("dovizb")}</label>*/}
+                                                        {/*<Field*/}
+                                                        {/*    type="file"*/}
+                                                        {/*    id="image_path"*/}
+                                                        {/*    autoComplete="off"*/}
+                                                        {/*    className="form-control input2"*/}
+                                                        {/*    name="image_path"*/}
+                                                        {/*/>*/}
+                                                        {/*<ErrorMessage name="image_path" component='div' style={{color: 'red'}} className="error"/>*/}
 
-                                                        <Field
-                                                            type="file"
-                                                            id="image_path"
-                                                            autoComplete="off"
-                                                            className="form-control input2"
-                                                            name="image_path"
-                                                            onChange={handleImageChange}
-                                                        />
-                                                        <ErrorMessage name="image_path" component='div'
-                                                                      style={{color: 'red'}} className="error"/>
+
+                                                        <ImgCrop rotate>
+                                                            <Upload
+                                                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                                listType="picture-card"
+                                                                fileList={fileList}
+                                                                onChange={onChange}
+                                                                onPreview={onPreview}
+                                                            >
+                                                                {fileList.length < 5 && '+ Upload'}
+                                                            </Upload>
+                                                        </ImgCrop>
+
+
                                                     </div>
 
                                                     <div className="col-12 mt-2">
@@ -297,44 +323,57 @@ const Dovabit = () => {
 
                                                     <div className="col-sm-3 col-12 mt-2 mb-2"></div>
 
+
+                                                    {/*{comfort?.map((item,index)=>{*/}
+                                                    {/*    return(*/}
+                                                    {/*        <div className="col-sm-2 col-6 mt-2" key={index}>*/}
+                                                    {/*            <label className="checkk1">*/}
+                                                    {/*                <Field type="checkbox" name="comforts" className="checkk"/>*/}
+                                                    {/*                {getLanguage()==="ru" ? item.name_ru : item.name_uz}*/}
+                                                    {/*            </label><br/>*/}
+                                                    {/*        </div>*/}
+                                                    {/*    )*/}
+                                                    {/*})}*/}
+
+
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="1"*/}
-                                                    {/*                                      className="checkk"/>{getText("bassen")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="1" className="checkk"/>{getText("bassen")}*/}
                                                     {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="2"*/}
-                                                    {/*                                      className="checkk"/>{getText("zimbassen")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="2" className="checkk"/>{getText("zimbassen")}*/}
                                                     {/*    </label>*/}
                                                     {/*</div>*/}
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="3"*/}
-                                                    {/*                                      className="checkk"/>{getText("bilyard")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="3" className="checkk"/>{getText("bilyard")}*/}
                                                     {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="4"*/}
-                                                    {/*                                      className="checkk"/>{getText("play")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="4" className="checkk"/>{getText("play")}*/}
                                                     {/*    </label>*/}
                                                     {/*</div>*/}
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="5"*/}
-                                                    {/*                                      className="checkk"/>{getText("sauna")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="5" className="checkk"/>{getText("sauna")}*/}
                                                     {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="6"*/}
-                                                    {/*                                      className="checkk"/>{getText("karoke")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="6" className="checkk"/>{getText("karoke")}*/}
                                                     {/*    </label>*/}
                                                     {/*</div>*/}
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="7"*/}
-                                                    {/*                                      className="checkk"/>{getText("tenis")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="7" className="checkk"/>{getText("tenis")}*/}
                                                     {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="8"*/}
-                                                    {/*                                      className="checkk"/>{getText("play")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="8" className="checkk"/>{getText("play")}*/}
                                                     {/*    </label>*/}
                                                     {/*</div>*/}
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="9"*/}
-                                                    {/*                                      className="checkk"/>{getText("con")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="9" className="checkk"/>{getText("con")}*/}
                                                     {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1"><Field type="checkbox" name="10"*/}
-                                                    {/*                                      className="checkk"/>{getText("wife")}*/}
+                                                    {/*    <label className="checkk1">*/}
+                                                    {/*        <Field type="checkbox" name="10" className="checkk"/>{getText("wife")}*/}
                                                     {/*    </label>*/}
                                                     {/*</div>*/}
 
@@ -381,20 +420,14 @@ const Dovabit = () => {
 
                                                     <div className="col-3 col-sm-2 mt-2">
                                                         <label>.</label><br/>
-                                                        {/*<select className="form-control input1" name="currency"*/}
-                                                        {/*        onChange={tanladi} value={currency}>*/}
-                                                        {/*    <option value="y">y.e</option>*/}
-                                                        {/*    <option value="s">cyм</option>*/}
-                                                        {/*</select>*/}
                                                         <Field
                                                             type={"text"}
                                                             name="currency"
                                                             as="select"
                                                             className="form-control input1"
-                                                            onChange={tanladi}
                                                         >
-                                                                <option value="y.e">y.e</option>
-                                                                <option value="cyм">cyм</option>
+                                                            <option value="y.e">y.e</option>
+                                                            <option value="cyм">cyм</option>
                                                         </Field>
                                                     </div>
 
