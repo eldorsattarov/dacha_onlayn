@@ -31,18 +31,12 @@ const Dovabit = () => {
 
 
 // img qo'shish uchun
-    const [fileList, setFileList] = useState([
-        // {
-        //   uid: '-1',
-        //   name: 'image.png',
-        //   status: 'done',
-        //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        // },
-    ]);
+    const [fileList, setFileList] = useState([]);
 
     const onChange = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
+    console.log(fileList)
 
     const onPreview = async (file) => {
         let src = file.url;
@@ -51,7 +45,6 @@ const Dovabit = () => {
             src = await new Promise((resolve) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file.originFileObj);
-
                 reader.onload = () => resolve(reader.result);
             });
         }
@@ -75,7 +68,7 @@ const Dovabit = () => {
         currency: "",
         comment: "",
         image_path: fileList,
-        // comforts : [],
+        comforts : [],
         // _method: "method"
     }
     const validationSchema = Yup.object({
@@ -221,7 +214,7 @@ const Dovabit = () => {
                                                     <div className="col-sm-6 col-12 mt-2">
                                                         <label>{getText("dovadres")}</label>
                                                         <Field
-                                                            type="text"
+                                                            // type="text"
                                                             name="category_id"
                                                             as="select"
                                                             className="form-control input1"
@@ -245,19 +238,10 @@ const Dovabit = () => {
                                                         <label>{getText("dovizb")}</label>
                                                     </div>
                                                     <div className="col-12 mt-2">
-                                                        {/*<label>{getText("dovizb")}</label>*/}
-                                                        {/*<Field*/}
-                                                        {/*    type="file"*/}
-                                                        {/*    id="image_path"*/}
-                                                        {/*    autoComplete="off"*/}
-                                                        {/*    className="form-control input2"*/}
-                                                        {/*    name="image_path"*/}
-                                                        {/*/>*/}
-                                                        {/*<ErrorMessage name="image_path" component='div' style={{color: 'red'}} className="error"/>*/}
-
 
                                                         <ImgCrop rotate>
                                                             <Upload
+                                                                type="file"
                                                                 action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                                                 listType="picture-card"
                                                                 fileList={fileList}
@@ -265,7 +249,7 @@ const Dovabit = () => {
                                                                 onPreview={onPreview}
                                                                 name="image_path"
                                                             >
-                                                                {fileList.length < 5 && '+ Upload'}
+                                                                {fileList.length < 10 && '+ Upload'}
                                                             </Upload>
                                                         </ImgCrop>
 
@@ -331,54 +315,17 @@ const Dovabit = () => {
                                                         return(
                                                             <div className="col-sm-2 col-6 mt-2" key={index}>
                                                                 <label className="checkk1">
-                                                                    <Field type="checkbox" name="comforts" className="checkk"/>
+                                                                    <Field
+                                                                        type="checkbox"
+                                                                        name="comforts"
+                                                                        autoComplete="off"
+                                                                        className="checkk"/>
                                                                     {getLanguage()==="ru" ? item.name_ru : item.name_uz}
                                                                 </label><br/>
                                                             </div>
                                                         )
                                                     })}
 
-
-                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="1" className="checkk"/>{getText("bassen")}*/}
-                                                    {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="2" className="checkk"/>{getText("zimbassen")}*/}
-                                                    {/*    </label>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="3" className="checkk"/>{getText("bilyard")}*/}
-                                                    {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="4" className="checkk"/>{getText("play")}*/}
-                                                    {/*    </label>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="5" className="checkk"/>{getText("sauna")}*/}
-                                                    {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="6" className="checkk"/>{getText("karoke")}*/}
-                                                    {/*    </label>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="7" className="checkk"/>{getText("tenis")}*/}
-                                                    {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="8" className="checkk"/>{getText("play")}*/}
-                                                    {/*    </label>*/}
-                                                    {/*</div>*/}
-                                                    {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="9" className="checkk"/>{getText("con")}*/}
-                                                    {/*    </label><br/>*/}
-                                                    {/*    <label className="checkk1">*/}
-                                                    {/*        <Field type="checkbox" name="10" className="checkk"/>{getText("wife")}*/}
-                                                    {/*    </label>*/}
-                                                    {/*</div>*/}
 
                                                     <div className="col-12 mt-2">
                                                         <label>{getText("dovopis")}</label>
@@ -427,6 +374,7 @@ const Dovabit = () => {
                                                             type={"text"}
                                                             name="currency"
                                                             as="select"
+                                                            autoComplete="off"
                                                             className="form-control input1"
                                                         >
                                                             <option value="y.e">y.e</option>
@@ -440,6 +388,7 @@ const Dovabit = () => {
                                                             type="number"
                                                             name="phone"
                                                             id="phone"
+                                                            autoComplete="off"
                                                             className="form-control input1"
                                                         />
                                                         <ErrorMessage name="phone" component='div'
