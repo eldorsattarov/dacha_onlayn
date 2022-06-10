@@ -125,44 +125,60 @@ const DachaFilterNewPage = (props) => {
                                                 />
                                             </div>
 
-
-                                            {/*<div className="col-sm-10 col-8 mt-2">*/}
-                                            {/*    <input type="text" className="form-control input1" name="" placeholder={getText("dachapoisk")}/>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-sm-2 col-3  mt-2">*/}
-                                            {/*    <button type="submit" className=""><img src="./images/newimg/Icon.png"/>{getText("lupa")}</button>*/}
-                                            {/*</div>*/}
-
                                             <div className="col-6 col-sm-2 mt-2">
                                                 <label>{getText("sena")}</label>
-                                                <input type="number" name="" className="form-control input1" placeholder={getText("sena1")}/>
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                    placeholder={getText("sena1")}
+                                                />
                                             </div>
                                             <div className="col-6 col-sm-2 mt-2">
                                                 <label>.</label><br/>
-                                                <input type="number" name="" className="form-control input1" placeholder={getText("sena2")}/>
-
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                    placeholder={getText("sena2")}
+                                                />
                                             </div>
                                             <div className="col-6 col-sm-4 mt-2">
                                                 <label>{getText("gorod")}</label>
 
-                                                <select onChange={chan} type="select" id ="category_id" autoComplete="off" className="form-control input1" name="category_id">
+                                                <Field
+                                                    type="text"
+                                                    name="category_id"
+                                                    as="select"
+                                                    className="form-control input1"
+                                                >
                                                     {
-                                                        location.map((item,index)=>{
-                                                            return(
-                                                                <option value={item.id}>{getLanguage()=="ru" ? item.name_ru : item.name_uz}</option>
+                                                        location?.map((item, index) => {
+                                                            return (
+                                                                <option value={item.id} key={index}>
+                                                                    {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                                </option>
                                                             )
                                                         })
                                                     }
-                                                </select>
+                                                </Field>
 
                                             </div>
                                             <div className="col-6 col-sm-4 mt-2">
                                                 <label>{getText("chislo")}</label>
-                                                <input type="text" className="form-control input1" name=""/>
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                />
                                             </div>
 
-
-                                            {/*<div className="col-sm-3 col-12 mt-2 mb-2"></div>*/}
 
                                             {comfort2?.map((item,index)=>{
                                                 return(
@@ -174,27 +190,6 @@ const DachaFilterNewPage = (props) => {
                                                     </div>
                                                 )
                                             })}
-
-                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bassen")}</label><br/>*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("zimbassen")}</label>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bilyard")}</label><br/>*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("sauna")}</label><br/>*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("karoke")}</label>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("tenis")}</label><br/>*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>*/}
-                                            {/*</div>*/}
-                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("con")}</label><br/>*/}
-                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("wife")}</label>*/}
-                                            {/*</div>*/}
 
                                         </div>
                                     </Form>

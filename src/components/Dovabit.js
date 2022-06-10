@@ -224,7 +224,6 @@ const Dovabit = () => {
                                                             type="text"
                                                             name="category_id"
                                                             as="select"
-                                                            as="select"
                                                             className="form-control input1"
                                                         >
                                                             {
