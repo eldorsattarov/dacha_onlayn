@@ -12,6 +12,11 @@ import {Link} from "react-router-dom";
 import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
 import index from "@mui/material/darkScrollbar";
 import {connect} from "react-redux";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import ImgCrop from "antd-img-crop";
+import {Upload} from "antd";
+import { AudioOutlined } from '@ant-design/icons';
+import { Input, Space } from 'antd';
 
 
 const DachaFilterNewPage = (props) => {
@@ -54,6 +59,44 @@ const DachaFilterNewPage = (props) => {
     }
 
 
+    const [comfort2, setComfort2] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "comfort")
+            .then((res) => {
+                // console.log(res.data.data)
+                setComfort2(res.data.data);
+            })
+    }, []);
+
+
+    const initialValues = {
+
+    }
+    const validationSchema = Yup.object({
+
+    });
+
+    const onSubmit = (values) => {
+        console.log("value = ", values);
+
+    }
+
+
+    // search input
+    const { Search } = Input;
+    const suffix = (
+        <AudioOutlined
+            style={{
+                fontSize: 16,
+                color: "red",
+            }}
+        />
+    );
+
+    const onSearch = (value) => console.log(value);
+
+    // search input
+
 
     return (
         <div>
@@ -61,69 +104,106 @@ const DachaFilterNewPage = (props) => {
             <div className="dacha_filter">
                 <div className="container">
 
-                    <form className="w-100">
+                    <div className="login_forms">
+                        <Formik
+                            initialValues={initialValues}
+                            onSubmit={onSubmit}
+                            validationSchema={validationSchema}
+                        >
+                            {
+                                formik => {
+                                    return <Form>
+                                        <div className="row">
 
-                        <div className="row">
-                            <div className="col-sm-10 col-8 mt-2">
-                                <input type="text" className="form-control input1" name="" placeholder={getText("dachapoisk")}/>
-                            </div>
-                            <div className="col-sm-2 col-3  mt-2">
-                                <button type="submit" className=""><img src="./images/newimg/Icon.png"/>{getText("lupa")}</button>
-                            </div>
-
-                            <div className="col-6 col-sm-2 mt-2">
-                                <label>{getText("sena")}</label>
-                                <input type="number" name="" className="form-control input1" placeholder={getText("sena1")}/>
-                            </div>
-                            <div className="col-6 col-sm-2 mt-2">
-                                <label>.</label><br/>
-                                <input type="number" name="" className="form-control input1" placeholder={getText("sena2")}/>
-
-                            </div>
-                            <div className="col-6 col-sm-4 mt-2">
-                                <label>{getText("gorod")}</label>
-
-                                <select onChange={chan} type="select" id ="category_id" autoComplete="off" className="form-control input1" name="category_id">
-                                    {
-                                        location.map((item,index)=>{
-                                            return(
-                                                <option value={item.id}>{item.name_ru}</option>
-                                            )
-                                        })
-                                    }
-                                </select>
-
-                            </div>
-                            <div className="col-6 col-sm-4 mt-2">
-                                <label>{getText("chislo")}</label>
-                                <input type="text" className="form-control input1" name=""/>
-                            </div>
+                                            <div className="col-12">
+                                                <Search
+                                                    placeholder={getText("dachapoisk")}
+                                                    allowClear
+                                                    enterButton={getText("lupa")}
+                                                    size="large"
+                                                    onSearch={onSearch}
+                                                />
+                                            </div>
 
 
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bassen")}</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("zimbassen")}</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bilyard")}</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("sauna")}</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("karoke")}</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("tenis")}</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("con")}</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("wife")}</label>
-                            </div>
+                                            {/*<div className="col-sm-10 col-8 mt-2">*/}
+                                            {/*    <input type="text" className="form-control input1" name="" placeholder={getText("dachapoisk")}/>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-sm-2 col-3  mt-2">*/}
+                                            {/*    <button type="submit" className=""><img src="./images/newimg/Icon.png"/>{getText("lupa")}</button>*/}
+                                            {/*</div>*/}
 
-                        </div>
+                                            <div className="col-6 col-sm-2 mt-2">
+                                                <label>{getText("sena")}</label>
+                                                <input type="number" name="" className="form-control input1" placeholder={getText("sena1")}/>
+                                            </div>
+                                            <div className="col-6 col-sm-2 mt-2">
+                                                <label>.</label><br/>
+                                                <input type="number" name="" className="form-control input1" placeholder={getText("sena2")}/>
 
-                    </form>
+                                            </div>
+                                            <div className="col-6 col-sm-4 mt-2">
+                                                <label>{getText("gorod")}</label>
+
+                                                <select onChange={chan} type="select" id ="category_id" autoComplete="off" className="form-control input1" name="category_id">
+                                                    {
+                                                        location.map((item,index)=>{
+                                                            return(
+                                                                <option value={item.id}>{getLanguage()=="ru" ? item.name_ru : item.name_uz}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+
+                                            </div>
+                                            <div className="col-6 col-sm-4 mt-2">
+                                                <label>{getText("chislo")}</label>
+                                                <input type="text" className="form-control input1" name=""/>
+                                            </div>
+
+
+                                            {/*<div className="col-sm-3 col-12 mt-2 mb-2"></div>*/}
+
+                                            {comfort2?.map((item,index)=>{
+                                                return(
+                                                    <div className="col-sm-2 col-6 mt-3" key={index}>
+                                                        <label className="checkk1">
+                                                            <Field type="checkbox" name="comforts" className="checkk"/>
+                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                                        </label><br/>
+                                                    </div>
+                                                )
+                                            })}
+
+                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bassen")}</label><br/>*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("zimbassen")}</label>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("bilyard")}</label><br/>*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("sauna")}</label><br/>*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("karoke")}</label>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("tenis")}</label><br/>*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("play")}</label>*/}
+                                            {/*</div>*/}
+                                            {/*<div className="col-sm-2 col-6 mt-2">*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("con")}</label><br/>*/}
+                                            {/*    <label className="checkk1"><input type="checkbox" name="" className="checkk"/>{getText("wife")}</label>*/}
+                                            {/*</div>*/}
+
+                                        </div>
+                                    </Form>
+                                }
+                            }
+
+                        </Formik>
+                    </div>
+
 
                 </div>
 

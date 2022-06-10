@@ -2956,7 +2956,6 @@ body {
   border: 1px solid #F2931F;
 }
 
-
 .ant-upload-list-picture .ant-upload-list-item,
 .ant-upload-list-picture-card .ant-upload-list-item {
   position: relative;
@@ -2978,3 +2977,38 @@ body {
 
 }
 
+
+.ant-input:hover{
+  border: 0;
+  box-shadow: none;
+}
+.ant-input-search-with-button button{
+  background: #F2931F;
+  box-sizing: border-box;
+}
+.ant-input-search-with-button button:hover{
+  background: #F2931F;
+}
+.ant-input-search-with-button button:focus{
+  background: #F2931F;
+}
+
+.ant-input-search .ant-input:hover,
+.ant-input-search .ant-input:focus {
+  border-color: #F2931F!important;
+}
+.ant-input-group input{
+
+}
+.ant-input-search-large{
+  border-radius: 12px;
+}
+.ant-input-wrapper{
+  //background: darkblue;
+}
+//class="ant-input-group-wrapper ant-input-search ant-input-search-large ant-input-search-with-button ant-input-group-wrapper-lg"
+.ant-input-affix-wrapper:focus{
+  box-shadow: none;
+  border: 0;
+}
+//.ant-input-affix-wrapper-lg

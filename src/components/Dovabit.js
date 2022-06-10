@@ -29,6 +29,40 @@ toast.configure();
 
 const Dovabit = () => {
 
+
+// img qo'shish uchun
+    const [fileList, setFileList] = useState([
+        // {
+        //   uid: '-1',
+        //   name: 'image.png',
+        //   status: 'done',
+        //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        // },
+    ]);
+
+    const onChange = ({fileList: newFileList}) => {
+        setFileList(newFileList);
+    };
+
+    const onPreview = async (file) => {
+        let src = file.url;
+
+        if (!src) {
+            src = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj);
+
+                reader.onload = () => resolve(reader.result);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+    };
+// img qo'shish uchun
+
+
     const initialValues = {
         name: "",
         phone: "",
@@ -40,7 +74,7 @@ const Dovabit = () => {
         advertiser_name: "",
         currency: "",
         comment: "",
-        image_path: [],
+        image_path: fileList,
         // comforts : [],
         // _method: "method"
     }
@@ -75,12 +109,13 @@ const Dovabit = () => {
             },
         )
             .then(res => {
-                // console.log(res)
+                console.log(res)
                 toast.success("Успешный !");
                 // navigate("/profil");
             })
             .catch(err => {
                 toast.error("Ошибка ?");
+                console.log("error")
             })
     }
 
@@ -121,38 +156,6 @@ const Dovabit = () => {
         setPay(!pay);
     }
 
-
-// img qo'shish uchun
-    const [fileList, setFileList] = useState([
-        // {
-        //   uid: '-1',
-        //   name: 'image.png',
-        //   status: 'done',
-        //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-        // },
-    ]);
-
-    const onChange = ({fileList: newFileList}) => {
-        setFileList(newFileList);
-    };
-
-    const onPreview = async (file) => {
-        let src = file.url;
-
-        if (!src) {
-            src = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file.originFileObj);
-
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow?.document.write(image.outerHTML);
-    };
-// img qo'shish uchun
 
     return (
         <div>
@@ -261,6 +264,7 @@ const Dovabit = () => {
                                                                 fileList={fileList}
                                                                 onChange={onChange}
                                                                 onPreview={onPreview}
+                                                                name="image_path"
                                                             >
                                                                 {fileList.length < 5 && '+ Upload'}
                                                             </Upload>
@@ -324,16 +328,16 @@ const Dovabit = () => {
                                                     <div className="col-sm-3 col-12 mt-2 mb-2"></div>
 
 
-                                                    {/*{comfort?.map((item,index)=>{*/}
-                                                    {/*    return(*/}
-                                                    {/*        <div className="col-sm-2 col-6 mt-2" key={index}>*/}
-                                                    {/*            <label className="checkk1">*/}
-                                                    {/*                <Field type="checkbox" name="comforts" className="checkk"/>*/}
-                                                    {/*                {getLanguage()==="ru" ? item.name_ru : item.name_uz}*/}
-                                                    {/*            </label><br/>*/}
-                                                    {/*        </div>*/}
-                                                    {/*    )*/}
-                                                    {/*})}*/}
+                                                    {comfort?.map((item,index)=>{
+                                                        return(
+                                                            <div className="col-sm-2 col-6 mt-2" key={index}>
+                                                                <label className="checkk1">
+                                                                    <Field type="checkbox" name="comforts" className="checkk"/>
+                                                                    {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                                                </label><br/>
+                                                            </div>
+                                                        )
+                                                    })}
 
 
                                                     {/*<div className="col-sm-2 col-6 mt-2">*/}
