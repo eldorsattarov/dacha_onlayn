@@ -179,7 +179,6 @@ const DachaFilterNewPage = (props) => {
                                                 />
                                             </div>
 
-
                                             {comfort2?.map((item,index)=>{
                                                 return(
                                                     <div className="col-sm-2 col-6 mt-3" key={index}>
