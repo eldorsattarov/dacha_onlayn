@@ -83,7 +83,7 @@ const Profil = (props) => {
                         <div className="col-12 text-center">
                             <img src="./images/newImg/profilll.png" className="profImg"/>
                             <h1 className="">{props.user.name}</h1>
-                            <Link to="/profil_redactor" className="profLink">Редактировать профиль</Link>
+                            <Link to="/profil_redactor" className="profLink">{getText("protitle")}</Link>
                         </div>
                     </div>
 
@@ -93,8 +93,8 @@ const Profil = (props) => {
                                 <TabContext value={value}>
                                     <Box sx={{ }}>
                                         <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                            <Tab className="label salom" label="Мои объявления" value="1" />
-                                            <Tab className="label salom" label="Избранное" value="2" />
+                                            <Tab className="label salom" label={getText("profmoy")} value="1" />
+                                            <Tab className="label salom" label={getText("profizb")} value="2" />
                                         </TabList>
                                     </Box>
                                     <TabPanel value="1">

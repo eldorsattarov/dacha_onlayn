@@ -14,6 +14,7 @@ import {toast,ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Button} from "reactstrap";
 import {TOKEN_NAME_REGISTER} from "../../tools/constants";
+import {getText} from "../../locales";
 toast.configure();
 
 const RoyxatdanOtish = () => {
@@ -22,22 +23,41 @@ const RoyxatdanOtish = () => {
 
     const [token1, setToken1] = useState(null)
 
+
     const initialValues = {
         name : "",
-        phone: '',
+        phone: "998",
         password: '',
         very_password: '',
     }
     const validationSchema = Yup.object({
         name: Yup.string().required('название ...'),
-        phone: Yup.string().required('телефон...'),
-        password: Yup.string().required('пароль...'),
-        very_password: Yup.string().required('пароль...'),
+        // phone: Yup.number().typeError("Это не похоже на номер телефона")
+        //     .positive("Номер телефона не может начинаться с минуса")
+        //     .integer("Номер телефона не может содержать десятичную точку")
+        //     .min(12 , "минимум 12 символов")
+        //     .required('телефон...'),
+        phone: Yup.string()
+            .matches(
+                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                "Номер телефона недействителен"
+            )
+            .min(12 , "минимум 12 символов")
+            .required('телефон...'),
+        password: Yup.string().min(6 , "минимум 6 символов").required('пароль...'),
+        very_password: Yup.string().min(6 , "минимум 6 символов").required('пароль...'),
     })
 
     const onSubmit = (values) => {
-        // console.log(values)
-        axios.post("https://work.bingo99.uz/api/register" , values)
+        axios.post("https://work.bingo99.uz/api/register" ,
+            {
+            name : values.name,
+            phone : values.phone,
+            // phone : values.phone.slice(1,values.phone.length),
+            password : values.password,
+            very_password : values.very_password
+        }
+        )
             .then((res) => {
                 console.log(res)
                 // setToken(res.data.accessToken)
@@ -59,7 +79,7 @@ const RoyxatdanOtish = () => {
                         <div className="col-12">
                             <div className="text-center w-100">
                                 <h1 className="">
-                                    <img src="./images/chiziq.png" className="lineImgg"/> Зарегистрироваться <img src="./images/chiziq.png" className="lineImgg"/></h1>
+                                    <img src="./images/chiziq.png" className="lineImgg"/> {getText("regtitle")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                             </div>
                         </div>
 
@@ -81,7 +101,7 @@ const RoyxatdanOtish = () => {
                                                         <div className="login_page_inputs">
                                                             <div className="login_inputs_wrapper">
                                                                 <div className="login_control">
-                                                                    <label className="login_label" >Полное имя</label>
+                                                                    <label className="login_label" >{getText("regimya")}</label>
                                                                     <div className="login_input">
                                                                         <Field
                                                                             type = "text"
@@ -90,11 +110,11 @@ const RoyxatdanOtish = () => {
                                                                             autoComplete="off"
                                                                             className="form-control"
                                                                         />
-                                                                        <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
+                                                                        <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error"/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="login_control">
-                                                                    <label className="login_label" >Телефонный номер</label>
+                                                                    <label className="login_label" >{getText("regnomer")}</label>
                                                                     <div className="parol_input">
                                                                         <Field
                                                                             type="phone"
@@ -102,12 +122,13 @@ const RoyxatdanOtish = () => {
                                                                             name = "phone"
                                                                             autoComplete="off"
                                                                             className="form-control"
+                                                                            // placeholder={"998"}
                                                                         />
                                                                         <ErrorMessage name = "phone" component = 'div' style={{color: 'red'}} className = "error" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="login_control">
-                                                                    <label className="login_label" >Пароль</label>
+                                                                    <label className="login_label" >{getText("regparol")}</label>
                                                                     <div className="parol_input">
                                                                         <Field
                                                                             type="text"
@@ -116,11 +137,12 @@ const RoyxatdanOtish = () => {
                                                                             autoComplete="off"
                                                                             className="form-control"
                                                                         />
-                                                                        <ErrorMessage name = "password" component = 'div' style={{color: 'red'}} className = "error" />
+                                                                        <ErrorMessage name = "password" component = 'div' style={{color: 'red'}} className = "error"
+                                                                                      maxWidth={6}/>
                                                                     </div>
                                                                 </div>
                                                                 <div className="login_control">
-                                                                    <label className="login_label" >Подтвердить Пароль</label>
+                                                                    <label className="login_label" >{getText("regparol2")}</label>
                                                                     <div className="parol_input">
                                                                         <Field
                                                                             type="text"
@@ -140,10 +162,10 @@ const RoyxatdanOtish = () => {
                                                             type = 'submit'
                                                             className = "in_button mt-3"
                                                         >
-                                                            Зарегистрироваться
+                                                            {getText("regg")}
                                                         </button>
                                                         <div className="w-100 text-center mt-2">
-                                                            <Link to="/login" className="royxat">Войти в аккаунт</Link>
+                                                            <Link to="/login" className="royxat">{getText("regglogin")}</Link>
                                                         </div>
 
                                                     </Form>

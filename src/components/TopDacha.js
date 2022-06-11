@@ -12,7 +12,6 @@ import SimpleSlider from "./Carousell";
 
 const TopDacha = (props) => {
 
-
     const [activeSlide, setActiveSlide] = useState(0);
     const [topDacha, setTopDacha] = useState([]);
 
@@ -29,8 +28,8 @@ const TopDacha = (props) => {
 
     return (
         <div className="topdacha">
-            <div className="container position-relative">
-                <div className="row">
+            <div className="container position-relative p-0">
+                <div className="row p-0 m-0">
                     <div className="col-12 d-flex justify-content-between align-items-center">
                         <div className="text-center w-100">
                             <h1 className="">
@@ -44,7 +43,8 @@ const TopDacha = (props) => {
                     </div>
                 </div>
 
-                <SimpleSlider topDacha1={topDacha}/>
+                   <SimpleSlider topDacha1={topDacha}/>
+
                 <div className="row mt-4 d-flex position-relative">
 
                     {/*{topDacha.map((item, index) => {*/}

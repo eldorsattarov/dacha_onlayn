@@ -135,7 +135,7 @@ const Header = (props) => {
                             {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
 
                            {localStorage.getItem(TOKEN_NAME_REGISTER)||localStorage.getItem(TOKEN_NAME_LOGIN) ? "" :
-                               <Link to="/register" className="loginLink">Регистрация</Link>
+                               <Link to="/register" className="loginLink">{getText("registerr")}</Link>
                            }
                         </div>
                     </div>
@@ -200,7 +200,7 @@ const Header = (props) => {
                     </ul>
                     <div className="d-flex justify-content-center mt-3">
                         {localStorage.getItem(TOKEN_NAME_REGISTER)||localStorage.getItem(TOKEN_NAME_LOGIN) ? "" : <Link to="/register" className="loginLink">
-                            Регистрация
+                            {getText("registerr")}
                         </Link>}
                         {/*<button className="link" onClick={openModal}>{getText("sdatdacha")}</button>*/}
                     </div>

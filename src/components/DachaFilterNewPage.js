@@ -12,6 +12,11 @@ import {Link} from "react-router-dom";
 import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
 import index from "@mui/material/darkScrollbar";
 import {connect} from "react-redux";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import ImgCrop from "antd-img-crop";
+import {Upload} from "antd";
+import { AudioOutlined } from '@ant-design/icons';
+import { Input, Space } from 'antd';
 
 
 const DachaFilterNewPage = (props) => {
@@ -39,6 +44,58 @@ const DachaFilterNewPage = (props) => {
             })
     }, []);
 
+    const [location , setLocation] = useState([]);
+    useEffect(()=>{
+        axios.get(API_PATH + "category")
+            .then((res)=>{
+                // console.log(res.data.data)
+                setLocation(res.data.data);
+            })
+    },[]);
+
+
+    const chan = (e) =>{
+        console.log(e.target.value)
+    }
+
+
+    const [comfort2, setComfort2] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "comfort")
+            .then((res) => {
+                // console.log(res.data.data)
+                setComfort2(res.data.data);
+            })
+    }, []);
+
+
+    const initialValues = {
+
+    }
+    const validationSchema = Yup.object({
+
+    });
+
+    const onSubmit = (values) => {
+        console.log("value = ", values);
+
+    }
+
+
+    // search input
+    const { Search } = Input;
+    const suffix = (
+        <AudioOutlined
+            style={{
+                fontSize: 16,
+                color: "red",
+            }}
+        />
+    );
+
+    const onSearch = (value) => console.log(value);
+
+    // search input
 
 
     return (
@@ -47,72 +104,101 @@ const DachaFilterNewPage = (props) => {
             <div className="dacha_filter">
                 <div className="container">
 
-                    <form className="w-100">
+                    <div className="login_forms">
+                        <Formik
+                            initialValues={initialValues}
+                            onSubmit={onSubmit}
+                            validationSchema={validationSchema}
+                        >
+                            {
+                                formik => {
+                                    return <Form>
+                                        <div className="row">
 
-                        <div className="row">
-                            <div className="col-sm-10 col-8 mt-2">
-                                <input type="text" className="form-control input1" name="" placeholder="Поиск дачи..."/>
-                            </div>
-                            <div className="col-sm-2 col-3  mt-2">
-                                <button type="submit" className=""><img src="./images/newimg/Icon.png"/>Поиск</button>
-                            </div>
+                                            <div className="col-12">
+                                                <Search
+                                                    placeholder={getText("dachapoisk")}
+                                                    allowClear
+                                                    enterButton={getText("lupa")}
+                                                    size="large"
+                                                    onSearch={onSearch}
+                                                />
+                                            </div>
 
-                            <div className="col-6 col-sm-2 mt-2">
-                                <label>Цена</label>
-                                <input type="number" name="" className="form-control input1" placeholder="от"/>
-                            </div>
-                            <div className="col-6 col-sm-2 mt-2">
-                                <label>.</label><br/>
-                                <input type="number" name="" className="form-control input1" placeholder="до"/>
+                                            <div className="col-6 col-sm-2 mt-2">
+                                                <label>{getText("sena")}</label>
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                    placeholder={getText("sena1")}
+                                                />
+                                            </div>
+                                            <div className="col-6 col-sm-2 mt-2">
+                                                <label>.</label><br/>
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                    placeholder={getText("sena2")}
+                                                />
+                                            </div>
+                                            <div className="col-6 col-sm-4 mt-2">
+                                                <label>{getText("gorod")}</label>
 
-                            </div>
-                            <div className="col-6 col-sm-4 mt-2">
-                                <label>Город</label>
-                                <select className="form-control input1">
-                                    <option>Билдирсой</option>
-                                    <option>Билдирсой</option>
-                                    <option>Билдирсой</option>
-                                </select>
-                            </div>
-                            <div className="col-6 col-sm-4 mt-2">
-                                <label>Число людей</label>
-                                <input type="text" className="form-control input1" name=""/>
-                            </div>
+                                                <Field
+                                                    type="text"
+                                                    name="category_id"
+                                                    as="select"
+                                                    className="form-control input1"
+                                                >
+                                                    {
+                                                        location?.map((item, index) => {
+                                                            return (
+                                                                <option value={item.id} key={index}>
+                                                                    {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                                </option>
+                                                            )
+                                                        })
+                                                    }
+                                                </Field>
+
+                                            </div>
+                                            <div className="col-6 col-sm-4 mt-2">
+                                                <label>{getText("chislo")}</label>
+                                                <Field
+                                                    type="text"
+                                                    id="name"
+                                                    autoComplete="off"
+                                                    className="form-control input1"
+                                                    name="name"
+                                                />
+                                            </div>
 
 
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name=""
-                                                                  className="checkk"/>Бассейн</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>Зимний
-                                    бассейн</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name=""
-                                                                  className="checkk"/>Бильярд</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>PlayStation
-                                    3/4/5</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name=""
-                                                                  className="checkk"/>Сауна</label><br/>
-                                <label className="checkk1"><input type="checkbox" name=""
-                                                                  className="checkk"/>Караоке</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>Стол
-                                    тенниси</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>PlayStation
-                                    3/4/5</label>
-                            </div>
-                            <div className="col-sm-2 col-6 mt-2">
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>Кондиционер</label><br/>
-                                <label className="checkk1"><input type="checkbox" name="" className="checkk"/>WI
-                                    FI</label>
-                            </div>
+                                            {comfort2?.map((item,index)=>{
+                                                return(
+                                                    <div className="col-sm-2 col-6 mt-3" key={index}>
+                                                        <label className="checkk1">
+                                                            <Field type="checkbox" name="comforts" className="checkk"/>
+                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                                        </label><br/>
+                                                    </div>
+                                                )
+                                            })}
 
-                        </div>
+                                        </div>
+                                    </Form>
+                                }
+                            }
 
-                    </form>
+                        </Formik>
+                    </div>
+
 
                 </div>
 
@@ -124,41 +210,48 @@ const DachaFilterNewPage = (props) => {
                                     <div className="col-12">
                                         <h1>{item.name}</h1>
                                     </div>
-                                    <div className="col-sm-12 col-md-8 col-12 d-flex cardTwo mt-2">
-                                        <div className="card w-50 border-right-0 cardTwo1">
-                                            <img src={BASE_URL + item.images[0].image_path}
-                                                 className="card-img-top h-100"/>
-                                            {/*<img src={BASE_URL + item.image_path} className="w-100"/>*/}
+
+                                        <div className="col-sm-12 col-md-8 col-12 d-flex cardTwo mt-2">
+                                            {/*<Link to="/countryhouse" className="text-decoration-none" onClick={()=>props.topTan.splice(0,1,item)}>*/}
+                                            {/*    <div className="d-flex w-100">*/}
+                                                    <div className="card w-50 border-right-0 cardTwo1">
+                                                        <img src={BASE_URL + item.images[0].image_path}
+                                                             className="card-img-top h-100"/>
+                                                        {/*<img src={BASE_URL + item.image_path} className="w-100"/>*/}
+                                                    </div>
+                                                    <div className="card w-50 border-left-0 cardTwo2">
+                                                        <div className="card-body">
+                                                            <h3>{item.name}</h3>
+                                                            <div>
+                                                                <img src="./images/newImagesTwo/Vector (14).png"/>
+                                                                <span>{item.room_count} {getText("komnat")}</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src="./images/newImagesTwo/Vector (15).png"/>
+                                                                <span>{item.bathroom_count} {getText("danniy")}</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src="./images/newImagesTwo/Vector (16).png"/>
+                                                                <span>{item.capacity} {getText("gost")}</span>
+                                                            </div>
+                                                            <div>
+                                                                <img src="./images/newImagesTwo/Vector (17).png"/>
+                                                                <span>{item.cost} {getText("sum")}</span>
+                                                            </div>
+                                                            <div className="mt-2">
+                                                                <Link to="/countryhouse"
+                                                                      className="text-secondary text-decoration-none"
+                                                                      onClick={() => props.topTan.splice(0, 1, item)}
+                                                                >
+                                                                    {getText("podrobni")}</Link>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {/*</div>*/}
+                                            {/*</Link>*/}
                                         </div>
-                                        <div className="card w-50 border-left-0 cardTwo2">
-                                            <div className="card-body">
-                                                <h3>{item.name}</h3>
-                                                <div>
-                                                    <img src="./images/newImagesTwo/Vector (14).png"/>
-                                                    <span>{item.room_count} {getText("komnat")}</span>
-                                                </div>
-                                                <div>
-                                                    <img src="./images/newImagesTwo/Vector (15).png"/>
-                                                    <span>{item.bathroom_count} {getText("danniy")}</span>
-                                                </div>
-                                                <div>
-                                                    <img src="./images/newImagesTwo/Vector (16).png"/>
-                                                    <span>{item.capacity} {getText("gost")}</span>
-                                                </div>
-                                                <div>
-                                                    <img src="./images/newImagesTwo/Vector (17).png"/>
-                                                    <span>{item.cost} {getText("sum")}</span>
-                                                </div>
-                                                <div className="mt-2">
-                                                    <Link to="/countryhouse"
-                                                          className="text-secondary text-decoration-none"
-                                                          onClick={() => props.topTan.splice(0, 1, item)}
-                                                    >
-                                                        {getText("podrobni")}</Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+
                                     <div className="col-sm-12 col-md-4 col-12 mt-2">
                                         <div className="card cardddd">
                                             <div className="card-body">
