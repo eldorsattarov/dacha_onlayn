@@ -120,7 +120,8 @@ export const uz = {
 
     // dovabit
     dovtitle : "Reklama joylashtiring",
-    dovnazvani : "Sarlavhani kiriting",
+    dovnazvani : "Sarlavhani kiriting(Ru)",
+    dovnazvani2 : "Sarlavhani kiriting(Uz)",
     dovadres : "Joylashuv manzili",
     dovizb : "Rasm",
     dovfilter : "Filtrlar qo'shing",

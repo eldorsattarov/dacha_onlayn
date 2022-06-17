@@ -9,7 +9,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import {connect} from "react-redux";
 import {getIzbrannoe} from "../../redux/action/dachaAction";
-import {updateState} from "../../redux/action/loginAction";
+import {updateState} from "../../images/loginAction";
 import axios from "axios";
 import {API_PATH, BASE_URL, TOKEN_NAME_LOGIN} from "../../tools/constants";
 import "bootstrap/dist/css/bootstrap-grid.css";

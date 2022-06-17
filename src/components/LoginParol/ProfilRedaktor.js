@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {API_PATH, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../../tools/constants";
 import axios from "axios";
 import {getIzbrannoe} from "../../redux/action/dachaAction";
-import {updateState} from "../../redux/action/loginAction";
+import {updateState} from "../../images/loginAction";
 import {connect} from "react-redux";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";

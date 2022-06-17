@@ -12,7 +12,7 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
 import {connect} from "react-redux";
-import {onSubmitOne} from "../../redux/action/loginAction";
+import {onSubmitOne} from "../../images/loginAction";
 
 toast.configure();
 
