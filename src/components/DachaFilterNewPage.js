@@ -242,38 +242,16 @@ const DachaFilterNewPage = (props) => {
                                     />
                                 </div>
 
-                                {/*{comfort2?.map((item, index) => {*/}
-                                {/*    return (*/}
-                                {/*<div className="col-sm-2 col-6 mt-4" key={index}>*/}
-                                {/*    <label className="checkk1">*/}
-                                {/*        <input*/}
-                                {/*            type="checkbox"*/}
-                                {/*            name="comforts1"*/}
-                                {/*            className="checkk"*/}
-                                {/*            value={formik.values.comforts1}*/}
-                                {/*            onChange={formik.handleChange}*/}
-                                {/*        />*/}
-                                {/*        /!*{getLanguage() === "ru" ? item.name_ru : item.name_uz}*!/*/}
-                                {/*        Playstation*/}
-                                {/*    </label><br/>*/}
-                                {/*</div>*/}
-                                {comfort2.map((item, index) => {
-                                    return(
-                                        <div className="col-sm-2 col-6 mt-4" key={index}>
-                                            <label className="checkk1">
-                                                <input
-                                                    type="checkbox"
-                                                    name="comforts2"
-                                                    className="checkk"
-                                                    value={formik.values.comforts2}
-                                                    onChange={formik.handleChange}
-                                                />
-                                                {/*{getLanguage() === "ru" ? item.name_ru : item.name_uz}*/}
-                                                {localStorage.getItem(LANGUAGE) === "uz" ? item.name_uz : item.name_ru}
-                                            </label><br/>
-                                        </div>
-                                    )
-                                })}
+                                            {comfort2?.map((item,index)=>{
+                                                return(
+                                                    <div className="col-sm-2 col-6 mt-3" key={index}>
+                                                        <label className="checkk1">
+                                                            <Field type="checkbox" name="comforts" className="checkk"/>
+                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                                        </label><br/>
+                                                    </div>
+                                                )
+                                            })}
 
                                 {/*)*/}
                                 {/*})}*/}
