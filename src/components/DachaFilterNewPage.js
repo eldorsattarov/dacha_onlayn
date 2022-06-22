@@ -67,11 +67,11 @@ const DachaFilterNewPage = (props) => {
                 // console.log(res.data.data)
                 setComfort2(res.data.data);
             });
-        axios.get(API_PATH + "dacha")
-            .then((res) => {
-                // console.log(res.data.data)
-                setSearchDacha(res.data.data.data);
-            })
+        // axios.get(API_PATH + "dacha")
+        //     .then((res) => {
+        //         // console.log(res.data.data)
+        //         setSearchDacha(res.data.data.data);
+        //     })
     }, []);
 
 
@@ -246,7 +246,7 @@ const DachaFilterNewPage = (props) => {
                                                 return(
                                                     <div className="col-sm-2 col-6 mt-3" key={index}>
                                                         <label className="checkk1">
-                                                            <Field type="checkbox" name="comforts" className="checkk"/>
+                                                            <input type="checkbox" name="comforts" className="checkk"/>
                                                             {getLanguage()==="ru" ? item.name_ru : item.name_uz}
                                                         </label><br/>
                                                     </div>

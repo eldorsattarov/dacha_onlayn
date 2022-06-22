@@ -18,9 +18,11 @@ import {getLanguage, getText} from "../../locales";
 const Profil = (props) => {
     const [userDacha , setUserDacha] = useState([]);
     useEffect(()=>{
-        axios.get(API_PATH + "user/dacha" , {headers: {
+        axios.get(API_PATH + "user/dacha" , {
+            headers: {
                 'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
-            }})
+            }
+        })
             .then((res)=>{
                 // console.log("userDacha " , res.data.data.data)
                 setUserDacha(res.data?.data.data)

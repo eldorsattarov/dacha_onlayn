@@ -57,6 +57,7 @@ const Dovabit = () => {
 
     const formik = useFormik({
         initialValues: {
+            name : "",
             name_ru: "",
             name_uz: "",
             phone: "",
@@ -68,34 +69,38 @@ const Dovabit = () => {
             advertiser_name: "",
             currency: "",
             comment: "",
-            image_path: fileList,
+            image_path: "",
             comforts: [],
         },
 
         onSubmit: values => {
             const data = {
+                name : "salom",
                 category_id: values.category_id,
                 room_count: values.room_count,
                 bathroom_count: values.bathroom_count,
                 capacity: values.capacity,
                 cost: values.capacity,
-                image_path: fileList,
+                image_path: fileList[0].originFileObj,
                 name_uz: values.name_uz,
                 name_ru: values.name_ru,
-                _method: "method",
                 phone: values.phone,
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
-                currency: values.currency
+                currency: values.currency,
+                comforts : [1]
             };
             const formData = new FormData();
             formData.append('file', data);
             console.log(formData);
             console.log(data);
+
             axios.post(API_PATH + "dacha", data,
                 {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+                        // "Accept": "application/json",
+                        "Authorization" : `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
+                        // "Content-Type": "application/json"
                     }
                 },
             )
@@ -110,46 +115,9 @@ const Dovabit = () => {
                 })
         }
     });
-    const initialValues = {
-        name: "",
-        phone: "",
-        category_id: "",
-        room_count: "",
-        bathroom_count: "",
-        capacity: "",
-        cost: "",
-        advertiser_name: "",
-        currency: "",
-        comment: "",
-        image_path: fileList,
-        comforts: [],
-        // _method: "method"
-    };
-    const validationSchema = Yup.object({
-        name: Yup.string().required('название ...'),
-        phone: Yup.string()
-            .matches(
-                /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-                "Номер телефона недействителен"
-            )
-            .min(12, "минимум 12 символов")
-            .required('телефон...'),
-        // category_id: Yup.string().required('категория ...'),
-        room_count: Yup.string().required('количество комнат ...'),
-        bathroom_count: Yup.string().required('ванная комната ...'),
-        capacity: Yup.string().required('вместимость ...'),
-        cost: Yup.string().required('Стоимость ...'),
-        advertiser_name: Yup.string().required('имя рекламодателя ...'),
-        currency: Yup.string().required('валюта ...'),
-        comment: Yup.string().required('комментарий ...'),
-        image_path: Yup.string().required('путь изображения ...'),
-        // _method: Yup.string().required('method ...'),
-    });
 
-    const onSubmit = (values) => {
-        console.log("value = ", values);
 
-    };
+
 
 
     const [location, setLocation] = useState([]);
@@ -286,7 +254,7 @@ const Dovabit = () => {
                                             <ImgCrop rotate>
                                                 <Upload
                                                     type="file"
-                                                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                    // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                                                     listType="picture-card"
                                                     fileList={fileList}
                                                     value={formik.values.image_path}
@@ -357,16 +325,16 @@ const Dovabit = () => {
                                         {comfort?.map((item, index) => {
                                             return (
                                                 <div className="col-sm-2 col-6 mt-2" key={index}>
-                                                    <label className="checkk1">
-                                                        <input
-                                                            type="checkbox"
-                                                            name="comforts"
-                                                            className="checkk"
-                                                            value={formik.values.comforts}
-                                                            onChange={formik.handleChange}
-                                                        />
-                                                        {getLanguage() === "ru" ? item.name_ru : item.name_uz}
-                                                    </label><br/>
+                                                    {/*<label className="checkk1">*/}
+                                                    {/*    <input*/}
+                                                    {/*        type="checkbox"*/}
+                                                    {/*        name="comforts"*/}
+                                                    {/*        className="checkk"*/}
+                                                    {/*        value={formik.values.comforts}*/}
+                                                    {/*        onChange={formik.handleChange}*/}
+                                                    {/*    />*/}
+                                                    {/*    {getLanguage() === "ru" ? item.name_ru : item.name_uz}*/}
+                                                    {/*</label><br/>*/}
                                                 </div>
                                             )
                                         })}
