@@ -57,6 +57,7 @@ const Dovabit = () => {
 
     const formik = useFormik({
         initialValues: {
+            name : "test",
             name_ru: "",
             name_uz: "",
             phone: "",
@@ -74,6 +75,7 @@ const Dovabit = () => {
 
         onSubmit: values => {
             const data = {
+                name : "test",
                 category_id: values.category_id,
                 room_count: values.room_count,
                 bathroom_count: values.bathroom_count,
@@ -92,7 +94,7 @@ const Dovabit = () => {
             formData.append('file', data);
             console.log(formData);
             console.log(data);
-            axios.post(API_PATH + "dacha", data,
+            axios.post(API_PATH + "dacha", data ,
                 {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
@@ -148,7 +150,6 @@ const Dovabit = () => {
 
     const onSubmit = (values) => {
         console.log("value = ", values);
-
     };
 
 

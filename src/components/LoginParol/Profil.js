@@ -109,7 +109,7 @@ const Profil = (props) => {
                                                                 <div className="cardimgg">
                                                                     <div className="cardimgg2"></div>
                                                                     {/*<img src="./images/image1.jpg" className="card-img-top"/>*/}
-                                                                    <img src={BASE_URL + item.images[0].image_path} className="card-img-top"/>
+                                                                    <img src={BASE_URL + item.images[0]?.image_path} className="card-img-top"/>
                                                                 </div>
                                                                 <div className="card-img-overlay">
                                                                     <div className="summm">

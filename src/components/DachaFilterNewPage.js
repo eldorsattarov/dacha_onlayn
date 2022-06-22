@@ -9,14 +9,13 @@ import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 import {useFormik} from "formik";
 import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
-import index from "@mui/material/darkScrollbar";
+// import index from "@mui/material/darkScrollbar";
 import {connect} from "react-redux";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import ImgCrop from "antd-img-crop";
-import {Upload} from "antd";
+// import ImgCrop from "antd-img-crop";
+// import {Upload} from "antd";
 import {AudioOutlined} from '@ant-design/icons';
 import {Input, Space} from 'antd';
-
 
 const DachaFilterNewPage = (props) => {
 
@@ -26,10 +25,10 @@ const DachaFilterNewPage = (props) => {
         // localStorage.setItem("locale" , JSON.stringify(props.locale));
     }, []);
 
-
     const [userFavourite, setUserFavourite] = useState([]);
 
     const [dachaFilter, setDachaFilter] = useState([]);
+
 
     useEffect(() => {
         axios.get(API_PATH + "dacha", {
@@ -44,6 +43,7 @@ const DachaFilterNewPage = (props) => {
     }, []);
 
     const [location, setLocation] = useState([]);
+
     useEffect(() => {
         axios.get(API_PATH + "category")
             .then((res) => {
@@ -67,13 +67,15 @@ const DachaFilterNewPage = (props) => {
                 // console.log(res.data.data)
                 setComfort2(res.data.data);
             });
+    }, []);
+
+    useEffect(() => {
         axios.get(API_PATH + "dacha")
             .then((res) => {
                 // console.log(res.data.data)
                 setSearchDacha(res.data.data.data);
             })
     }, []);
-
 
     const initialValues = {};
     const validationSchema = Yup.object({});
@@ -101,6 +103,7 @@ const DachaFilterNewPage = (props) => {
 
     // search input
     const [searchDacha, setSearchDacha] = useState([]);
+
     const formik = useFormik({
 
         initialValues: {
@@ -112,8 +115,6 @@ const DachaFilterNewPage = (props) => {
             comforts1: false,
             comforts2: false
         },
-
-
          onSubmit: values => {
             console.log(values);
             let com1 = "";
@@ -155,7 +156,6 @@ const DachaFilterNewPage = (props) => {
         }
     });
 
-
     return (
         <div>
             <Header/>
@@ -178,6 +178,7 @@ const DachaFilterNewPage = (props) => {
                                         value={formik.values.search}
                                         onChange={formik.handleChange}
                                     />
+
                                 {/*</div>*/}
                                 {/*<div className="col-2 d-flex w-100 justify-content-end">*/}
                                     <button type="submit" className="btn px-3" onClick={formik.handleSubmit}>
