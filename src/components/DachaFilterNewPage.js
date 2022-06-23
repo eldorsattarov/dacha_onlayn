@@ -43,11 +43,9 @@ const DachaFilterNewPage = (props) => {
     }, []);
 
     const [location, setLocation] = useState([]);
-
     useEffect(() => {
         axios.get(API_PATH + "category")
             .then((res) => {
-                // console.log(res.data.data)
                 setLocation(res.data.data);
             })
     }, []);
@@ -59,12 +57,11 @@ const DachaFilterNewPage = (props) => {
 
 
     const [comfort2, setComfort2] = useState([]);
-    console.log("comfort2");
-    console.log(comfort2);
+
     useEffect(() => {
         axios.get(API_PATH + "comfort")
             .then((res) => {
-                // console.log(res.data.data)
+                console.log("comfort " , res.data.data)
                 setComfort2(res.data.data);
             });
     }, []);
@@ -73,7 +70,7 @@ const DachaFilterNewPage = (props) => {
         axios.get(API_PATH + "dacha")
             .then((res) => {
                 // console.log(res.data.data)
-                setSearchDacha(res.data.data.data);
+                // setSearchDacha(res.data.data.data);
             })
     }, []);
 
@@ -247,8 +244,8 @@ const DachaFilterNewPage = (props) => {
                                                 return(
                                                     <div className="col-sm-2 col-6 mt-3" key={index}>
                                                         <label className="checkk1">
-                                                            <Field type="checkbox" name="comforts" className="checkk"/>
-                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                                            <input type="checkbox" name="comforts" className="checkk"/>
+                                                            {getLanguage()==="ru" ? item?.name_ru : item?.name_uz}
                                                         </label><br/>
                                                     </div>
                                                 )
