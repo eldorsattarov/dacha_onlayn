@@ -43,6 +43,7 @@ const RoyxatdanOtish = () => {
                 "Номер телефона недействителен"
             )
             .min(12 , "минимум 12 символов")
+            .max(12 , "Максимум 12 символов")
             .required('телефон...'),
         password: Yup.string().min(6 , "минимум 6 символов").required('пароль...'),
         very_password: Yup.string().min(6 , "минимум 6 символов").required('пароль...'),

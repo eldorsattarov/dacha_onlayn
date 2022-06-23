@@ -72,6 +72,11 @@ const DachaFilterNewPage = (props) => {
                 // console.log(res.data.data)
                 // setSearchDacha(res.data.data.data);
             })
+        // axios.get(API_PATH + "dacha")
+        //     .then((res) => {
+        //         // console.log(res.data.data)
+        //         setSearchDacha(res.data.data.data);
+        //     })
     }, []);
 
     const initialValues = {};
@@ -102,7 +107,6 @@ const DachaFilterNewPage = (props) => {
     const [searchDacha, setSearchDacha] = useState([]);
 
     const formik = useFormik({
-
         initialValues: {
             search: "",
             dan: "",
@@ -239,13 +243,12 @@ const DachaFilterNewPage = (props) => {
                                         onChange={formik.handleChange}
                                     />
                                 </div>
-
                                             {comfort2?.map((item,index)=>{
                                                 return(
                                                     <div className="col-sm-2 col-6 mt-3" key={index}>
                                                         <label className="checkk1">
                                                             <input type="checkbox" name="comforts" className="checkk"/>
-                                                            {getLanguage()==="ru" ? item?.name_ru : item?.name_uz}
+                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
                                                         </label><br/>
                                                     </div>
                                                 )

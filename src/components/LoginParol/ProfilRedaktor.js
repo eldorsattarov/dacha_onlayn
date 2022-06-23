@@ -36,6 +36,7 @@ const ProfilRedaktor = (props) => {
                 "Номер телефона недействителен"
             )
             .min(12 , "минимум 12 символов")
+            .max(12 , "Максимум 12 символов")
             .required('телефон...'),
         _method: Yup.string().required('method ...'),
     })

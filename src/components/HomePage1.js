@@ -87,7 +87,7 @@ const HomePage1 = (props) => {
               {categorye?.map((item, index) => {
                 while (index < 2) {
                   return (
-                      <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-3">
+                      <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-3" key={index}>
                         <Link to="/inner_page" onClick={() => props.cat.splice(0, 1, item)}>
                           <div className="card border-0">
                             {/*<img src="./images/Rectangle 19.png" className="w-100"/>*/}
@@ -106,7 +106,7 @@ const HomePage1 = (props) => {
               {categorye?.map((item, index) => {
                 if (index != 0 && index != 1 && index < 5) {
                   return (
-                      <div className="col-sm-6 col-md-4 col-6 mt-4">
+                      <div className="col-sm-6 col-md-4 col-6 mt-4" key={index}>
                         <Link to="/inner_page"
                               onClick={() => props.cat.splice(0, 1, item)}>
                           <div className="card border-0">

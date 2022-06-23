@@ -35,7 +35,7 @@ const DrugiDacha = (props) => {
                     {drugiDacha?.map((item,index)=>{
                        while (index<6){
                            return(
-                               <div className="col-sm-6 col-md-4 col-6 mt-3">
+                               <div className="col-sm-6 col-md-4 col-6 mt-3" key={index}>
                                    <Link to="/countryhouse" className="text-decoration-none"
                                          onClick={()=>props.topTan.splice(0,1,item)}>
                                        <div className="card">

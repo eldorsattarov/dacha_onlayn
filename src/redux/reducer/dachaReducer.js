@@ -9,7 +9,8 @@ const initialState = {
     topTanCam : [],
     locale : [],
     izbran : [],
-    ids_array : []
+    ids_array : [],
+    userDachaEdit : []
 };
 
 export const dachaReducer = (state = initialState,action)=>{

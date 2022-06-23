@@ -120,6 +120,7 @@ export const uz = {
 
     // dovabit
     dovtitle : "Reklama joylashtiring",
+    dovnazvanii : "Sarlavhani kiriting",
     dovnazvani : "Sarlavhani kiriting(Ru)",
     dovnazvani2 : "Sarlavhani kiriting(Uz)",
     dovadres : "Joylashuv manzili",
@@ -179,6 +180,15 @@ export const uz = {
     paymodal3: " 2. Ikki va undan ortiq dachalarni qo'shish har bir dacha uchun 5000 so'm (besh ming).",
     alerttext : "Dacha qo'shish uchun to'lov qiling!",
     alerttext2 : "Siz dacha qo'shishingiz mumkin",
-    tolov : "to'lov"
+    tolov : "to'lov",
+    upload : "Qo'shish",
 
+
+
+    dachaEdit : "Tahrirlash",
+    dachaDelete : "O'chirish",
+
+
+    xa : "Xa",
+    yoq : "Yo'q"
 }

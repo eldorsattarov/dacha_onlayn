@@ -22,6 +22,8 @@ import 'antd/dist/antd.css';
 import {Upload} from 'antd';
 import ImgCrop from 'antd-img-crop';
 import {toast} from "react-toastify";
+import {connect} from "react-redux";
+import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
 
 
 toast.configure();
@@ -30,13 +32,14 @@ toast.configure();
 const Dovabit = () => {
     const navigate = useNavigate()
 
+
 // img qo'shish uchun
     const [fileList, setFileList] = useState([]);
 
     const onChange = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
-    // console.log("imagee " ,fileList);
+    // console.log(fileList);
 
     const onPreview = async (file) => {
         let src = file.url;
@@ -53,25 +56,12 @@ const Dovabit = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
+
 // img qo'shish uchun
-
-
-    // img2
-
-    const [selectedFile, setSelectedFile] = useState();
-    const [isFilePicked, setIsFilePicked] = useState(false);
-
-    const changeHandler = (event) => {
-        setSelectedFile(event.target.files[0]);
-    };
-// img2
-
 
     const formik = useFormik({
         initialValues: {
-            name: "test",
-            name_ru: "",
-            name_uz: "",
+            name : "",
             phone: "",
             category_id: "",
             room_count: "",
@@ -79,43 +69,38 @@ const Dovabit = () => {
             capacity: "",
             cost: "",
             advertiser_name: "",
-            currency: "",
+            currency: "y.e",
             comment: "",
-            // image_path: fileList,
             image_path: "",
             comforts: [],
         },
 
         onSubmit: values => {
+            console.log("valuesss " , values);
+            JSON.stringify(values)
             const data = {
-                name: "test",
-                category_id: values.category_id,
+                name : values.name,
+                category_id: parseInt(values.category_id),
                 room_count: values.room_count,
                 bathroom_count: values.bathroom_count,
                 capacity: values.capacity,
                 cost: values.cost,
-                // image_path: fileList,
-                image_path: selectedFile,
-                name_uz: values.name_uz,
-                name_ru: values.name_ru,
+                image_path: [fileList[0].originFileObj],
                 phone: values.phone,
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
                 currency: values.currency,
-                comforts: values.comforts
+                comforts : [2]
             };
             const formData = new FormData();
             formData.append('file', data);
-
-
-
-
             console.log(formData);
             console.log(data);
-            axios.post(API_PATH + "dacha", data,
+
+            axios.post(API_PATH + "dacha" , data,
                 {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+                        "Authorization" : `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
                     }
                 },
             )
@@ -130,6 +115,14 @@ const Dovabit = () => {
                 })
         }
     });
+
+
+
+
+
+
+
+
 
 
     const [location, setLocation] = useState([]);
@@ -206,48 +199,61 @@ const Dovabit = () => {
 
                     <div className="login_forms">
                         <form onSubmit={formik.handleSubmit}>
-                            {/*<form onSubmit={submitFunction}>*/}
                             <div className="login_page_inputs">
                                 <div className="login_inputs_wrapper">
                                     <div className="row">
-                                        <div className="col-sm-4 col-12 mt-2">
-                                            <label>{getText("dovnazvani")}</label>
+                                        <div className="col-sm-6 col-12 mt-2">
+                                            <label>{getText("dovnazvanii")}</label>
                                             <input
                                                 type="text"
                                                 required
-                                                id="name_ru"
+                                                id="name"
                                                 className="form-control input1"
-                                                name="name_ru"
-                                                value={formik.values.name_ru}
+                                                name="name"
+                                                value={formik.values.name}
                                                 onChange={formik.handleChange}
                                             />
                                         </div>
-                                        <div className="col-sm-4 col-12 mt-2">
-                                            <label>{getText("dovnazvani2")}</label>
-                                            <input
-                                                required
-                                                type="text"
-                                                id="name_uz"
-                                                className="form-control input1"
-                                                name="name_uz"
-                                                value={formik.values.name_uz}
-                                                onChange={formik.handleChange}
-                                            />
-                                        </div>
+                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
+                                        {/*    <label>{getText("dovnazvani")}</label>*/}
+                                        {/*    <input*/}
+                                        {/*        type="text"*/}
+                                        {/*        required*/}
+                                        {/*        id="name_ru"*/}
+                                        {/*        className="form-control input1"*/}
+                                        {/*        name="name_ru"*/}
+                                        {/*        value={formik.values.name_ru}*/}
+                                        {/*        onChange={formik.handleChange}*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
+                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
+                                        {/*    <label>{getText("dovnazvani2")}</label>*/}
+                                        {/*    <input*/}
+                                        {/*        required*/}
+                                        {/*        type="text"*/}
+                                        {/*        id="name_uz"*/}
+                                        {/*        className="form-control input1"*/}
+                                        {/*        name="name_uz"*/}
+                                        {/*        value={formik.values.name_uz}*/}
+                                        {/*        onChange={formik.handleChange}*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
                                         {/*select*/}
-                                        <div className="col-sm-4 col-12 mt-2">
+                                        <div className="col-sm-6 col-12 mt-2">
                                             <label>{getText("dovadres")}</label>
                                             <select
+                                                type="number"
                                                 name="category_id"
                                                 className="form-control input1"
                                                 value={formik.values.category_id}
                                                 required
                                                 onChange={formik.handleChange}
+                                                // defaultValue={location[0].id}
                                             >
                                                 {
                                                     location.map((item, index) => {
                                                         return (
-                                                            <option value={item.id} key={index}>
+                                                            <option value={item.id} key={index} >
                                                                 {getLanguage() === "ru" ? item.name_ru : item.name_uz}
                                                             </option>
                                                         )
@@ -262,36 +268,26 @@ const Dovabit = () => {
                                         <div className="col-12 mt-2">
                                             <label>{getText("dovizb")}</label>
                                         </div>
+                                        <div className="col-12 mt-2">
 
-                                        <div>
-                                            <input
-                                                type="file"
-                                                name="image_path"
-                                                onChange={changeHandler}
-                                            />
+                                            <ImgCrop rotate>
+                                                <Upload
+                                                    type="file"
+                                                    // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                    listType="picture-card"
+                                                    fileList={fileList}
+                                                    value={formik.values.image_path}
+                                                    required
+                                                    onChange={onChange}
+                                                    onPreview={onPreview}
+                                                    name="image_path"
+                                                >
+                                                    {fileList.length < 10 && `+ ${getText("upload")}`}
+                                                </Upload>
+                                            </ImgCrop>
+
+
                                         </div>
-
-
-                                        {/*<div className="col-12 mt-2">*/}
-
-                                        {/*    <ImgCrop rotate>*/}
-                                        {/*        <Upload*/}
-                                        {/*            type="file"*/}
-                                        {/*            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"*/}
-                                        {/*            listType="picture-card"*/}
-                                        {/*            fileList={fileList}*/}
-                                        {/*            value={formik.values.image_path}*/}
-                                        {/*            required*/}
-                                        {/*            onChange={onChange}*/}
-                                        {/*            // onPreview={onPreview}*/}
-                                        {/*            name="image_path"*/}
-                                        {/*        >*/}
-                                        {/*            {fileList.length < 10 && '+ Upload'}*/}
-                                        {/*        </Upload>*/}
-                                        {/*    </ImgCrop>*/}
-
-
-                                        {/*</div>*/}
 
                                         <div className="col-12 mt-2">
                                             <label>{getText("dovfilter")}</label>
@@ -302,7 +298,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Two Beds.png"/>
                                                 <span>{getText("dovkolich1")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="room_count"
                                                     className="form-control filterField"
                                                     name="room_count"
@@ -318,7 +314,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Swimming Pool.png"/>
                                                 <span>{getText("dovkolich2")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="bathroom_count"
                                                     className="form-control filterField"
                                                     name="bathroom_count"
@@ -334,7 +330,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Vector (3).png"/>
                                                 <span>{getText("dovkolich3")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="capacity"
                                                     className="form-control filterField"
                                                     name="capacity"
@@ -346,6 +342,7 @@ const Dovabit = () => {
                                         </div>
                                         <div className="col-sm-3 col-12 mt-2 mb-2"></div>
 
+
                                         {comfort?.map((item, index) => {
                                             return (
                                                 <div className="col-sm-2 col-6 mt-2" key={index}>
@@ -354,7 +351,7 @@ const Dovabit = () => {
                                                             type="checkbox"
                                                             name="comforts"
                                                             className="checkk"
-                                                            value={formik.values.comforts}
+                                                            value={parseInt(item.id)}
                                                             onChange={formik.handleChange}
                                                         />
                                                         {getLanguage() === "ru" ? item.name_ru : item.name_uz}
@@ -362,7 +359,6 @@ const Dovabit = () => {
                                                 </div>
                                             )
                                         })}
-
                                         <div className="col-12 mt-2">
                                             <label>{getText("dovopis")}</label>
                                             <input
@@ -393,7 +389,7 @@ const Dovabit = () => {
                                         <div className="col-9 col-sm-3 mt-2">
                                             <label>{getText("dovsena")}</label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="cost"
                                                 id="cost"
                                                 className="form-control input1"
@@ -431,7 +427,7 @@ const Dovabit = () => {
                                         <div className="col-12 mt-3 d-flex justify-content-center">
                                             <button
                                                 type="submit"
-                                                onClick={formik.handleSubmit}
+                                                // onClick={formik.handleSubmit}
                                                 className="btn"
                                             >
                                                 {getText("dovv")}
@@ -508,7 +504,14 @@ const Dovabit = () => {
 
 
         </div>
-    )
+    );
 };
-
-export default Dovabit;
+const mapStateToProps = (state) => {
+    return {
+        user: state.login.user,
+        dacha: state.dacha.dacha,
+        topTan: state.dacha.topTan,
+        userDachaEdit: state.dacha.userDachaEdit
+    }
+}
+export default connect(mapStateToProps, {getIzbrannoe, updateState})(Dovabit);
