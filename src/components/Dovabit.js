@@ -36,7 +36,7 @@ const Dovabit = () => {
     const onChange = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
-    console.log(fileList);
+    // console.log(fileList);
 
     const onPreview = async (file) => {
         let src = file.url;
@@ -58,8 +58,6 @@ const Dovabit = () => {
     const formik = useFormik({
         initialValues: {
             name : "",
-            name_ru: "",
-            name_uz: "",
             phone: "",
             category_id: "",
             room_count: "",
@@ -67,23 +65,22 @@ const Dovabit = () => {
             capacity: "",
             cost: "",
             advertiser_name: "",
-            currency: "",
+            currency: "y.e",
             comment: "",
-            image_path: "",
+            image_path: [],
             comforts: [],
         },
 
         onSubmit: values => {
             const data = {
-                name : "salom",
+                name : values.name,
                 category_id: values.category_id,
                 room_count: values.room_count,
                 bathroom_count: values.bathroom_count,
                 capacity: values.capacity,
                 cost: values.capacity,
-                image_path: fileList[0].originFileObj,
-                name_uz: values.name_uz,
-                name_ru: values.name_ru,
+                // image_path: fileList[0].originFileObj,
+                image_path: fileList.map((item )=> item.originFileObj),
                 phone: values.phone,
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
@@ -98,9 +95,9 @@ const Dovabit = () => {
             axios.post(API_PATH + "dacha", data,
                 {
                     headers: {
-                        // "Accept": "application/json",
+                        "Accept": "application/json",
                         "Authorization" : `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
-                        // "Content-Type": "application/json"
+                        "Content-Type": "application/json"
                     }
                 },
             )
@@ -197,32 +194,46 @@ const Dovabit = () => {
                             <div className="login_page_inputs">
                                 <div className="login_inputs_wrapper">
                                     <div className="row">
-                                        <div className="col-sm-4 col-12 mt-2">
-                                            <label>{getText("dovnazvani")}</label>
+                                        <div className="col-sm-6 col-12 mt-2">
+                                            <label>{getText("dovnazvanii")}</label>
                                             <input
                                                 type="text"
                                                 required
-                                                id="name_ru"
+                                                id="name"
                                                 className="form-control input1"
-                                                name="name_ru"
+                                                name="name"
                                                 value={formik.values.name_ru}
                                                 onChange={formik.handleChange}
                                             />
                                         </div>
-                                        <div className="col-sm-4 col-12 mt-2">
-                                            <label>{getText("dovnazvani2")}</label>
-                                            <input
-                                                required
-                                                type="text"
-                                                id="name_uz"
-                                                className="form-control input1"
-                                                name="name_uz"
-                                                value={formik.values.name_uz}
-                                                onChange={formik.handleChange}
-                                            />
-                                        </div>
+                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
+                                        {/*    <label>{getText("dovnazvani")}</label>*/}
+                                        {/*    <input*/}
+                                        {/*        type="text"*/}
+                                        {/*        required*/}
+                                        {/*        id="name_ru"*/}
+                                        {/*        className="form-control input1"*/}
+                                        {/*        name="name_ru"*/}
+                                        {/*        value={formik.values.name_ru}*/}
+                                        {/*        onChange={formik.handleChange}*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
+                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
+                                        {/*    <label>{getText("dovnazvani2")}</label>*/}
+                                        {/*    <input*/}
+                                        {/*        required*/}
+                                        {/*        type="text"*/}
+                                        {/*        id="name_uz"*/}
+                                        {/*        className="form-control input1"*/}
+                                        {/*        name="name_uz"*/}
+                                        {/*        value={formik.values.name_uz}*/}
+                                        {/*        onChange={formik.handleChange}*/}
+                                        {/*    />*/}
+                                        {/*</div>*/}
+
+
                                         {/*select*/}
-                                        <div className="col-sm-4 col-12 mt-2">
+                                        <div className="col-sm-6 col-12 mt-2">
                                             <label>{getText("dovadres")}</label>
                                             <select
                                                 name="category_id"
@@ -340,7 +351,7 @@ const Dovabit = () => {
                                         })}
                                         <div className="col-12 mt-2">
                                             <label>{getText("dovopis")}</label>
-                                            <input
+                                            <textarea
                                                 type="text"
                                                 name="comment"
                                                 // autoComplete="off"

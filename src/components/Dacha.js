@@ -103,7 +103,7 @@ const Dacha = (props) => {
                                         {props.topTan[index].comforts ? props.topTan[index].comforts.map((item3, index3) => {
                                             return (
                                                 <li className="">
-                                                    <img src={BASE_URL + item3.icon}/>
+                                                    <img src={BASE_URL + item3.icon} className="comfortIcon"/>
                                                     <a href="#" className="">{getLanguage() === "ru" ? item3.name_ru : item3.name_uz}</a>
                                                 </li>
                                             )

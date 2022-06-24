@@ -1500,6 +1500,7 @@ body {
         height: 200px;
       }
     }
+
     padding: 20px 0;
     overflow-y: hidden;
     display: flex;
@@ -1990,36 +1991,42 @@ body {
 }
 
 .dovabitDacha {
-  .payModal{
+  .payModal {
     background: red;
-    .imgs{
+
+    .imgs {
       display: flex;
       align-items: center;
-      img{
-        width:20px;
+
+      img {
+        width: 20px;
         height: 20px;
       }
     }
   }
+
   .payalert {
-    span{
+    span {
       font-family: 'Manrope';
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
       color: #5F5F5F;
     }
+
     button {
       font-size: 14px;
       border: 0;
       border-radius: 5px !important;
       padding: 5px 10px;
+
       &:hover {
-        background:#F2931F;
+        background: #F2931F;
         color: white;
       }
+
       &:focus {
-        background:#F2931F !important;
+        background: #F2931F !important;
         color: white !important;
         box-shadow: none !important;
       }
@@ -2465,6 +2472,47 @@ body {
   }
 }
 
+
+.modalbuttonRed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  background: gray;
+  box-shadow: none;
+  border: 0;
+  padding: 8px 30px;
+  border-radius: 10px;
+  @media(max-width: 576px) {
+    font-size: 10px;
+    padding: 10px 20px;
+  }
+}
+
+.modalbuttonOk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+  background: #F2931F;
+  box-shadow: none;
+  border: 0;
+  padding: 8px 30px;
+  border-radius: 10px;
+  @media(max-width: 576px) {
+    font-size: 10px;
+    padding: 10px 20px;
+  }
+}
+
 .profil {
   padding: 30px 0;
 
@@ -2524,6 +2572,7 @@ body {
   }
 
   .card {
+    z-index: 0;
     border-radius: 15px 15px 15px 15px;
 
     //&:hover {
@@ -2566,6 +2615,32 @@ body {
       //position: relative;
       .summm {
         top: 25px !important;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 7px;
+
+        button:first-child {
+          background: #F2931F;
+        }
+
+        button:last-child {
+          background: red;
+        }
+
+        button {
+          z-index: 1;
+          font-family: Manrope;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          color: white;
+          box-shadow: none;
+          border-radius: 10px;
+          @media(max-width: 576px) {
+            font-size: 7px;
+          }
+        }
 
         .bbb {
           @media(max-width: 576px) {
@@ -2934,9 +3009,11 @@ body {
   font-feature-settings: 'tnum';
   outline: 0;
 }
-.ant-upload:hover{
+
+.ant-upload:hover {
   color: #F2931F;
 }
+
 .ant-upload.ant-upload-select-picture-card {
   width: 104px;
   //height: 135px;
@@ -2952,7 +3029,8 @@ body {
   cursor: pointer;
   transition: border-color 0.3s;
 }
-.ant-upload.ant-upload-select-picture-card:hover{
+
+.ant-upload.ant-upload-select-picture-card:hover {
   border: 1px solid #F2931F;
 }
 
@@ -2964,6 +3042,7 @@ body {
   border: 1px solid #d9d9d9;
   border-radius: 8px;
 }
+
 .ant-upload-list-picture-card .ant-upload-list-item-info::before {
   position: absolute;
   z-index: 1;
@@ -2978,58 +3057,115 @@ body {
 }
 
 
-.ant-input:hover{
+.ant-input:hover {
   border: 0;
   box-shadow: none;
 }
-.ant-input-search-with-button button{
+
+.ant-input-search-with-button button {
   background: #F2931F;
   box-sizing: border-box;
 }
-.ant-input-search-with-button button:hover{
+
+.ant-input-search-with-button button:hover {
   background: #F2931F;
 }
-.ant-input-search-with-button button:focus{
+
+.ant-input-search-with-button button:focus {
   background: #F2931F;
 }
 
 .ant-input-search .ant-input:hover,
 .ant-input-search .ant-input:focus {
-  border-color: #F2931F!important;
+  border-color: #F2931F !important;
 }
-.ant-input-group input{
+
+.ant-input-group input {
 
 }
-.ant-input-search-large{
+
+.ant-input-search-large {
   border-radius: 12px;
 }
-.ant-input-wrapper{
+
+.ant-input-wrapper {
   //background: darkblue;
 }
+
 //class="ant-input-group-wrapper ant-input-search ant-input-search-large ant-input-search-with-button ant-input-group-wrapper-lg"
-.ant-input-affix-wrapper:focus{
+.ant-input-affix-wrapper:focus {
   box-shadow: none;
   border: 0;
 }
-.ant-input-affix-wrapper-lg{
-  border:1px solid #d9d9d9!important;
+
+.ant-input-affix-wrapper-lg {
+  border: 1px solid #d9d9d9 !important;
 }
-.ant-input-group-wrapper:hover{
-  border: 0!important;
-  box-shadow: none!important;
+
+.ant-input-group-wrapper:hover {
+  border: 0 !important;
+  box-shadow: none !important;
 }
+
 // ant-input-affix-wrapper-lgant-input-affix-wrapper
-.ant-input-affix-wrapper{
+.ant-input-affix-wrapper {
   box-shadow: none;
   border-top-left-radius: 12px !important;
   border-bottom-left-radius: 12px !important;
 }
-.ant-input-affix-wrapper:hover{
+
+.ant-input-affix-wrapper:hover {
   //border: none!important;
-  border:1px solid #d9d9d9!important;
+  border: 1px solid #d9d9d9 !important;
 }
-.ant-input-search-button{
-  border-top-right-radius: 12px!important;
-  border-bottom-right-radius: 12px!important;
+
+.ant-input-search-button {
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
 }
+
 //ant-btn ant-btn-primary ant-btn-lg ant-input-search-button
+
+.tabss {
+  background: red;
+}
+
+.MuiButtonBase-root {
+  color: black !important;
+  font-family: 'Manrope';
+  font-style: normal!important;
+  font-weight: 500!important;
+  font-size: 20px!important;
+  @media(max-width: 576px) {
+    font-size: 12px!important;
+  }
+}
+
+.MuiButtonBase-root:before {
+  background: black !important;
+}
+
+//MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller
+.MuiTabs-fixed span {
+  color: black !important;
+  //background: black !important;
+}
+.css-1aquho2-MuiTabs-indicator{
+  background-color: black!important;
+}
+
+//class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected label salom tabss css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+//class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary label salom tabss css-1h9z7r5-MuiButtonBase-root-MuiTab-root"
+//class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+.MuiTabs-flexContainer span {
+
+}
+
+.comfortIcon{
+  width: 25px;
+  height: 25px;
+  @media(max-width: 576px) {
+    width: 16px;
+    height: 16px;
+  }
+}

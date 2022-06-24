@@ -134,6 +134,7 @@ export const ru = {
 
     // dovabit
     dovtitle : "Разместите объявление",
+    dovnazvanii : "Введите название",
     dovnazvani : "Введите название(Ru)",
     dovnazvani2 : "Введите название(Uz)",
     dovadres : "Адрес местонахождения",
