@@ -36,7 +36,7 @@ const Dovabit = () => {
     const onChange = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
-    // console.log(fileList);
+    console.log(fileList);
 
     const onPreview = async (file) => {
         let src = file.url;
@@ -54,9 +54,9 @@ const Dovabit = () => {
         imgWindow?.document.write(image.outerHTML);
     };
 // img qo'shish uchun
-
     const formik = useFormik({
         initialValues: {
+            // files: [],
             name : "",
             phone: "",
             category_id: "",
@@ -70,7 +70,6 @@ const Dovabit = () => {
             image_path: [],
             comforts: [],
         },
-
         onSubmit: values => {
             const data = {
                 name : values.name,
@@ -85,14 +84,28 @@ const Dovabit = () => {
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
                 currency: values.currency,
-                comforts : [1]
+                comforts : values.comforts
             };
             const formData = new FormData();
-            formData.append('file', data);
+            for (let i = 0; i < fileList.length; i++) {
+                // formData.append('image_path[]', fileList[i])
+                formData.append('image_path[]',new Blob([fileList[i]], {type:"application/octet-stream"}))
+            }
+            formData.append('name', values.name)
+            formData.append('category_id', values.category_id)
+            formData.append('room_count', values.room_count)
+            formData.append('bathroom_count', values.bathroom_count)
+            formData.append('capacity', values.capacity)
+            formData.append('cost', values.cost)
+            formData.append('advertiser_name', values.advertiser_name)
+            formData.append('phone', values.phone)
+            formData.append('comment', values.comment)
+            formData.append('currency', values.currency)
+            formData.append('comforts', values.comforts)
             console.log(formData);
             console.log(data);
 
-            axios.post(API_PATH + "dacha", data,
+            axios.post(API_PATH + "dacha", formData,
                 {
                     headers: {
                         "Accept": "application/json",
@@ -114,6 +127,9 @@ const Dovabit = () => {
     });
 
 
+    useEffect(() => {
+        console.log('formik',formik)
+    }, [formik])
 
 
 
@@ -336,16 +352,16 @@ const Dovabit = () => {
                                         {comfort?.map((item, index) => {
                                             return (
                                                 <div className="col-sm-2 col-6 mt-2" key={index}>
-                                                    {/*<label className="checkk1">*/}
-                                                    {/*    <input*/}
-                                                    {/*        type="checkbox"*/}
-                                                    {/*        name="comforts"*/}
-                                                    {/*        className="checkk"*/}
-                                                    {/*        value={formik.values.comforts}*/}
-                                                    {/*        onChange={formik.handleChange}*/}
-                                                    {/*    />*/}
-                                                    {/*    {getLanguage() === "ru" ? item.name_ru : item.name_uz}*/}
-                                                    {/*</label><br/>*/}
+                                                    <label className="checkk1">
+                                                        <input
+                                                            type="checkbox"
+                                                            name="comforts"
+                                                            className="checkk"
+                                                            value={formik.values.comforts}
+                                                            onChange={formik.handleChange}
+                                                        />
+                                                        {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                    </label><br/>
                                                 </div>
                                             )
                                         })}
