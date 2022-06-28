@@ -48,6 +48,7 @@ const Dacha = (props) => {
         })
             .then((res) => {
                 console.log(res)
+                toast.success(getText("sevimliga"))
             })
     }
 
@@ -82,7 +83,7 @@ const Dacha = (props) => {
                                 <div className="col-12 col-sm-4 aaaaa mt-3">
                                     <ul className="flex-column nav">
                                         <li className="">
-                                            <img src="./images/newImagesTwo/Vector (14).png"/>
+                                            <img src="./images/newImagesTwo/Vector (14).png" className=""/>
                                             <a href="#" className="">{getText("komnat")}: {item.room_count}</a>
                                         </li>
                                         <li className="">

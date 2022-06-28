@@ -132,10 +132,11 @@ export const uz = {
     dovopis : "Tavsif",
     dovopisplace : "E'loningiz tavsifini yozing",
     dovkomm : "Aloqa",
-    dovimya : "Reklama beruvchi nomi",
+    dovimya : "Reklama beruvchi ismi",
     dovsena : "Narxi",
     dovnomer : "Telefon raqami",
     dovv : "Qo'shish",
+    dovv2 : "Saqlash",
 
 
     // login
@@ -180,6 +181,18 @@ export const uz = {
     paymodal3: " 2. Ikki va undan ortiq dachalarni qo'shish har bir dacha uchun 5000 so'm (besh ming).",
     alerttext : "Dacha qo'shish uchun to'lov qiling!",
     alerttext2 : "Siz dacha qo'shishingiz mumkin",
-    tolov : "to'lov"
+    tolov : "to'lov",
+    upload : "Qo'shish",
 
+
+
+    dachaEdit : "Tahrirlash",
+    dachaDelete : "O'chirish",
+
+
+    xa : "Xa",
+    yoq : "Yo'q",
+
+
+    sevimliga : "Sevimlilarga saqlandi"
 }

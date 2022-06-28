@@ -16,31 +16,39 @@ import Payme from "../images/ass.jpg";
 import Apelsin from "../images/Apelsin_02.png";
 
 // import {Input, Select, DatePicker, TreeSelect, Switch} from 'antd';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Option} from "antd/es/mentions";
 import 'antd/dist/antd.css';
 import {Upload} from 'antd';
 import ImgCrop from 'antd-img-crop';
 import {toast} from "react-toastify";
+import {connect} from "react-redux";
+import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
 
 
 toast.configure();
 
 
-const Dovabit = () => {
+const Dovabit = (props) => {
+    console.log("prop edit" , props.userDachaEdit);
+    const navigate = useNavigate()
 
 
 // img qo'shish uchun
-    const [fileList, setFileList] = useState([]);
+    const [fileList, setFileList] = useState(
+       // props.userDachaEdit.length>0 ? props.userDachaEdit[0].images :
+           []
+    );
+
 
     const onChange = ({fileList: newFileList}) => {
+        // props.userDachaEdit.length>0 ? fileList.push(props.userDachaEdit[0].images) :
         setFileList(newFileList);
     };
     console.log(fileList);
 
     const onPreview = async (file) => {
         let src = file.url;
-
         if (!src) {
             src = await new Promise((resolve) => {
                 const reader = new FileReader();
@@ -53,43 +61,87 @@ const Dovabit = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
+
 // img qo'shish uchun
+
+    // location
+    const [location, setLocation] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "category")
+            .then((res) => {
+                setLocation(res?.data.data);
+            })
+    }, []);
+
+    // location
+    // console.log(props.userDachaEdit[0].id)
+
     const formik = useFormik({
-        initialValues: {
-            // files: [],
-            name : "",
-            phone: "",
-            category_id: "",
-            room_count: "",
-            bathroom_count: "",
-            capacity: "",
-            cost: "",
-            advertiser_name: "",
-            currency: "y.e",
-            comment: "",
-            image_path: [],
-            comforts: [],
-        },
+
+            initialValues : props.userDachaEdit.length > 0 ?
+                {
+                    name: props.userDachaEdit[0].name,
+                    phone: props.userDachaEdit[0].phone,
+                    category_id: props.userDachaEdit[0].category_id,
+                    room_count: props.userDachaEdit[0].room_count,
+                    bathroom_count: props.userDachaEdit[0].bathroom_count,
+                    capacity: props.userDachaEdit[0].capacity,
+                    cost: props.userDachaEdit[0].cost,
+                    advertiser_name: props.userDachaEdit[0].advertiser_name,
+                    currency: props.userDachaEdit[0].currency,
+                    comment: props.userDachaEdit[0].comment,
+                    image_path: "",
+                    comforts: [],
+                    _method : "put"
+                }
+                :
+                {
+                        name: "",
+                        phone: "",
+                        category_id: "",
+                        room_count: "",
+                        bathroom_count: "",
+                        capacity: "",
+                        cost: "",
+                        advertiser_name: "",
+                        currency: "y.e",
+                        comment: "",
+                        image_path: "",
+                        comforts: [],
+                    },
+
         onSubmit: values => {
+            // console.log("valuesss ", values);
+
+            const comfortNumber = [];
+
+            values.comforts.forEach(str => {
+                comfortNumber.push(Number(str));
+            });
+
             const data = {
-                name : values.name,
-                category_id: values.category_id,
+                name: values.name,
+                category_id: parseInt(values.category_id),
                 room_count: values.room_count,
                 bathroom_count: values.bathroom_count,
                 capacity: values.capacity,
-                cost: values.capacity,
-                // image_path: fileList[0].originFileObj,
-                image_path: fileList.map((item )=> item.originFileObj),
+                cost: values.cost,
+                // image_path: [fileList[0].originFileObj],
+                image_path: fileList,
                 phone: values.phone,
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
                 currency: values.currency,
-                comforts : values.comforts
+                comforts: comfortNumber
             };
+
             const formData = new FormData();
             for (let i = 0; i < fileList.length; i++) {
                 // formData.append('image_path[]', fileList[i])
-                formData.append('image_path[]',new Blob([fileList[i]], {type:"application/octet-stream"}))
+                formData.append('image_path[]', new Blob([fileList[i].originFileObj],
+                        // "images/png"
+                        {type: "application/octet-stream"}
+                        ))
             }
             formData.append('name', values.name)
             formData.append('category_id', values.category_id)
@@ -101,52 +153,60 @@ const Dovabit = () => {
             formData.append('phone', values.phone)
             formData.append('comment', values.comment)
             formData.append('currency', values.currency)
-            formData.append('comforts', values.comforts)
+            for (let i = 0; i < comfortNumber.length ; i++) {
+                formData.append("comforts[]" , [comfortNumber[i]])
+            }
+            props.userDachaEdit.length > 0 ? formData.append("_method" , "put")
+                : formData.append("_method" , "post")
             console.log(formData);
             console.log(data);
 
-            axios.post(API_PATH + "dacha", formData,
-                {
-                    headers: {
-                        "Accept": "application/json",
-                        "Authorization" : `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
-                        "Content-Type": "application/json"
-                    }
-                },
-            )
-                .then(res => {
-                    console.log(res);
-                    toast.success("Успешный !");
-                    // navigate("/profil");
-                })
-                .catch(err => {
-                    toast.error("Ошибка ?");
-                    console.log(err.response)
-                })
+            props.userDachaEdit.length > 0 ?
+                axios.post(API_PATH + "dacha/" + props.userDachaEdit[0].id, formData,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
+                        }
+                    },
+                )
+                    .then(res => {
+                        props.userDachaEdit.splice(0,1);
+                        setFileList([])
+                        navigate("/profil");
+                        toast.success("Сохранять !");
+                    })
+                    .catch(err => {
+                        toast.error("Ошибка ?");
+                        console.log(err.response)
+                    })
+                :
+                axios.post(API_PATH + "dacha", formData,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
+                        }
+                    },
+                )
+                    .then(res => {
+                        setFileList([])
+                        navigate("/profil");
+                        toast.success("Успешный !");
+
+                    })
+                    .catch(err => {
+                        toast.error("Ошибка ?");
+                        console.log(err.response)
+                    })
         }
     });
 
-
-    useEffect(() => {
-        console.log('formik',formik)
-    }, [formik])
-
-
-
-    const [location, setLocation] = useState([]);
-    useEffect(() => {
-        axios.get(API_PATH + "category")
-            .then((res) => {
-                setLocation(res.data.data);
-            })
-    }, []);
 
     const [comfort, setComfort] = useState([]);
     useEffect(() => {
         axios.get(API_PATH + "comfort")
             .then((res) => {
                 // console.log(res.data.data)
-                setComfort(res.data.data);
+                setComfort(res?.data.data);
             })
     }, []);
 
@@ -178,7 +238,8 @@ const Dovabit = () => {
                     <div className="row">
                         <div className="col-12 text-center">
                             <h1>
-                                <img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")}
+                                <img src="./images/chiziq.png" className="lineImgg"/>
+                                {getText("reklama")}
                                 <img src="./images/chiziq.png" className="lineImgg"/>
                             </h1>
                         </div>
@@ -218,50 +279,27 @@ const Dovabit = () => {
                                                 id="name"
                                                 className="form-control input1"
                                                 name="name"
-                                                value={formik.values.name_ru}
+                                                value={formik.values.name}
                                                 onChange={formik.handleChange}
                                             />
                                         </div>
-                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
-                                        {/*    <label>{getText("dovnazvani")}</label>*/}
-                                        {/*    <input*/}
-                                        {/*        type="text"*/}
-                                        {/*        required*/}
-                                        {/*        id="name_ru"*/}
-                                        {/*        className="form-control input1"*/}
-                                        {/*        name="name_ru"*/}
-                                        {/*        value={formik.values.name_ru}*/}
-                                        {/*        onChange={formik.handleChange}*/}
-                                        {/*    />*/}
-                                        {/*</div>*/}
-                                        {/*<div className="col-sm-4 col-12 mt-2">*/}
-                                        {/*    <label>{getText("dovnazvani2")}</label>*/}
-                                        {/*    <input*/}
-                                        {/*        required*/}
-                                        {/*        type="text"*/}
-                                        {/*        id="name_uz"*/}
-                                        {/*        className="form-control input1"*/}
-                                        {/*        name="name_uz"*/}
-                                        {/*        value={formik.values.name_uz}*/}
-                                        {/*        onChange={formik.handleChange}*/}
-                                        {/*    />*/}
-                                        {/*</div>*/}
-
-
-                                        {/*select*/}
                                         <div className="col-sm-6 col-12 mt-2">
                                             <label>{getText("dovadres")}</label>
                                             <select
+                                                type="number"
                                                 name="category_id"
                                                 className="form-control input1"
                                                 value={formik.values.category_id}
+                                                // defaultValue={location[1]?.id}
+                                                // value={location[0]?.id}
                                                 required
                                                 onChange={formik.handleChange}
+                                                // defaultValue={3}
                                             >
                                                 {
                                                     location.map((item, index) => {
                                                         return (
-                                                            <option value={item.id} key={index}>
+                                                            <option value={item.id} key={index} >
                                                                 {getLanguage() === "ru" ? item.name_ru : item.name_uz}
                                                             </option>
                                                         )
@@ -281,7 +319,7 @@ const Dovabit = () => {
                                             <ImgCrop rotate>
                                                 <Upload
                                                     type="file"
-                                                    // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                    action="http://work.bingo99.uz/"
                                                     listType="picture-card"
                                                     fileList={fileList}
                                                     value={formik.values.image_path}
@@ -290,7 +328,7 @@ const Dovabit = () => {
                                                     onPreview={onPreview}
                                                     name="image_path"
                                                 >
-                                                    {fileList.length < 10 && '+ Upload'}
+                                                    {fileList.length < 10 && `+ ${getText("upload")}`}
                                                 </Upload>
                                             </ImgCrop>
 
@@ -306,7 +344,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Two Beds.png"/>
                                                 <span>{getText("dovkolich1")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="room_count"
                                                     className="form-control filterField"
                                                     name="room_count"
@@ -322,7 +360,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Swimming Pool.png"/>
                                                 <span>{getText("dovkolich2")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="bathroom_count"
                                                     className="form-control filterField"
                                                     name="bathroom_count"
@@ -338,7 +376,7 @@ const Dovabit = () => {
                                                 <img src="./images/newImg/Vector (3).png"/>
                                                 <span>{getText("dovkolich3")}</span>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="capacity"
                                                     className="form-control filterField"
                                                     name="capacity"
@@ -349,6 +387,8 @@ const Dovabit = () => {
                                             </div>
                                         </div>
                                         <div className="col-sm-3 col-12 mt-2 mb-2"></div>
+
+
                                         {comfort?.map((item, index) => {
                                             return (
                                                 <div className="col-sm-2 col-6 mt-2" key={index}>
@@ -357,7 +397,7 @@ const Dovabit = () => {
                                                             type="checkbox"
                                                             name="comforts"
                                                             className="checkk"
-                                                            value={formik.values.comforts}
+                                                            value={item.id}
                                                             onChange={formik.handleChange}
                                                         />
                                                         {getLanguage() === "ru" ? item.name_ru : item.name_uz}
@@ -395,7 +435,7 @@ const Dovabit = () => {
                                         <div className="col-9 col-sm-3 mt-2">
                                             <label>{getText("dovsena")}</label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="cost"
                                                 id="cost"
                                                 className="form-control input1"
@@ -407,6 +447,7 @@ const Dovabit = () => {
                                         <div className="col-3 col-sm-2 mt-2">
                                             <label>.</label><br/>
                                             <select
+                                                type={"text"}
                                                 name="currency"
                                                 className="form-control input1"
                                                 value={formik.values.currency}
@@ -432,10 +473,14 @@ const Dovabit = () => {
                                         <div className="col-12 mt-3 d-flex justify-content-center">
                                             <button
                                                 type="submit"
-                                                onClick={formik.handleSubmit}
+                                                // onClick={formik.handleSubmit}
                                                 className="btn"
                                             >
-                                                {getText("dovv")}
+                                                {
+                                                    props.userDachaEdit.length>0 ?
+                                                    getText("dovv2") :
+                                                        getText("dovv")
+                                                }
                                             </button>
                                         </div>
 
@@ -511,5 +556,12 @@ const Dovabit = () => {
         </div>
     );
 };
-
-export default Dovabit;
+const mapStateToProps = (state) => {
+    return {
+        user: state.login.user,
+        dacha: state.dacha.dacha,
+        topTan: state.dacha.topTan,
+        userDachaEdit: state.dacha.userDachaEdit
+    }
+}
+export default connect(mapStateToProps, {getIzbrannoe, updateState})(Dovabit);

@@ -59,18 +59,21 @@ const Profil = (props) => {
     // edit function
     const userDachaEdit = (item) => {
         // props.updateState({userDachaEdit:item});
-        props.userDachaEdit.push(item)
+        // props.userDachaEdit.push(item);
+        props.userDachaEdit.splice(0, 1, item)
+
         navigate("/add_dacha")
     }
 // edit function
 
     // delete function
     const [pay, setPay] = useState(false);
-    const [dachaId , setDachaId] = useState(null);
+    const [dachaId, setDachaId] = useState(null);
     const deleteModal = (item) => {
         setPay(!pay);
         setDachaId(item.id);
     }
+
     const deleteDacha = () => {
         console.log(dachaId);
         axios.post(API_PATH + `user/dacha/delete/${dachaId}`, {_method: 'delete'}, {
@@ -79,11 +82,11 @@ const Profil = (props) => {
             }
         })
             .then((res) => {
-                toast.success("Успешный !");
+                toast.success("Удалено !");
                 setPay(!pay);
                 axios.get(API_PATH + "user/dacha", {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+                        'Authorization': `Bearer    ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
                     }
                 })
                     .then((res) => {
@@ -145,7 +148,7 @@ const Profil = (props) => {
                             <Box sx={{width: '100%', typography: 'body1'}}>
                                 <TabContext value={value}>
                                     <Box sx={{}}>
-                                        <TabList onChange={handleChange} aria-label="lab API tabs example" >
+                                        <TabList onChange={handleChange} aria-label="lab API tabs example">
                                             <Tab className="label salom tabss" label={getText("profmoy")} value="1"/>
                                             <Tab className="label salom tabss" label={getText("profizb")} value="2"/>
                                         </TabList>
@@ -164,15 +167,13 @@ const Profil = (props) => {
                                                                 <img src={BASE_URL + item.images[0]?.image_path}
                                                                      className="card-img-top"/>
                                                             </div>
-                                                            <div className="card-img-overlay">
+                                                            <div className="card-img-overlayy">
                                                                 <div className="summm">
-                                                                    <button type="button" className="btn"
-                                                                            onClick={() => userDachaEdit(item)}>{getText("dachaEdit")}</button>
-                                                                    <button type="button" className="btn"
-                                                                        // onClick={() => deleteDacha(item.id)}>{getText("dachaDelete")}</button>
+                                                                    <button type="button" className=""
+                                                                            onClick={() => userDachaEdit(item)}
+                                                                    >{getText("dachaEdit")}</button>
+                                                                    <button type="button" className=""
                                                                             onClick={() => deleteModal(item)}>{getText("dachaDelete")}</button>
-                                                                    {/*<img src="./images/Vector (18).png"/>*/}
-                                                                    {/*<span className="summ">{item.cost} {getText("sum")}</span>*/}
                                                                 </div>
                                                             </div>
                                                             <div className="card-body">
@@ -200,12 +201,11 @@ const Profil = (props) => {
                                                                     <img
                                                                         src="./images/newImagesTwo/Vector (17).png"/>
                                                                     <span>{item.cost} {getText("sum")}</span>
-                                                                    {/*<span>saasxasxas</span>*/}
                                                                 </div>
                                                                 <div className="mt-2">
                                                                     <Link
                                                                         to="/countryhouse"
-                                                                        className="text-secondary text-decoration-none"
+                                                                        className="text-secondary text-decoration-none profilButtonLink"
                                                                         onClick={() => props.topTan.splice(0, 1, item)}
                                                                     >
                                                                         {getText("podrobni")}
@@ -305,7 +305,8 @@ const Profil = (props) => {
                                      // border: "2px solid #E8E8E8",
                                      borderRadius: "10px"
                                  }}>
-                                <button type="button" className="modalbuttonOk" onClick={deleteDacha}>{getText("xa")}</button>
+                                <button type="button" className="modalbuttonOk"
+                                        onClick={deleteDacha}>{getText("xa")}</button>
                             </div>
                             <div className="d-flex align-items-center justify-content-center"
                                  style={{
@@ -314,7 +315,8 @@ const Profil = (props) => {
                                      // border: "2px solid #E8E8E8",
                                      borderRadius: "10px"
                                  }}>
-                                <button type="button" className="modalbuttonRed" onClick={()=>setPay(!pay)}>{getText("yoq")}</button>
+                                <button type="button" className="modalbuttonRed"
+                                        onClick={() => setPay(!pay)}>{getText("yoq")}</button>
                             </div>
                         </div>
                     </div>

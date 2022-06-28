@@ -150,6 +150,7 @@ export const ru = {
     dovsena : "Цена",
     dovnomer : "Номер телефона",
     dovv : "Добавлять",
+    dovv2 : "Сохранять",
 
 
     // login
@@ -195,6 +196,17 @@ export const ru = {
     alerttext : "Плати, чтобы добавить дачу!",
     alerttext2 : "Вы можете довабить дачу",
     tolov : "оплаты",
+    upload : "Добавлять",
+
+
+    dachaEdit : "Редактировать",
+    dachaDelete : "Удалить",
+
+
+    xa : "Да",
+    yoq : "Нет",
+
+    sevimliga : "Сохранено в избранное"
 
 
 }
