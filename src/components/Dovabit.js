@@ -39,8 +39,6 @@ const Dovabit = () => {
     const onChange = ({fileList: newFileList}) => {
         setFileList(newFileList);
     };
-    // console.log(fileList);
-
     const onPreview = async (file) => {
         let src = file.url;
 
@@ -77,7 +75,6 @@ const Dovabit = () => {
 
         onSubmit: values => {
             console.log("valuesss " , values);
-            JSON.stringify(values)
             const data = {
                 name : values.name,
                 category_id: parseInt(values.category_id),
@@ -90,8 +87,31 @@ const Dovabit = () => {
                 advertiser_name: values.advertiser_name,
                 comment: values.comment,
                 currency: values.currency,
-                comforts : [2]
+                comforts : values.comforts
             };
+
+            // export let formData = (rawData) => {
+            //     let form = new FormData();
+            //     Object.keys(rawData).forEach((key) => {
+            //         if (rawData[key]) {
+            //             if (typeof rawData[key] === 'object') {
+            //                 Object.entries(rawData[key]).forEach(([, value], index) => {
+            //                     if (typeof value === 'object') {
+            //                         Object.entries(value).forEach(([_key, _value], _index) => {
+            //                             form.append(`${key}[${_key}][${index}]`, _value);
+            //                         });
+            //                     }
+            //                 });
+            //             } else {
+            //                 form.append(key, rawData[key]);
+            //             }
+            //         }
+            //     });
+            //     return form;
+            // };
+
+
+
             const formData = new FormData();
             formData.append('file', data);
             console.log(formData);
