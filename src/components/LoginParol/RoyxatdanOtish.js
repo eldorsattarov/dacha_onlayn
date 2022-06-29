@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 import {toast,ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Button} from "reactstrap";
-import {TOKEN_NAME_REGISTER} from "../../tools/constants";
+import {API_PATH, TOKEN_NAME_REGISTER} from "../../tools/constants";
 import {getText} from "../../locales";
 toast.configure();
 
@@ -50,14 +50,14 @@ const RoyxatdanOtish = () => {
     })
 
     const onSubmit = (values) => {
-        axios.post("https://work.bingo99.uz/api/register" ,
+        axios.post(API_PATH + "register" ,
             {
-            name : values.name,
-            phone : values.phone,
-            // phone : values.phone.slice(1,values.phone.length),
-            password : values.password,
-            very_password : values.very_password
-        }
+                name : values.name,
+                phone : values.phone,
+                // phone : values.phone.slice(1,values.phone.length),
+                password : values.password,
+                very_password : values.very_password
+            }
         )
             .then((res) => {
                 console.log(res)

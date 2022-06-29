@@ -44,7 +44,7 @@ const Footer = () => {
                                 <a href="#"><img src="./images/Badge.png"/></a>
                                 <a href="#"><img src="./images/Badge (1).png" className="ml-2"/></a>
                             </div>
-                            <div className="mt-3 myCarea">
+                            <div className="mt-3 myCarea d-none">
                                 <span> </span><a href="https://t.me/developer_ES" target="_blank">{getText("footerDev")}
                                 <img src="./images/Vector (15).png" className="ml-2"/></a>
                             </div>

@@ -48,6 +48,7 @@ const Dacha = (props) => {
         })
             .then((res) => {
                 console.log(res)
+                toast.success(getText("sevimliga"))
             })
     }
 
@@ -82,7 +83,7 @@ const Dacha = (props) => {
                                 <div className="col-12 col-sm-4 aaaaa mt-3">
                                     <ul className="flex-column nav">
                                         <li className="">
-                                            <img src="./images/newImagesTwo/Vector (14).png"/>
+                                            <img src="./images/newImagesTwo/Vector (14).png" className=""/>
                                             <a href="#" className="">{getText("komnat")}: {item.room_count}</a>
                                         </li>
                                         <li className="">
@@ -103,7 +104,7 @@ const Dacha = (props) => {
                                         {props.topTan[index].comforts ? props.topTan[index].comforts.map((item3, index3) => {
                                             return (
                                                 <li className="">
-                                                    <img src={BASE_URL + item3.icon}/>
+                                                    <img src={BASE_URL + item3.icon} className="comfortIcon"/>
                                                     <a href="#" className="">{getLanguage() === "ru" ? item3.name_ru : item3.name_uz}</a>
                                                 </li>
                                             )
@@ -117,7 +118,7 @@ const Dacha = (props) => {
                                             <h5>{item.cost} {getText("sum")}</h5>
                                             <p>
                                                 {getText("izbranText")}<br/>
-                                                {item.phone}
+                                                +{item.phone}
                                             </p>
                                             <button className="btn izbran w-100" onClick={() => addFovourite(item.id)}>{getText("izbrannoe")}</button>
                                         </div>
@@ -128,7 +129,7 @@ const Dacha = (props) => {
                                 <div className="col-12 col-sm-8 aaaaa">
                                     <h4>Подробнее</h4>
                                     <p className="comments">
-                                       {item.comment}
+                                        {item.comment}
                                     </p>
                                 </div>
                             </div>

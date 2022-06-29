@@ -49,7 +49,7 @@ const Kirish = () => {
     })
 
     const onSubmit = (values) => {
-        axios.post("https://work.bingo99.uz/api/login", {
+        axios.post(API_PATH + "login", {
             phone : values.phone,
             // phone : values.phone.slice(1,values.phone.length),
             password: values.password

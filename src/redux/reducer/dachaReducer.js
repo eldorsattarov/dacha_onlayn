@@ -10,7 +10,8 @@ const initialState = {
     locale : [],
     izbran : [],
     ids_array : [],
-    userDachaEdit : []
+    userDachaEdit : [],
+    loca : []
 };
 
 export const dachaReducer = (state = initialState,action)=>{
