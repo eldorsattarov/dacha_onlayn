@@ -110,7 +110,7 @@ const DachaFilterNewPage = (props) => {
             comforts1: false,
             comforts2: false
         },
-         onSubmit: values => {
+        onSubmit: values => {
             console.log(values);
             let com1 = "";
             let com2 = "";
@@ -127,15 +127,15 @@ const DachaFilterNewPage = (props) => {
             if (values.category_id !== ""){
                 text += "?category_id=" + values.category_id
             }
-             if (values.capacity !== ""){
-                 text += "?capacity=" + values.capacity
-             }
-             if (values.dan !== ""){
-                 text += "?cost_from=" + values.dan
-             }
-             if (values.gacha !== ""){
-                 text += "?cost_to=" + values.gacha
-             }
+            if (values.capacity !== ""){
+                text += "?capacity=" + values.capacity
+            }
+            if (values.dan !== ""){
+                text += "?cost_from=" + values.dan
+            }
+            if (values.gacha !== ""){
+                text += "?cost_to=" + values.gacha
+            }
             console.log("text" + text);
 
             axios.get(API_PATH + "dacha" + text)
@@ -173,9 +173,10 @@ const DachaFilterNewPage = (props) => {
                                         onChange={formik.handleChange}
                                     />
 
-                                {/*</div>*/}
-                                {/*<div className="col-2 d-flex w-100 justify-content-end">*/}
+                                    {/*</div>*/}
+                                    {/*<div className="col-2 d-flex w-100 justify-content-end">*/}
                                     <button type="submit" className="btn px-3" onClick={formik.handleSubmit}>
+                                        <img src="./images/newImg/Icon (1).png" className="mr-1"/>
                                         {getText("lupa")}
                                     </button>
                                 </div>
@@ -236,16 +237,16 @@ const DachaFilterNewPage = (props) => {
                                         onChange={formik.handleChange}
                                     />
                                 </div>
-                                            {comfort2?.map((item,index)=>{
-                                                return(
-                                                    <div className="col-sm-2 col-6 mt-3" key={index}>
-                                                        <label className="checkk1">
-                                                            <input type="checkbox" name="comforts" className="checkk"/>
-                                                            {getLanguage()==="ru" ? item.name_ru : item.name_uz}
-                                                        </label><br/>
-                                                    </div>
-                                                )
-                                            })}
+                                {comfort2?.map((item,index)=>{
+                                    return(
+                                        <div className="col-sm-2 col-6 mt-3" key={index}>
+                                            <label className="checkk1">
+                                                <input type="checkbox" name="comforts" className="checkk"/>
+                                                {getLanguage()==="ru" ? item.name_ru : item.name_uz}
+                                            </label><br/>
+                                        </div>
+                                    )
+                                })}
 
                                 {/*)*/}
                                 {/*})}*/}

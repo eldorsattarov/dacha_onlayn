@@ -18,10 +18,10 @@ export const ru = {
     gost: "гостей",
     sum: "сум",
     podrobni: "подробнее",
-    vse: "все",
+    vse: "Все",
     topDacha: "Топ дачи",
     izbranText: "Для бронирования этой дачи позвоните по номеру",
-    izbrannoe: "в избранное",
+    izbrannoe: "В избранное",
     vremyaOne: "Время заезда: 7:00",
     vremyaTwo: "Время заезда: 18:00",
     /////////Kliant
@@ -110,8 +110,8 @@ export const ru = {
     registerr : "Регистрация",
 
     place : "Поиск дачи",
-    titledacha : "Дача онлайн",
-    titlehaqida : "Предлагаем дешево и качественно, честно, чисто, дачи",
+    titledacha : "ДАЧА ОНЛАЙН",
+    titlehaqida : "Аренда и бронирование дач в Узбекистане",
 
     // poisk dacha
     dachapoisk : "Поиск дачи...",
@@ -206,7 +206,12 @@ export const ru = {
     xa : "Да",
     yoq : "Нет",
 
-    sevimliga : "Сохранено в избранное"
+    sevimliga : "Сохранено в избранное",
 
+
+balanse1 : "Дач в базе",
+balanse2 : "Доверительных владельцов",
+balanse3 : "Партнеров",
+balanse4 : "Пользователей",
 
 }

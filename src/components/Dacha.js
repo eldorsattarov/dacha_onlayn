@@ -118,7 +118,7 @@ const Dacha = (props) => {
                                             <h5>{item.cost} {getText("sum")}</h5>
                                             <p>
                                                 {getText("izbranText")}<br/>
-                                                {item.phone}
+                                                +{item.phone}
                                             </p>
                                             <button className="btn izbran w-100" onClick={() => addFovourite(item.id)}>{getText("izbrannoe")}</button>
                                         </div>
@@ -129,7 +129,7 @@ const Dacha = (props) => {
                                 <div className="col-12 col-sm-8 aaaaa">
                                     <h4>Подробнее</h4>
                                     <p className="comments">
-                                       {item.comment}
+                                        {item.comment}
                                     </p>
                                 </div>
                             </div>

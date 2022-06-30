@@ -12,16 +12,16 @@ export const uz = {
     majburiy: "Majburiy",
     zvanok: "Qo'ng'iroqni talab qiling",
     ////DrugiDacha va DrugiDachaAll
-    dacha: "Boshqa kottejlar",
+    dacha: "Boshqa e'lonlar",
     komnat: "xona",
     danniy: "hammom",
     gost: "mehmon",
     sum: "so'm",
     podrobni: "batafsil",
-    vse: "barchasi",
-    topDacha: "Yuqori kottejlar",
+    vse: "Barchasi",
+    topDacha: "Top e'lonlar",
     izbranText: "Ushbu kottejni bron qilish uchun ushbu raqamga qo'ng'iroq qiling",
-    izbrannoe: "sevimlilarga",
+    izbrannoe: "Sevimlilarga",
     vremyaOne: "Ro'yxatdan o'tish vaqti: 7:00",
     vremyaTwo: "Ro'yxatdan o'tish vaqti: 18:00",
     /////////Kliant
@@ -95,8 +95,8 @@ export const uz = {
     registerr : "Roʻyxatdan oʻtish",
 
     place : "Dacha qidirish",
-    titledacha : "Dacha online",
-    titlehaqida : "Arzon va sifatli, halol, pokiza, dachalar taqdim etamiz.",
+    titledacha : "DACHA ONLINE",
+    titlehaqida : "O'zbekistonda yozgi dachalarni ijaraga berish va bron qilish",
 
 
     // poisk dacha
@@ -194,5 +194,12 @@ export const uz = {
     yoq : "Yo'q",
 
 
-    sevimliga : "Sevimlilarga saqlandi"
+    sevimliga : "Sevimlilarga saqlandi",
+
+
+
+    balanse1 : "Dachalar e'loni",
+    balanse2 : "Uy va dacha egalari",
+    balanse3 : "Hamkorlar",
+    balanse4 : "Foydalanuvchilar",
 }

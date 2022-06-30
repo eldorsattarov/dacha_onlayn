@@ -11,7 +11,8 @@ const initialState = {
     izbran : [],
     ids_array : [],
     userDachaEdit : [],
-    category_ID : []
+    category_ID : [],
+    loca : []
 };
 
 export const dachaReducer = (state = initialState,action)=>{

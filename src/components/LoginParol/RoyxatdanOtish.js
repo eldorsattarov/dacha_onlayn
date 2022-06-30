@@ -52,12 +52,12 @@ const RoyxatdanOtish = () => {
     const onSubmit = (values) => {
         axios.post(API_PATH + "register" ,
             {
-            name : values.name,
-            phone : values.phone,
-            // phone : values.phone.slice(1,values.phone.length),
-            password : values.password,
-            very_password : values.very_password
-        }
+                name : values.name,
+                phone : values.phone,
+                // phone : values.phone.slice(1,values.phone.length),
+                password : values.password,
+                very_password : values.very_password
+            }
         )
             .then((res) => {
                 console.log(res)

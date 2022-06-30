@@ -1,4 +1,5 @@
 import React from 'react';
+import {getText} from "../locales";
 
 const DachaBalance = () => {
     return (
@@ -12,8 +13,8 @@ const DachaBalance = () => {
                                <div className="card-body p-0 d-flex align-items-center">
                                    <img src="../images/newImg/Smart Home Checked.png"/>
                                    <div className="ml-3">
-                                       <p>3450+</p>
-                                       <span>Общая неджимость </span>
+                                       <p>750+</p>
+                                       <span>{getText("balanse1")}</span>
                                    </div>
                                </div>
                            </div>
@@ -23,8 +24,8 @@ const DachaBalance = () => {
                                <div className="card-body p-0 d-flex align-items-center">
                                    <img src="../images/newImg/Lease.png"/>
                                    <div className="ml-3">
-                                       {/*<p>3450+</p>*/}
-                                       <span>Доверенные агенства</span>
+                                       <p>120+</p>
+                                       <span>{getText("balanse2")}</span>
                                    </div>
                                </div>
                            </div>
@@ -34,8 +35,8 @@ const DachaBalance = () => {
                                <div className="card-body p-0 d-flex align-items-center">
                                    <img src="../images/newImg/Management.png"/>
                                    <div className="ml-3">
-                                       <p>2200+</p>
-                                       <span>Всего агентов</span>
+                                       <p>30+</p>
+                                       <span>{getText("balanse3")}</span>
                                    </div>
                                </div>
                            </div>
@@ -45,8 +46,8 @@ const DachaBalance = () => {
                                <div className="card-body p-0 d-flex align-items-center">
                                    <img src="../images/newImg/Party.png"/>
                                    <div className="ml-3">
-                                       <p>2575+</p>
-                                       <span>Счастливые покупатели</span>
+                                       <p>370+</p>
+                                       <span>{getText("balanse4")}</span>
                                    </div>
                                </div>
                            </div>

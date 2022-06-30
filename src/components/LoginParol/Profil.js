@@ -130,6 +130,15 @@ const Profil = (props) => {
     };
 
 
+    useEffect(() => {
+        axios.get(API_PATH + "category")
+            .then((res) => {
+                // setLocation(res?.data.data);
+                props.loca.splice(0,1,res.data.data[0]);
+            })
+    }, []);
+
+
     return (
         <div>
             <Header/>
@@ -332,7 +341,9 @@ const mapStateToProps = (state) => {
         user: state.login.user,
         dacha: state.dacha.dacha,
         topTan: state.dacha.topTan,
-        userDachaEdit: state.dacha.userDachaEdit
+        userDachaEdit: state.dacha.userDachaEdit,
+        loca: state.dacha.loca,
+
     }
 }
 export default connect(mapStateToProps, {getIzbrannoe, updateState})(Profil);
