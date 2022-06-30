@@ -202,4 +202,7 @@ export const uz = {
     balanse2 : "Uy va dacha egalari",
     balanse3 : "Hamkorlar",
     balanse4 : "Foydalanuvchilar",
+
+
+    mecto: "Joylashuv manzilini tanlang"
 }

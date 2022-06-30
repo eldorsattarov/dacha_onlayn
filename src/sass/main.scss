@@ -2163,7 +2163,14 @@ body {
     margin-right: 5px;
     border-radius: 2px;
   }
-
+.selectOption{
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  color: #BDBDBD;
+  background: #bfbfbf;
+}
   .inputArea {
     @media(max-width: 576px) {
       font-size: 11px;
