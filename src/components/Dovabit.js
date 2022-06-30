@@ -45,7 +45,7 @@ const Dovabit = (props) => {
         // props.userDachaEdit.length>0 ? fileList.push(props.userDachaEdit[0].images) :
         setFileList(newFileList);
     };
-    console.log(fileList);
+    // console.log(fileList);
 
     const onPreview = async (file) => {
         let src = file.url;
@@ -282,26 +282,28 @@ const Dovabit = (props) => {
                                         </div>
                                         <div className="col-sm-6 col-12 mt-2">
                                             <label>{getText("dovadres")}</label>
-                                            <select
-                                                type="number"
-                                                name="category_id"
-                                                className="form-control input1"
-                                                value={formik.values.category_id}
-                                                // defaultValue={location[1]?.id}
-                                                required
-                                                onChange={formik.handleChange}
-                                                // defaultValue={3}
-                                            >
-                                                {
-                                                    location.map((item, index) => {
-                                                        return (
-                                                            <option value={item.id} key={index}>
-                                                                {getLanguage() === "ru" ? item.name_ru : item.name_uz}
-                                                            </option>
-                                                        )
-                                                    })
-                                                }
-                                            </select>
+
+                                                            <select
+                                                                type="number"
+                                                                name="category_id"
+                                                                className="form-control input1"
+                                                                value={formik.values.category_id}
+                                                                // defaultValue={location[1]?.id}
+                                                                required
+                                                                onChange={formik.handleChange}
+                                                                // defaultValue={3}
+                                                            >
+                                                                {
+                                                                    location.map((item, index) => {
+                                                                        return (
+                                                                            <option value={item.id} key={index}>
+                                                                                {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                                            </option>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </select>
+
 
                                             {/*<ErrorMessage name="category_id" component='div'*/}
                                             {/*              style={{color: 'red'}} className="error"/>*/}

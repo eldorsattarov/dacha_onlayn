@@ -314,7 +314,7 @@ const DachaFilterNewPage = (props) => {
                                         <div className="card cardddd">
                                             <div className="card-body">
                                                 <h3>{item.cost} сум</h3>
-                                                <span>{getText("izbranText")}<br/>{item.phone}</span>
+                                                <span>{getText("izbranText")}<br/>+{item.phone}</span>
                                             </div>
                                         </div>
                                     </div>
