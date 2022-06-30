@@ -30,7 +30,6 @@ toast.configure();
 
 
 const Dovabit = (props) => {
-    console.log("prop edit" , props.userDachaEdit);
     const navigate = useNavigate()
 
 
@@ -73,11 +72,12 @@ const Dovabit = (props) => {
             })
     }, []);
 
-    console.log(props.loca);
+
+
+    // console.log(props.loca[0]["id"]);
 
 
     const formik = useFormik({
-
         initialValues : props.userDachaEdit.length > 0 ?
             {
                 name: props.userDachaEdit[0].name,
@@ -98,6 +98,7 @@ const Dovabit = (props) => {
             {
                 name: "",
                 phone: "",
+                // category_id: props.loca[0]["id"],
                 category_id: "",
                 room_count: "",
                 bathroom_count: "",
@@ -283,32 +284,28 @@ const Dovabit = (props) => {
                                         <div className="col-sm-6 col-12 mt-2">
                                             <label>{getText("dovadres")}</label>
 
-                                                            <select
-                                                                type="number"
-                                                                name="category_id"
-                                                                className="form-control input1"
-                                                                value={formik.values.category_id}
-                                                                // defaultValue={location[1]?.id}
-                                                                required
-                                                                onChange={formik.handleChange}
-                                                                // defaultValue={3}
-                                                            >
-                                                                {
-                                                                    location.map((item, index) => {
-                                                                        return (
-                                                                            <option value={item.id} key={index}>
-                                                                                {getLanguage() === "ru" ? item.name_ru : item.name_uz}
-                                                                            </option>
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </select>
+                                            <select
+                                                type="number"
+                                                name="category_id"
+                                                className="form-control input1"
+                                                value={formik.values.category_id}
+                                                required
+                                                onChange={formik.handleChange}
+                                            >
+                                                <option className="selectOption">{getText("mecto")}</option>
+                                                {
+                                                    location.map((item, index) => {
+                                                        return (
+                                                            <option value={item.id} key={index}>
+                                                                {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                            </option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
 
 
-                                            {/*<ErrorMessage name="category_id" component='div'*/}
-                                            {/*              style={{color: 'red'}} className="error"/>*/}
                                         </div>
-                                        {/*images*/}
                                         <div className="col-12 mt-2">
                                             <label>{getText("dovizb")}</label>
                                         </div>
