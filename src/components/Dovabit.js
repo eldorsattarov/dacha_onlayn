@@ -95,6 +95,13 @@ const Dovabit = () => {
         console.log(e.target.value)
     }
 
+    useEffect(()=>{
+        axios.get(API_PATH + "comfort")
+            .then((res)=>{
+                console.log("comfort" , res.data.data)
+            })
+    },[])
+
     return (
         <div>
             <Header/>
@@ -221,6 +228,8 @@ const Dovabit = () => {
                                                       </div>
                                                   </div>
                                                   <div className="col-sm-3 col-12 mt-2 mb-2"></div>
+
+
 
                                                   <div className="col-sm-2 col-6 mt-2">
                                                       <label className="checkk1"><Field type="checkbox" name="1" className="checkk"/>Бассейн</label><br/>
