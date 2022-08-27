@@ -155,7 +155,6 @@ const DachaFilterNewPage = (props) => {
             <Header/>
             <div className="dacha_filter">
                 <div className="container">
-
                     <div className="login_forms">
                         <form onChange={formik.handleSubmit}>
                             <div className="row">
@@ -214,6 +213,8 @@ const DachaFilterNewPage = (props) => {
                                         value={formik.values.category_id}
                                         onChange={formik.handleChange}
                                     >
+                                        <option className="selectOption">{getText("mecto")}</option>
+
                                         {
                                             location?.map((item, index) => {
                                                 return (

@@ -35,7 +35,7 @@ const Profil = (props) => {
                 // console.log("userDacha " , res.data.data.data)
                 setUserDacha(res.data?.data.data)
             })
-    }, [])
+    }, []);
 
     // const [user ,  setUser] = useState([]);
     useEffect(() => {
@@ -46,7 +46,7 @@ const Profil = (props) => {
                 }
             })
                 .then(res => {
-                    // console.log(res)
+                    console.log(res)
                     props.updateState({user: res.data})
                     // setUser(res.data)
                 })
@@ -146,8 +146,11 @@ const Profil = (props) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 text-center">
-                            <img src="./images/newImg/profilll.png" className="profImg"/>
-                            <h1 className="">{props.user.name}</h1>
+                            <img
+                                // src="./images/newImg/profilll.png"
+                                src={BASE_URL + props.user.photo}
+                                 className="profImg"/>
+                            <h1 className="">{props.user?.name}</h1>
                             <Link to="/profil_redactor" className="profLink">{getText("protitle")}</Link>
                         </div>
                     </div>
@@ -188,27 +191,28 @@ const Profil = (props) => {
                                                             <div className="card-body">
                                                                 {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
                                                                 <h3>{item.name}</h3>
-                                                                <div>
-                                                                    <img
-                                                                        src="./images/newImagesTwo/Vector (14).png"/>
+                                                                <div className="d-flex align-items-center">
+                                                                    <div className="icon_imgades">
+                                                                        <img className="icon_imgage" src="./images/newImagesTwo/Vector (14).png"/>
+                                                                    </div>
                                                                     <span>{item.room_count} {getText("komnat")}</span>
-                                                                    {/*<span>sasas</span>*/}
                                                                 </div>
-                                                                <div>
-                                                                    <img
-                                                                        src="./images/newImagesTwo/Vector (15).png"/>
+                                                                <div className="d-flex align-items-center">
+                                                                    <div className="icon_imgades">
+                                                                        <img className="icon_imgage" src="./images/newImagesTwo/Vector (15).png"/>
+                                                                    </div>
                                                                     <span>{item.bathroom_count} {getText("danniy")}</span>
-                                                                    {/*<span>sasasas</span>*/}
                                                                 </div>
-                                                                <div>
-                                                                    <img
-                                                                        src="./images/newImagesTwo/Vector (16).png"/>
+                                                                <div className="d-flex align-items-center">
+                                                                    <div className="icon_imgades">
+                                                                        <img className="icon_imgage" src="./images/newImagesTwo/Vector (16).png"/>
+                                                                    </div>
                                                                     <span>{item.capacity} {getText("gost")}</span>
-                                                                    {/*<span>saacasc</span>*/}
                                                                 </div>
-                                                                <div>
-                                                                    <img
-                                                                        src="./images/newImagesTwo/Vector (17).png"/>
+                                                                <div className="d-flex align-items-center">
+                                                                    <div className="icon_imgades">
+                                                                        <img className="icon_imgage" src="./images/newImagesTwo/Vector (17).png"/>
+                                                                    </div>
                                                                     <span>{item.cost} {getText("sum")}</span>
                                                                 </div>
                                                                 <div className="mt-2">
@@ -256,29 +260,29 @@ const Profil = (props) => {
                                                                 <div className="card-body">
                                                                     {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
                                                                     <h3>{item.name}</h3>
-                                                                    <div>
-                                                                        <img
-                                                                            src="./images/newImagesTwo/Vector (14).png"/>
+                                                                    <div className="d-flex align-items-center">
+                                                                        <div className="icon_imgades">
+                                                                            <img className="icon_imgage" src="./images/newImagesTwo/Vector (14).png"/>
+                                                                        </div>
                                                                         <span>{item.room_count} {getText("komnat")}</span>
-                                                                        {/*<span>sasas</span>*/}
                                                                     </div>
-                                                                    <div>
-                                                                        <img
-                                                                            src="./images/newImagesTwo/Vector (15).png"/>
+                                                                    <div className="d-flex align-items-center">
+                                                                        <div className="icon_imgades">
+                                                                            <img className="icon_imgage" src="./images/newImagesTwo/Vector (15).png"/>
+                                                                        </div>
                                                                         <span>{item.bathroom_count} {getText("danniy")}</span>
-                                                                        {/*<span>sasasas</span>*/}
                                                                     </div>
-                                                                    <div>
-                                                                        <img
-                                                                            src="./images/newImagesTwo/Vector (16).png"/>
+                                                                    <div className="d-flex align-items-center">
+                                                                        <div className="icon_imgades">
+                                                                            <img className="icon_imgage" src="./images/newImagesTwo/Vector (16).png"/>
+                                                                        </div>
                                                                         <span>{item.capacity} {getText("gost")}</span>
-                                                                        {/*<span>saacasc</span>*/}
                                                                     </div>
-                                                                    <div>
-                                                                        <img
-                                                                            src="./images/newImagesTwo/Vector (17).png"/>
+                                                                    <div className="d-flex align-items-center">
+                                                                        <div className="icon_imgades">
+                                                                            <img className="icon_imgage" src="./images/newImagesTwo/Vector (17).png"/>
+                                                                        </div>
                                                                         <span>{item.cost} {getText("sum")}</span>
-                                                                        {/*<span>saasxasxas</span>*/}
                                                                     </div>
                                                                     <div className="mt-2">
                                                                         <Link to="/countryhouse"

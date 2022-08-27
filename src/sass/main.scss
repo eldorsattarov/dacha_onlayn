@@ -466,9 +466,13 @@ body {
   }
 
   .rasssm {
+    img{
+      //border: 1px solid black;
+      border-radius: 50%;
+    }
     //transform: scale(1.1);
     //background: ;
-    filter: invert(53%) sepia(83%) saturate(425%) hue-rotate(89deg) brightness(94%) contrast(5%);
+    //filter: invert(53%) sepia(83%) saturate(425%) hue-rotate(89deg) brightness(94%) contrast(5%);
   }
 
   .navbarRight {
@@ -989,7 +993,9 @@ body {
     //}
 
     .cardimgg {
-
+img{
+  object-fit: cover;
+}
       border-radius: 15px 15px 0px 0px;
       overflow: hidden;
       position: relative;
@@ -998,6 +1004,7 @@ body {
         position: absolute;
         width: 100%;
         height: 100%;
+
         //background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.7), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.4));
       }
     }
@@ -1005,6 +1012,7 @@ body {
     .card-img-top {
       transition: all 0.4s linear;
       height: 240px;
+
       @media(max-width: 576px) {
         height: 140px;
       }
@@ -1144,6 +1152,13 @@ body {
   }
 
   .card {
+    .icon_imgades{
+      width: 15px;
+    }
+    .icon_imgage{
+      //width: 15px;
+      //height: 14px;
+    }
     border-radius: 15px 15px 15px 15px;
 
     //&:hover {
@@ -1157,6 +1172,9 @@ body {
       position: relative;
       border-radius: 15px 15px 0px 0px;
 
+      img {
+        object-fit: cover;
+      }
       .cardimgg2 {
         position: absolute;
         width: 100%;
@@ -1495,6 +1513,11 @@ body {
       border-radius: 12px;
       width: 250px;
       height: 240px;
+
+      //max-width: 100%;
+      //height: auto;
+      object-fit: cover;
+
       @media(max-width: 576px) {
         height: 200px;
       }
@@ -1591,6 +1614,19 @@ body {
   }
 
   .aaaaa {
+    .icon_text{
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #828282;
+      margin-left: 10px;
+      cursor: pointer;
+      @media(max-width: 576px) {
+        font-size: 11px;
+      }
+    }
     h4 {
       @media(max-width: 576px) {
         font-family: Manrope;
@@ -2447,6 +2483,41 @@ body {
 }
 
 .profilRedactor {
+  .ant-upload.ant-upload-select-picture-card {
+    width: 100% !important;
+    height: 115px;
+    margin-right: 8px;
+    //margin-right: 28px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid #d9d9d9;
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    @media(max-width: 576px) {
+      height: 90px;
+    }
+  }
+  .ant-upload-list-picture-card-container{
+    width: 100% !important;
+    height: 115px;
+    @media(max-width: 576px) {
+      height: 90px;
+    }
+  }
+  .ant-upload-list-picture .ant-upload-list-item,
+  .ant-upload-list-picture-card .ant-upload-list-item {
+    position: relative;
+    width: 100% !important;
+    height: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+  }
+
+
   padding: 30px 0;
 
   h1 {
@@ -2600,6 +2671,7 @@ body {
     }
     width: 110px;
     height: 110px;
+    border-radius: 50%;
   }
 
   .profLink {
@@ -2649,7 +2721,7 @@ body {
   }
 
   .card {
-    z-index: 0;
+
     border-radius: 15px 15px 15px 15px;
 
     //&:hover {
@@ -2663,6 +2735,10 @@ body {
       border-radius: 15px 15px 0px 0px;
       overflow: hidden;
       position: relative;
+
+      img {
+        object-fit: cover;
+      }
 
       .cardimgg2 {
         border: 0;
@@ -2699,6 +2775,7 @@ body {
         align-items: center;
         justify-content: space-between;
         padding: 0 7px;
+        z-index: 10;
 
         button:first-child {
           background: #F2931F;
@@ -2835,11 +2912,15 @@ body {
 
     .cardTwo1 {
       border-radius: 12px 0 0 12px;
+      img {
+        object-fit: cover;
+      }
     }
 
     .cardTwo2 {
       background: #FBFBFB;
       border-radius: 0 12px 12px 0;
+
     }
 
     .cardTwo {
@@ -3123,7 +3204,7 @@ body {
 .ant-upload-list-picture .ant-upload-list-item,
 .ant-upload-list-picture-card .ant-upload-list-item {
   position: relative;
-  //width: 104px;
+  width: 104px;
   height: 100%;
   border: 1px solid #d9d9d9;
   border-radius: 8px;
@@ -3134,12 +3215,11 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-color: #F2931F;
+  //background-color: #F2931F;
   opacity: 0;
   transition: all 0.3s;
   content: ' ';
   //border-radius: 8px;
-
 }
 
 
@@ -3299,4 +3379,14 @@ body {
 //class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
 .MuiTabs-flexContainer span {
 
+}
+.avatar_icon{
+  border-radius: 50%;
+  //border: 1px solid white;
+  @media(max-width: 576px) {
+    //border: 1px solid black;
+  }
+}
+.icon_imgades{
+  width: 15px;
 }

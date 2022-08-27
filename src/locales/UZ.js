@@ -204,5 +204,7 @@ export const uz = {
     balanse4 : "Foydalanuvchilar",
 
 
-    mecto: "Joylashuv manzilini tanlang"
+    mecto: "Joylashuv manzilini tanlang",
+
+    rasm : "Rasm"
 }

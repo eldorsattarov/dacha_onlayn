@@ -18,7 +18,7 @@ const Usloviya = () => {
                             <div className="col-12 text-center">
                                 <h1><img src="./images/chiziq.png" className="lineImgg"/> {getText("shartUslov")} <img src="./images/chiziq.png" className="lineImgg"/></h1>
                             </div>
-                            <div className="col-sm-12 col-md-12 col-lg-9 col-xl-9 col-12">
+                            <div className="col-sm-12 col-md-12 col-lg-9 col-xl-11 col-12">
                               <p>{getText("shartUslovText")}</p>
                             </div>
                         </div>

@@ -121,24 +121,28 @@ function SimpleSlider(props) {
                                             {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
                                             <h3>{item.name}</h3>
                                             <div className="d-flex align-items-center">
-                                                <div><img src="./images/newImagesTwo/Vector (14).png"/></div>
-                                                <span className="ml-3">{item.room_count} {getText("komnat")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (14).png"/>
+                                                </div>
+                                                <span>{item.room_count} {getText("komnat")}</span>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <img src="./images/newImagesTwo/Vector (15).png"/>
-                                                <span className="ml-3">{item.bathroom_count} {getText("danniy")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (15).png"/>
+                                                </div>
+                                                <span>{item.bathroom_count} {getText("danniy")}</span>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <img src="./images/newImagesTwo/Vector (16).png"/>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (16).png"/>
+                                                </div>
                                                 <span>{item.capacity} {getText("gost")}</span>
                                             </div>
-
-                                            <div className="d-flex"></div>
-
                                             <div className="d-flex align-items-center">
-
-                                                <img src="./images/newImagesTwo/Vector (17).png"/>
-                                                <span className="ml-3">{item.cost} {getText("sum")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (17).png"/>
+                                                </div>
+                                                <span>{item.cost} {getText("sum")}</span>
                                             </div>
                                             <div className="mt-2">
                                                 <Link to="/countryhouse"

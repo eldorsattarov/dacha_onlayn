@@ -11,7 +11,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 
-import {API_PATH, LANGUAGE, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../tools/constants";
+import {API_PATH, BASE_URL, LANGUAGE, TOKEN_NAME_LOGIN, TOKEN_NAME_REGISTER} from "../tools/constants";
 import {getText, getLanguage} from "../locales";
 import {wrapMapToPropsConstant} from "react-redux/lib/connect/wrapMapToProps";
 import {toast,ToastContainer} from "react-toastify";
@@ -112,7 +112,11 @@ const Header = (props) => {
                         </div>
                         <div className="navbarRight d-flex align-items-center">
                             {localStorage.getItem(TOKEN_NAME_LOGIN) ? <Link to="/profil" className="mr-3">
-                                <img src="./images/newImg/profill2.png"/>
+                                <img
+                                    // src="./images/newImg/profill2.png"
+                                    src={BASE_URL + props.user.photo}
+                                    className="avatar_icon"
+                                />
                             </Link> : ""}
                             <div className="mr-2">
                                 <button type="button"  type="button" onClick={()=>changeLanguage('uz')} className="border-0 bg-transparent">
@@ -151,7 +155,11 @@ const Header = (props) => {
                             <div className="mr-2">
                                 {localStorage.getItem(TOKEN_NAME_LOGIN) ?
                                     <Link to="/profil" className="mr-3 rasssm">
-                                    <img src="./images/newImg/rassss.svg"/>
+                                    <img
+                                        // src="./images/newImg/rassss.svg"
+                                        src={BASE_URL + props.user.photo}
+                                        className="avatar_icon"
+                                    />
                                 </Link>
                                     : ""}
                                 <button type="button"  type="button" onClick={()=>changeLanguage('uz')} className="border-0 bg-transparent">
@@ -236,4 +244,9 @@ const Header = (props) => {
         </div>
     );
 };
-export  default connect(null,{login})(Header);
+const mapStateToProps = (state) =>{
+    return{
+        user: state.login.user,
+    }
+}
+export  default connect(mapStateToProps,{login})(Header);

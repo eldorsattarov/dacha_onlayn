@@ -227,6 +227,8 @@ const Dovabit = (props) => {
         setPay(!pay);
     }
 
+    const params = window.btoa(`m=62a046bdc14e3c99ddcfd770;ac.user_id=${userinfo.id};a=100000`);
+    const paymeUrl = `https://checkout.paycom.uz/${params}`;
 
     return (
         <div>
@@ -314,7 +316,7 @@ const Dovabit = (props) => {
                                             <ImgCrop rotate>
                                                 <Upload
                                                     type="file"
-                                                    action="http://work.bingo99.uz/"
+                                                    action="https://api.dachaonline.uz/"
                                                     listType="picture-card"
                                                     fileList={fileList}
                                                     value={formik.values.image_path}
@@ -512,8 +514,10 @@ const Dovabit = (props) => {
                                      border: "2px solid #E8E8E8",
                                      borderRadius: "10px"
                                  }}>
-                                <a href="#"
-                                    // target="_blank"
+
+                                {/*<a href={`https://checkout.paycom.uz?62a046bdc14e3c99ddcfd770;ac.user_id=${userinfo.id}`}*/}
+                                <a href={paymeUrl}
+                                    target="_blank"
                                    className="">
                                     <img src={Payme} className="" style={{width: "65px", height: "50px"}}/>
                                 </a>
@@ -525,8 +529,8 @@ const Dovabit = (props) => {
                                      border: "2px solid #E8E8E8",
                                      borderRadius: "10px"
                                  }}>
-                                <a href="#"
-                                    // target="_blank"
+                                <a href={`https://payment.apelsin.uz?cash=f81c68ccf43c462e8334d22b2cb04ce9&description=%D0%9F%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B0&amount=100000&userid=${userinfo.id}`}
+                                    target="_blank"
                                    className="">
                                     <img src={Apelsin} className="" style={{width: "70px", height: "30px"}}/>
                                 </a>

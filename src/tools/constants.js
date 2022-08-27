@@ -7,3 +7,5 @@ export const API_PATH = "https://api.dachaonline.uz/api/";
 export const BASE_URL = "https://api.dachaonline.uz/";
 export const TOKEN_NAME_LOGIN = "dacha-onlayn-login";
 export const TOKEN_NAME_REGISTER = "dacha-bor";
+
+    // https://api.dachaonline.uz/

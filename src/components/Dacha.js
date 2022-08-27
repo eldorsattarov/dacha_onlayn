@@ -12,7 +12,6 @@ import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
-
 import Img1 from "../images/newImagesTwo/Micro.png";
 import Img2 from "../images/newImagesTwo/Game Controller.png";
 import Img3 from "../images/newImagesTwo/Timezone +8.png";
@@ -27,6 +26,7 @@ const imgs = [Img1,Img2,Img3,Img4,Img5,Img6,Img7,Img8];
 toast.configure();
 const Dacha = (props) => {
     console.log(props.topTan);
+    localStorage.setItem("img" , JSON.stringify(props.topTan));
     // console.log("a = "+localStorage.getItem("locale"));
     //  console.log(props.locale)
     // localStorage.setItem("locale" , JSON.stringify(props.locale));
@@ -57,6 +57,7 @@ const Dacha = (props) => {
             <Header/>
             <div className="dacha">
                 {props.topTan?.map((item, index) => {
+                {/*{JSON.parse(localStorage.getItem("img")).map((item, index) => {*/}
                     return (
                         <div className="container" key={item.id}>
                             <div className="row">
@@ -70,7 +71,9 @@ const Dacha = (props) => {
                                 {props.topTan[index].images?.map((item2, index2) => {
                                     return (
                                         <div className="col-9 col-sm-3">
-                                            <img src={BASE_URL + item2.image_path} className=""/>
+                                           <a href={BASE_URL + item2.image_path} target="_blank">
+                                               <img src={BASE_URL + item2.image_path} className=""/>
+                                           </a>
                                         </div>
                                     )
                                 })}
@@ -80,38 +83,55 @@ const Dacha = (props) => {
                                     <h4>Удобства</h4>
                                     <div className="line "></div>
                                 </div>
-                                <div className="col-12 col-sm-4 aaaaa mt-3">
-                                    <ul className="flex-column nav">
-                                        <li className="">
-                                            <img src="./images/newImagesTwo/Vector (14).png" className=""/>
-                                            <a href="#" className="">{getText("komnat")}: {item.room_count}</a>
-                                        </li>
-                                        <li className="">
-                                            <img src="./images/newImagesTwo/Vector (16).png"/>
-                                            <a href="#" className="">{getText("gost")}: {item.capacity} </a>
-                                        </li>
-                                        <li className="">
-                                            <img src="./images/newImagesTwo/Vector (15).png"/>
-                                            <a href="#" className="">{getText("danniy")}: {item.bathroom_count}</a>
-                                        </li>
-                                        {/*<li className=""><a href="#" className="">{getText("vremyaOne")}</a></li>*/}
-                                        {/*<li className=""><a href="#" className="">{getText("vremyaTwo")}</a></li>*/}
-                                    </ul>
-                                </div>
-                                <div className="col-12 col-sm-4 aaaaa mt-3">
 
-                                    <ul className="flex-column nav">
-                                        {props.topTan[index].comforts ? props.topTan[index].comforts.map((item3, index3) => {
-                                            return (
-                                                <li className="">
-                                                    <img src={BASE_URL + item3.icon} className="comfortIcon"/>
-                                                    <a href="#" className="">{getLanguage() === "ru" ? item3.name_ru : item3.name_uz}</a>
-                                                </li>
-                                            )
-                                        }) : ""
-                                        }
-                                    </ul>
-                                </div>
+
+                              <div className="col-sm-8 col-12">
+                                  <div className="row">
+                                      {props.topTan[index].comforts ? props.topTan[index].comforts.map((item3, index3) => {
+                                          return (
+                                              <div className="col-6 col-sm-6 aaaaa mt-3" key={index3}>
+                                                  <img src={BASE_URL + item3.icon} className="comfortIcon"/>
+                                                  <span className="icon_text">{getLanguage() === "ru" ? item3.name_ru : item3.name_uz}</span>
+                                              </div>
+                                          )
+                                      }) : ""
+                                      }
+                                  </div>
+                              </div>
+
+                                {/*<div className="col-12 col-sm-4 aaaaa mt-3">*/}
+                                {/*    <ul className="flex-column nav">*/}
+                                {/*        <li className="">*/}
+                                {/*            <img src="./images/newImagesTwo/Vector (14).png" className=""/>*/}
+                                {/*            <a href="#" className="">{getText("komnat")}: {item.room_count}</a>*/}
+                                {/*        </li>*/}
+                                {/*        <li className="">*/}
+                                {/*            <img src="./images/newImagesTwo/Vector (16).png"/>*/}
+                                {/*            <a href="#" className="">{getText("gost")}: {item.capacity} </a>*/}
+                                {/*        </li>*/}
+                                {/*        <li className="">*/}
+                                {/*            <img src="./images/newImagesTwo/Vector (15).png"/>*/}
+                                {/*            <a href="#" className="">{getText("danniy")}: {item.bathroom_count}</a>*/}
+                                {/*        </li>*/}
+                                {/*        /!*<li className=""><a href="#" className="">{getText("vremyaOne")}</a></li>*!/*/}
+                                {/*        /!*<li className=""><a href="#" className="">{getText("vremyaTwo")}</a></li>*!/*/}
+                                {/*    </ul>*/}
+                                {/*</div>*/}
+                                {/*<div className="col-12 col-sm-4 aaaaa mt-3">*/}
+                                {/*    <ul className="flex-column nav">*/}
+                                {/*        {props.topTan[index].comforts ? props.topTan[index].comforts.map((item3, index3) => {*/}
+                                {/*            return (*/}
+                                {/*                <li className="">*/}
+                                {/*                    <img src={BASE_URL + item3.icon} className="comfortIcon"/>*/}
+                                {/*                    <a href="#" className="">{getLanguage() === "ru" ? item3.name_ru : item3.name_uz}</a>*/}
+                                {/*                </li>*/}
+                                {/*            )*/}
+                                {/*        }) : ""*/}
+                                {/*        }*/}
+                                {/*    </ul>*/}
+                                {/*</div>*/}
+
+
                                 <div className="col-12 col-sm-4 aaaaa mt-3">
                                     <div className="card rounded-0">
                                         <div className="card-body">
@@ -124,8 +144,12 @@ const Dacha = (props) => {
                                         </div>
                                     </div>
                                 </div>
+
+
+
                             </div>
-                            <div className="row mt-3">
+
+                            <div className="row mt-4">
                                 <div className="col-12 col-sm-8 aaaaa">
                                     <h4>Подробнее</h4>
                                     <p className="comments">
@@ -133,6 +157,7 @@ const Dacha = (props) => {
                                     </p>
                                 </div>
                             </div>
+
                         </div>
                     )
                 })}

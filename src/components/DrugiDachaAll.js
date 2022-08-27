@@ -59,20 +59,28 @@ const DrugiDachaAll = (props) => {
                           <div className="card-body">
                             {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
                             <h3>{item.name}</h3>
-                            <div>
-                              <img src="./images/newImagesTwo/Vector (14).png"/>
+                            <div className="d-flex align-items-center">
+                              <div className="icon_imgades">
+                                <img className="icon_imgage" src="./images/newImagesTwo/Vector (14).png"/>
+                              </div>
                               <span>{item.room_count} {getText("komnat")}</span>
                             </div>
-                            <div>
-                              <img src="./images/newImagesTwo/Vector (15).png"/>
+                            <div className="d-flex align-items-center">
+                              <div className="icon_imgades">
+                                <img className="icon_imgage" src="./images/newImagesTwo/Vector (15).png"/>
+                              </div>
                               <span>{item.bathroom_count} {getText("danniy")}</span>
                             </div>
-                            <div>
-                              <img src="./images/newImagesTwo/Vector (16).png"/>
+                            <div className="d-flex align-items-center">
+                              <div className="icon_imgades">
+                                <img className="icon_imgage" src="./images/newImagesTwo/Vector (16).png"/>
+                              </div>
                               <span>{item.capacity} {getText("gost")}</span>
                             </div>
-                            <div>
-                              <img src="./images/newImagesTwo/Vector (17).png"/>
+                            <div className="d-flex align-items-center">
+                              <div className="icon_imgades">
+                                <img className="icon_imgage" src="./images/newImagesTwo/Vector (17).png"/>
+                              </div>
                               <span>{item.cost} {getText("sum")}</span>
                             </div>
                             <div className="mt-2">
