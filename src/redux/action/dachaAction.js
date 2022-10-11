@@ -8,6 +8,12 @@ export function updateState(data) {
         payload: data
     }
 }
+export function updateStateDacha(data) {
+    return {
+        type: DACHA,
+        payload: data
+    }
+}
 
 export const getDacha = () => (dispatch) => {
     axios.get(API_PATH + "dacha")

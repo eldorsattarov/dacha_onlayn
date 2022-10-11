@@ -49,17 +49,17 @@ function SimpleSlider(props) {
         dots: true,
         infinite: true,
         autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
+        speed: 4000,
+        autoplaySpeed: 3000,
         slidesToShow: 3,
         slidesToScroll: 1,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         responsive: [
             {
-                breakpoint: 1200,
+                breakpoint: 1000,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: true,
@@ -70,7 +70,7 @@ function SimpleSlider(props) {
             {
                 breakpoint: 769,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1,
                     initialSlide: 2,
                     nextArrow: <Responsive/>,
@@ -95,7 +95,7 @@ function SimpleSlider(props) {
         <div className="container">
             <StyledCarousel>
                 <Slider {...settings}>
-                    {props.topDacha1.map((item, index) => {
+                    {props.topDacha1?.map((item, index) => {
                         return(
                             <div className="p-3 mt-3" key={item.id}>
                                 <Link to="/countryhouse" className="text-decoration-none px-2"
@@ -121,24 +121,28 @@ function SimpleSlider(props) {
                                             {/*<h3>{getLanguage() === "ru" ? item.name_ru : item.name_uz}</h3>*/}
                                             <h3>{item.name}</h3>
                                             <div className="d-flex align-items-center">
-                                                <div><img src="./images/newImagesTwo/Vector (14).png"/></div>
-                                                <span className="ml-3">{item.room_count} {getText("komnat")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (14).png"/>
+                                                </div>
+                                                <span>{item.room_count} {getText("komnat")}</span>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <img src="./images/newImagesTwo/Vector (15).png"/>
-                                                <span className="ml-3">{item.bathroom_count} {getText("danniy")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (15).png"/>
+                                                </div>
+                                                <span>{item.bathroom_count} {getText("danniy")}</span>
                                             </div>
                                             <div className="d-flex align-items-center">
-                                                <img src="./images/newImagesTwo/Vector (16).png"/>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (16).png"/>
+                                                </div>
                                                 <span>{item.capacity} {getText("gost")}</span>
                                             </div>
-
-                                            <div className="d-flex"></div>
-
                                             <div className="d-flex align-items-center">
-
-                                                <img src="./images/newImagesTwo/Vector (17).png"/>
-                                                <span className="ml-3">{item.cost} {getText("sum")}</span>
+                                                <div className="icon_imgades">
+                                                    <img className="icon_imgage" src="./images/newImagesTwo/Vector (17).png"/>
+                                                </div>
+                                                <span>{item.cost} {getText("sum")}</span>
                                             </div>
                                             <div className="mt-2">
                                                 <Link to="/countryhouse"

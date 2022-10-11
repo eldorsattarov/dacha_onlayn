@@ -12,16 +12,16 @@ export const uz = {
     majburiy: "Majburiy",
     zvanok: "Qo'ng'iroqni talab qiling",
     ////DrugiDacha va DrugiDachaAll
-    dacha: "Boshqa kottejlar",
+    dacha: "Boshqa e'lonlar",
     komnat: "xona",
     danniy: "hammom",
     gost: "mehmon",
     sum: "so'm",
     podrobni: "batafsil",
-    vse: "barchasi",
-    topDacha: "Yuqori kottejlar",
+    vse: "Barchasi",
+    topDacha: "Top e'lonlar",
     izbranText: "Ushbu kottejni bron qilish uchun ushbu raqamga qo'ng'iroq qiling",
-    izbrannoe: "sevimlilarga",
+    izbrannoe: "Sevimlilarga",
     vremyaOne: "Ro'yxatdan o'tish vaqti: 7:00",
     vremyaTwo: "Ro'yxatdan o'tish vaqti: 18:00",
     /////////Kliant
@@ -92,4 +92,119 @@ export const uz = {
         " Har bir yozgi uylarda yaxshi hordiq chiqarishingiz uchun kerakli bo'lgan barcha sharoitlar mavjud: keng va yorug' xonalar, qishki va yozgi basseynlar, ko'ngilochar mashg'ulotlar uchun barcha jihozlar, qishki va yozgi oshxona, mini stadion.",
     dovabit:"Qo'shish",
     reklama:"Reklama joylashtiring",
+    registerr : "Roʻyxatdan oʻtish",
+
+    place : "Dacha qidirish",
+    titledacha : "DACHA ONLINE",
+    titlehaqida : "O'zbekistonda yozgi dachalarni ijaraga berish va bron qilish",
+
+
+    // poisk dacha
+    dachapoisk : "Dacha qidiring...",
+    lupa : "Qidirish",
+    sena : "Narx",
+    sena1 : "dan",
+    sena2 : "gacha",
+    gorod : "Shahar",
+    chislo : "Odamlar soni",
+    bassen : "Basseyn",
+    bilyard : "Bilyard",
+    sauna : "Sauna",
+    tenis : "Stol tennis",
+    con : "Konditsioner",
+    zimbassen : "Qishki basseyn",
+    play : "PlayStation 3/4/5",
+    karoke : "Karaoke",
+    wife : "WI FI",
+
+
+    // dovabit
+    dovtitle : "Reklama joylashtiring",
+    dovnazvanii : "Sarlavhani kiriting",
+    dovnazvani : "Sarlavhani kiriting(Ru)",
+    dovnazvani2 : "Sarlavhani kiriting(Uz)",
+    dovadres : "Joylashuv manzili",
+    dovizb : "Rasm",
+    dovfilter : "Filtrlar qo'shing",
+    dovkolich1 : "Yotoq xonalari soni",
+    dovkolich2 : "Basseynlar soni",
+    dovkolich3 : "Odamlar soni",
+    dovopis : "Tavsif",
+    dovopisplace : "E'loningiz tavsifini yozing",
+    dovkomm : "Aloqa",
+    dovimya : "Reklama beruvchi ismi",
+    dovsena : "Narxi",
+    dovnomer : "Telefon raqami",
+    dovv : "Qo'shish",
+    dovv2 : "Saqlash",
+
+
+    // login
+
+    logtitle : "Tizimga kirish",
+    logtel : "Telefon raqami",
+    logparol : "Parol",
+    logg : "Kirish",
+    logre : "Roʻyxatdan oʻtish",
+
+
+    // register
+
+    regtitle : "Roʻyxatdan oʻtish",
+    regimya : "To'liq nomi",
+    regnomer : "Telefon raqami",
+    regparol : "Parol",
+    regparol2 : "Parolni tasdiqlang",
+    regg : "Roʻyxatdan oʻtish",
+    regglogin : "Kirish",
+
+
+    // profik redaktor
+
+    redaktitle : "Profilni tahrirlash",
+    redakimya : "To'liq nomi",
+    redaktel : "Telefon raqami",
+    reaksox : "Saqlash",
+    redchiqish : "Chiqish",
+
+
+    // profil
+
+    protitle : "Profilni tahrirlash",
+    profmoy : "Mening e'lonlarim",
+    profizb : "Sevimlilar",
+
+
+    paymodaltitle :"Iltimos, toʻlang !",
+    paymodal :"*Bildirgi",
+    paymodal2: "1. Birinchi qo'shayotgan dachangiz tekin.",
+    paymodal3: " 2. Ikki va undan ortiq dachalarni qo'shish har bir dacha uchun 5000 so'm (besh ming).",
+    alerttext : "Dacha qo'shish uchun to'lov qiling!",
+    alerttext2 : "Siz dacha qo'shishingiz mumkin",
+    tolov : "to'lov",
+    upload : "Qo'shish",
+
+
+
+    dachaEdit : "Tahrirlash",
+    dachaDelete : "O'chirish",
+
+
+    xa : "Xa",
+    yoq : "Yo'q",
+
+
+    sevimliga : "Sevimlilarga saqlandi",
+
+
+
+    balanse1 : "Dachalar e'loni",
+    balanse2 : "Uy va dacha egalari",
+    balanse3 : "Hamkorlar",
+    balanse4 : "Foydalanuvchilar",
+
+
+    mecto: "Joylashuv manzilini tanlang",
+
+    rasm : "Rasm"
 }

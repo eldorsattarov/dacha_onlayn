@@ -1,106 +1,234 @@
 import React, {useEffect, useState} from 'react';
-import {getText} from "../locales";
+import {getLanguage, getText} from "../locales";
 import Header from "./Header";
 import Footer from "./Footer";
 import {Alert} from "reactstrap";
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import {Modal} from "reactstrap";
+import {Formik, Form, Field, ErrorMessage, useFormik} from 'formik';
 import {Select} from "antd"
-
+// import { Alert } from 'antd';
 import * as Yup from "yup";
 import axios from "axios";
 import {API_PATH, TOKEN_NAME_LOGIN} from "../tools/constants";
+
+import Click from "../images/clickog.png";
+import Payme from "../images/ass.jpg";
+import Apelsin from "../images/Apelsin_02.png";
+
 // import {Input, Select, DatePicker, TreeSelect, Switch} from 'antd';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Option} from "antd/es/mentions";
+import 'antd/dist/antd.css';
+import {Upload} from 'antd';
+import ImgCrop from 'antd-img-crop';
+import {toast} from "react-toastify";
+import {connect} from "react-redux";
+import {getIzbrannoe, updateState} from "../redux/action/dachaAction";
 
-const Dovabit = () => {
 
-    const [image_path , setImages] = useState([]);
-    const [currency , setCurrency] = useState("");
-    const tanladi = (e) =>{
-        setCurrency(e.target.value)
-        console.log(currency)
-    }
-   const handleImageChange = (e) => {
-       console.log(e)
-       setImages(e.target.files)
-    }
-    console.log(image_path)
+toast.configure();
 
-    const initialValues = {
-        name : "",
-        phone: "",
-        category_id : "",
-        room_count : "",
-        bathroom_count : "",
-        capacity : "",
-        cost : "",
-        advertiser_name : "",
-        currency : "",
-        comment : "",
-        image_path : "",
-        _method : "method"
-    }
-    const validationSchema = Yup.object({
-        name: Yup.string().required('название ...'),
-        phone: Yup.string().required('телефон ...'),
-        category_id: Yup.string().required('категория ...'),
-        room_count: Yup.string().required('количество комнат ...'),
-        bathroom_count: Yup.string().required('ванная комната ...'),
-        capacity: Yup.string().required('вместимость ...'),
-        cost: Yup.string().required('Стоимость ...'),
-        advertiser_name: Yup.string().required('имя рекламодателя ...'),
-        currency: Yup.string().required('валюта ...'),
-        comment: Yup.string().required('комментарий ...'),
-        image_path: Yup.string().required('путь изображения ...'),
-        // _method: Yup.string().required('method ...'),
+
+const Dovabit = (props) => {
+    const navigate = useNavigate()
+
+
+// img qo'shish uchun
+    const [fileList, setFileList] = useState(
+        // props.userDachaEdit.length>0 ? props.userDachaEdit[0].images :
+        []
+    );
+
+
+    const onChange = ({fileList: newFileList}) => {
+        // props.userDachaEdit.length>0 ? fileList.push(props.userDachaEdit[0].images) :
+        setFileList(newFileList);
+    };
+    // console.log(fileList);
+
+    const onPreview = async (file) => {
+        let src = file.url;
+        if (!src) {
+            src = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file.originFileObj);
+                reader.onload = () => resolve(reader.result);
+            });
+        }
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+    };
+
+// img qo'shish uchun
+
+    // location
+    const [location, setLocation] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "category")
+            .then((res) => {
+                setLocation(res?.data.data);
+            })
+    }, []);
+
+
+
+    // console.log(props.loca[0]["id"]);
+
+
+    const formik = useFormik({
+        initialValues : props.userDachaEdit.length > 0 ?
+            {
+                name: props.userDachaEdit[0].name,
+                phone: props.userDachaEdit[0].phone,
+                category_id: props.userDachaEdit[0].category_id,
+                room_count: props.userDachaEdit[0].room_count,
+                bathroom_count: props.userDachaEdit[0].bathroom_count,
+                capacity: props.userDachaEdit[0].capacity,
+                cost: props.userDachaEdit[0].cost,
+                advertiser_name: props.userDachaEdit[0].advertiser_name,
+                currency: props.userDachaEdit[0].currency,
+                comment: props.userDachaEdit[0].comment,
+                image_path: "",
+                comforts: [],
+                _method : "put"
+            }
+            :
+            {
+                name: "",
+                phone: "",
+                // category_id: props.loca[0]["id"],
+                category_id: "",
+                room_count: "",
+                bathroom_count: "",
+                capacity: "",
+                cost: "",
+                advertiser_name: "",
+                currency: "y.e",
+                comment: "",
+                image_path: "",
+                comforts: [],
+            },
+
+        onSubmit: values => {
+            const comfortNumber = [];
+            values.comforts.forEach(str => {
+                comfortNumber.push(Number(str));
+            });
+            const data = {
+                name: values.name,
+                category_id: parseInt(values.category_id),
+                room_count: values.room_count,
+                bathroom_count: values.bathroom_count,
+                capacity: values.capacity,
+                cost: values.cost,
+                // image_path: [fileList[0].originFileObj],
+                image_path: fileList,
+                phone: values.phone,
+                advertiser_name: values.advertiser_name,
+                comment: values.comment,
+                currency: values.currency,
+                comforts: comfortNumber
+            };
+
+            const formData = new FormData();
+            for (let i = 0; i < fileList.length; i++) {
+                // formData.append('image_path[]', fileList[i])
+                formData.append('image_path[]', new Blob([fileList[i].originFileObj],
+                    // "images/png"
+                    {type: "application/octet-stream"}
+                ))
+            }
+            formData.append('name', values.name)
+            formData.append('category_id', values.category_id)
+            formData.append('room_count', values.room_count)
+            formData.append('bathroom_count', values.bathroom_count)
+            formData.append('capacity', values.capacity)
+            formData.append('cost', values.cost)
+            formData.append('advertiser_name', values.advertiser_name)
+            formData.append('phone', values.phone)
+            formData.append('comment', values.comment)
+            formData.append('currency', values.currency)
+            for (let i = 0; i < comfortNumber.length ; i++) {
+                formData.append("comforts[]" , [comfortNumber[i]])
+            }
+            props.userDachaEdit.length > 0 ? formData.append("_method" , "put")
+                : formData.append("_method" , "post")
+            console.log(formData);
+            console.log(data);
+
+            props.userDachaEdit.length > 0 ?
+                axios.post(API_PATH + "dacha/" + props.userDachaEdit[0].id, formData,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
+                        }
+                    },
+                )
+                    .then(res => {
+                        props.userDachaEdit.splice(0,1);
+                        setFileList([])
+                        navigate("/profil");
+                        toast.success("Сохранять !");
+                    })
+                    .catch(err => {
+                        toast.error("Ошибка ?");
+                        console.log(err.response)
+                    })
+                :
+                axios.post(API_PATH + "dacha", formData,
+                    {
+                        headers: {
+                            "Authorization": `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`,
+                        }
+                    },
+                )
+                    .then(res => {
+                        setFileList([])
+                        navigate("/profil");
+                        toast.success("Успешный !");
+
+                    })
+                    .catch(err => {
+                        toast.error("Ошибка ?");
+                        // toast.error(err.response?.data[0]);
+                        console.log(err.response)
+                    })
+        }
     });
 
-    const onSubmit = (values) => {
-        console.log(values);
-        axios.post(API_PATH + "dacha", {
-                // name : values.name,
-                // phone : values.phone,
-                // _method : "put"
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
-                }
-            } ,
-        )
-            .then(res => {
-                // console.log(res)
-                // // props.updateState({user : res.data})
-                // toast.success("Успешный !");
-                // navigate("/profil");
-            })
-            .catch(err => {
-                // toast.error("Ошибка ?");
-            })
-    }
 
-
-    const [location , setLocation] = useState([]);
-    useEffect(()=>{
-        axios.get(API_PATH + "category")
-            .then((res)=>{
-                // console.log(res.data.data)
-                setLocation(res.data.data);
-            })
-    },[]);
-
-
-    const chan = (e) =>{
-        console.log(e.target.value)
-    }
-
-    useEffect(()=>{
+    const [comfort, setComfort] = useState([]);
+    useEffect(() => {
         axios.get(API_PATH + "comfort")
-            .then((res)=>{
-                console.log("comfort" , res.data.data)
+            .then((res) => {
+                // console.log(res.data.data)
+                setComfort(res?.data.data);
             })
-    },[])
+    }, []);
+
+
+    // tolov ni tekshirish uchun
+    const [userinfo, setUserinfo] = useState([]);
+    useEffect(() => {
+        axios.get(API_PATH + "user", {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem(TOKEN_NAME_LOGIN)}`
+            }
+        })
+            .then((res) => {
+                setUserinfo(res?.data);
+            })
+    }, []);
+
+    const [pay, setPay] = useState(false);
+    const payModal = () => {
+        setPay(!pay);
+    }
+
+    const params = window.btoa(`m=62a046bdc14e3c99ddcfd770;ac.user_id=${userinfo.id};a=100000`);
+    const paymeUrl = `https://checkout.paycom.uz/${params}`;
 
     return (
         <div>
@@ -108,225 +236,332 @@ const Dovabit = () => {
             <div className="dovabitDacha">
                 <div className="container">
                     <div className="row">
-
                         <div className="col-12 text-center">
                             <h1>
-                                <img src="./images/chiziq.png" className="lineImgg"/> {getText("reklama")} <img
-                                src="./images/chiziq.png" className="lineImgg"/>
+                                <img src="./images/chiziq.png" className="lineImgg"/>
+                                {getText("reklama")}
+                                <img src="./images/chiziq.png" className="lineImgg"/>
                             </h1>
                         </div>
                         <div className="col-12 col-sm-4 offset-sm-4 mt-3 mb-3">
-                            <Alert color="danger" className="pt-3 pb-3">
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <span>Плати, чтобы добавить дачу!</span>
-                                    {/*<button type="button" className="btn btn-danger">оплаты</button>*/}
-                                    <Link to="">оплаты</Link>
-                                    {/*<button type="button" className="btn btn-danger">*/}
-                                        {/*<img src="./images/newImg/payicon.png"/>*/}
-                                    {/*</button>*/}
-                                </div>
-                            </Alert>
+                            {
+                                userinfo.payment_status == 1 ?
+                                    <Alert color="success" className="pt-3 pb-3 payalert">
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <span>{getText("alerttext2")}</span>
+                                            <button type="button" className="btn-danger ml-2"
+                                                    onClick={payModal}>{getText("tolov")}</button>
+                                        </div>
+                                    </Alert>
+                                    :
+                                    (userinfo.payment_status == 0 ?
+                                        <Alert color="danger" className="pt-3 pb-3 payalert">
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                <span>{getText("alerttext")}</span>
+                                                <button type="button" className="btn-danger ml-2"
+                                                        onClick={payModal}>{getText("tolov")}</button>
+                                            </div>
+                                        </Alert> : "")
+                            }
                         </div>
                     </div>
 
                     <div className="login_forms">
-                        <Formik
-                            initialValues={initialValues}
-                            onSubmit={onSubmit}
-                            validationSchema={validationSchema}
-                        >
-                            {
-                                formik => {
-                                    return <Form>
-                                        <div className="login_page_inputs">
-                                            <div className="login_inputs_wrapper">
-                                              <div className="row">
-                                                  <div className="col-sm-6 col-12 mt-2">
-                                                      <label>Введите название</label>
-                                                      <Field
-                                                          type="text"
-                                                          id = "name"
-                                                          autoComplete="off"
-                                                          className="form-control input1"
-                                                          name="name"
-                                                      />
-                                                      <ErrorMessage name = "name" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
-                                                  <div className="col-sm-6 col-12 mt-2">
-                                                      <label>Адрес местонахождения</label>
-                                                      <select onChange={chan} type="select" id ="category_id" autoComplete="off" className="form-control input1" name="category_id">
-                                                          {
-                                                              location.map((item,index)=>{
-                                                                  return(
-                                                                      <option value={item.id}>{item.name_ru}</option>
-                                                                  )
-                                                              })
-                                                          }
-                                                      </select>
+                        <form onSubmit={formik.handleSubmit}>
+                            <div className="login_page_inputs">
+                                <div className="login_inputs_wrapper">
+                                    <div className="row">
+                                        <div className="col-sm-6 col-12 mt-2">
+                                            <label>{getText("dovnazvanii")}</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                id="name"
+                                                className="form-control input1"
+                                                name="name"
+                                                value={formik.values.name}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+                                        <div className="col-sm-6 col-12 mt-2">
+                                            <label>{getText("dovadres")}</label>
 
-                                                      <ErrorMessage name = "category_id" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
-                                                  <div className="col-12 mt-2">
-                                                      <label>Изображение</label>
-                                                      <Field
-                                                          type="file"
-                                                          id = "image_path"
-                                                          autoComplete="off"
-                                                          className="form-control input2"
-                                                          name="image_path"
-                                                          onChange={handleImageChange}
-                                                      />
-                                                      <ErrorMessage name ="image_path" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
-                                                  <div className="col-12 mt-2">
-                                                      <label>Добавить фильтры</label>
-                                                  </div>
-
-                                                  <div className="col-sm-3 col-6 mt-2 mb-2">
-                                                         <div className="d-flex align-items-center filters">
-                                                             <img src="./images/newImg/Two Beds.png"/>
-                                                             <span>Количество спален</span>
-                                                             <Field
-                                                                 type="text"
-                                                                 id = "room_count"
-                                                                 autoComplete="off"
-                                                                 className="form-control filterField"
-                                                                 name="room_count"
-                                                             />
-                                                             {/*<ErrorMessage name = "room_count" component = 'div' style={{color: 'red'}}  className = "error" />*/}
-
-                                                         </div>
-                                                  </div>
-                                                  <div className="col-sm-3 col-6 mt-2 mb-2">
-                                                      <div className="d-flex align-items-center filters">
-                                                          <img src="./images/newImg/Swimming Pool.png"/>
-                                                          <span>Кол-во бассейнов</span>
-                                                          <Field
-                                                              type="text"
-                                                              id = "bathroom_count"
-                                                              autoComplete="off"
-                                                              className="form-control filterField"
-                                                              name="bathroom_count"
-                                                          />
-                                                          {/*<ErrorMessage name = "bathroom_count" component = 'div' style={{color: 'red'}}  className = "error" />*/}
-
-                                                      </div>
-                                                  </div>
-                                                  <div className="col-sm-3 col-6 mt-2 mb-2">
-                                                      <div className="d-flex align-items-center filters">
-                                                          <img src="./images/newImg/Vector (3).png"/>
-                                                          <span>Число людей</span>
-                                                          <Field
-                                                              type="text"
-                                                              id = "capacity"
-                                                              autoComplete="off"
-                                                              className="form-control filterField"
-                                                              name="capacity"
-                                                          />
-                                                          {/*<ErrorMessage name = "capacity" component = 'div' style={{color: 'red'}}  className = "error" />*/}
-
-                                                      </div>
-                                                  </div>
-                                                  <div className="col-sm-3 col-12 mt-2 mb-2"></div>
+                                            <select
+                                                type="number"
+                                                name="category_id"
+                                                className="form-control input1"
+                                                value={formik.values.category_id}
+                                                required
+                                                onChange={formik.handleChange}
+                                            >
+                                                <option className="selectOption">{getText("mecto")}</option>
+                                                {
+                                                    location.map((item, index) => {
+                                                        return (
+                                                            <option value={item.id} key={index}>
+                                                                {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                            </option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
 
 
+                                        </div>
+                                        <div className="col-12 mt-2">
+                                            <label>{getText("dovizb")}</label>
+                                        </div>
+                                        <div className="col-12 mt-2">
 
-                                                  <div className="col-sm-2 col-6 mt-2">
-                                                      <label className="checkk1"><Field type="checkbox" name="1" className="checkk"/>Бассейн</label><br/>
-                                                      <label className="checkk1"><Field type="checkbox" name="2" className="checkk"/>Зимний бассейн</label>
-                                                  </div>
-                                                  <div className="col-sm-2 col-6 mt-2">
-                                                      <label className="checkk1"><Field type="checkbox" name="3" className="checkk"/>Бильярд</label><br/>
-                                                      <label className="checkk1"><Field type="checkbox" name="4" className="checkk"/>PlayStation 3/4/5</label>
-                                                  </div>
-                                                  <div className="col-sm-2 col-6 mt-2">
-                                                      <label className="checkk1"><Field type="checkbox" name="5" className="checkk"/>Сауна</label><br/>
-                                                      <label className="checkk1"><Field type="checkbox" name="6" className="checkk"/>Караоке</label>
-                                                  </div>
-                                                  <div className="col-sm-2 col-6 mt-2">
-                                                      <label className="checkk1"><Field type="checkbox" name="7" className="checkk"/>Стол тенниси</label><br/>
-                                                      <label className="checkk1"><Field type="checkbox" name="8" className="checkk"/>PlayStation 3/4/5</label>
-                                                  </div>
-                                                  <div className="col-sm-2 col-6 mt-2">
-                                                      <label className="checkk1"><Field type="checkbox" name="9" className="checkk"/>Кондиционер</label><br/>
-                                                      <label className="checkk1"><Field type="checkbox" name="10" className="checkk"/>WI FI</label>
-                                                  </div>
+                                            <ImgCrop rotate>
+                                                <Upload
+                                                    type="file"
+                                                    action="https://api.dachaonline.uz/"
+                                                    listType="picture-card"
+                                                    fileList={fileList}
+                                                    value={formik.values.image_path}
+                                                    required
+                                                    onChange={onChange}
+                                                    onPreview={onPreview}
+                                                    name="image_path"
+                                                >
+                                                    {fileList.length < 10 && `+ ${getText("upload")}`}
+                                                </Upload>
+                                            </ImgCrop>
 
-                                                  <div className="col-12 mt-2">
-                                                      <label>Описание</label>
-                                                      <Field
-                                                          type="text"
-                                                          name="comment"
-                                                          autoComplete="off"
-                                                          className="form-control inputArea"
-                                                          placeholder="Напишите описание вашего объявления"
-                                                      />
-                                                  </div>
 
-                                                  <div className="col-12 mt-3">
-                                                      <label>Коммуникация</label>
-                                                  </div>
-                                                  <div className="col-sm-7 col-12 mt-2">
-                                                      <label>Имя рекламодателя</label>
-                                                      <Field
-                                                          type="text"
-                                                          name="advertiser_name"
-                                                          autoComplete="off"
-                                                          id="advertiser_name"
-                                                          className="form-control input1"
-                                                      />
-                                                      <ErrorMessage name = "advertiser_name" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
-                                                  <div className="col-9 col-sm-3 mt-2">
-                                                      <label>Цена</label>
-                                                      <Field
-                                                          type="text"
-                                                          name="cost"
-                                                          id="cost"
-                                                          autoComplete="off"
-                                                          className="form-control input1"
-                                                      />
-                                                      <ErrorMessage name = "cost" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
-                                                  <div className="col-3 col-sm-2 mt-2">
-                                                      <label>.</label><br/>
-                                                      <select className="form-control input1" name="currency" onChange={tanladi} value={currency}>
-                                                          <option value="y">y.e</option>
-                                                          <option value="s">cyм</option>
-                                                      </select>
-                                                  </div>
+                                        </div>
 
-                                                  <div className="col-12 col-sm-7 mt-2">
-                                                      <label>Номер телефона</label>
-                                                      <Field
-                                                          type="number"
-                                                          name="phone"
-                                                          id="phone"
-                                                          className="form-control input1"
-                                                      />
-                                                      <ErrorMessage name = "phone" component = 'div' style={{color: 'red'}}  className = "error" />
-                                                  </div>
+                                        <div className="col-12 mt-2">
+                                            <label>{getText("dovfilter")}</label>
+                                        </div>
 
-                                                  <div className="col-12 mt-3 d-flex justify-content-center">
-                                                      <button type="submit" className="btn">Добавлять</button>
-                                                  </div>
-
-                                              </div>
+                                        <div className="col-sm-3 col-6 mt-2 mb-2">
+                                            <div className="d-flex align-items-center filters">
+                                                <img src="./images/newImg/Two Beds.png"/>
+                                                <span>{getText("dovkolich1")}</span>
+                                                <input
+                                                    type="number"
+                                                    id="room_count"
+                                                    className="form-control filterField"
+                                                    name="room_count"
+                                                    value={formik.values.room_count}
+                                                    required
+                                                    onChange={formik.handleChange}
+                                                />
                                             </div>
                                         </div>
 
-                                    </Form>
-                                }
-                            }
+                                        <div className="col-sm-3 col-6 mt-2 mb-2">
+                                            <div className="d-flex align-items-center filters">
+                                                <img src="./images/newImg/Swimming Pool.png"/>
+                                                <span>{getText("dovkolich2")}</span>
+                                                <input
+                                                    type="number"
+                                                    id="bathroom_count"
+                                                    className="form-control filterField"
+                                                    name="bathroom_count"
+                                                    value={formik.values.bathroom_count}
+                                                    required
+                                                    onChange={formik.handleChange}
+                                                />
+                                            </div>
+                                        </div>
 
-                        </Formik>
+                                        <div className="col-sm-3 col-6 mt-2 mb-2">
+                                            <div className="d-flex align-items-center filters">
+                                                <img src="./images/newImg/Vector (3).png"/>
+                                                <span>{getText("dovkolich3")}</span>
+                                                <input
+                                                    type="number"
+                                                    id="capacity"
+                                                    className="form-control filterField"
+                                                    name="capacity"
+                                                    value={formik.values.capacity}
+                                                    required
+                                                    onChange={formik.handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-sm-3 col-12 mt-2 mb-2"></div>
+
+
+                                        {comfort?.map((item, index) => {
+                                            return (
+                                                <div className="col-sm-2 col-6 mt-2" key={index}>
+                                                    <label className="checkk1">
+                                                        <input
+                                                            type="checkbox"
+                                                            name="comforts"
+                                                            className="checkk"
+                                                            value={item.id}
+                                                            onChange={formik.handleChange}
+                                                        />
+                                                        {getLanguage() === "ru" ? item.name_ru : item.name_uz}
+                                                    </label><br/>
+                                                </div>
+                                            )
+                                        })}
+                                        <div className="col-12 mt-2">
+                                            <label>{getText("dovopis")}</label>
+                                            <textarea
+                                                type="text"
+                                                name="comment"
+                                                // autoComplete="off"
+                                                className="form-control inputArea"
+                                                placeholder={getText("dovopisplace")}
+                                                value={formik.values.comment}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+                                        <div className="col-12 mt-3">
+                                            <label>{getText("dovkomm")}</label>
+                                        </div>
+                                        <div className="col-sm-7 col-12 mt-2">
+                                            <label>{getText("dovimya")}</label>
+                                            <input
+                                                type="text"
+                                                name="advertiser_name"
+                                                // autoComplete="off"
+                                                id="advertiser_name"
+                                                className="form-control input1"
+                                                value={formik.values.advertiser_name}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+                                        <div className="col-9 col-sm-3 mt-2">
+                                            <label>{getText("dovsena")}</label>
+                                            <input
+                                                type="number"
+                                                name="cost"
+                                                id="cost"
+                                                className="form-control input1"
+                                                value={formik.values.cost}
+                                                required
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+                                        <div className="col-3 col-sm-2 mt-2">
+                                            <label>.</label><br/>
+                                            <select
+                                                type={"text"}
+                                                name="currency"
+                                                className="form-control input1"
+                                                value={formik.values.currency}
+                                                onChange={formik.handleChange}
+                                            >
+                                                <option value="y.e">y.e</option>
+                                                <option value="cyм">cyм</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="col-12 col-sm-7 mt-2">
+                                            <label>{getText("dovnomer")}</label>
+                                            <input
+                                                type="number"
+                                                name="phone"
+                                                id="phone"
+                                                className="form-control input1"
+                                                value={formik.values.phone}
+                                                onChange={formik.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="col-12 mt-3 d-flex justify-content-center">
+                                            <button
+                                                type="submit"
+                                                // onClick={formik.handleSubmit}
+                                                className="btn"
+                                            >
+                                                {
+                                                    props.userDachaEdit.length>0 ?
+                                                        getText("dovv2") :
+                                                        getText("dovv")
+                                                }
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
                 </div>
+                <Modal isOpen={pay} toggle={() => setPay(!pay)} className="payModal1">
+                    <div className="payModal p-4" style={{borderRadius: "50px"}}>
+                        <div className="title">
+                            <h2 style={{fontFamily: "Manrope", color: "#F2931F"}}>{getText("paymodaltitle")}</h2>
+                        </div>
+                        <div className="imgs d-flex align-items-center justify-content-between">
+                            <div className="d-flex align-items-center justify-content-center"
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
+                                <a href={`https://my.click.uz/services/pay?service_id=23092&merchant_id=15939&amount=5000&transaction_param=${userinfo.id}`}
+                                   target="_blank"
+                                   className="">
+                                    <img src={Click} className="" style={{width: "60px", height: "50px"}}/>
+                                </a>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-center"
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
+
+                                {/*<a href={`https://checkout.paycom.uz?62a046bdc14e3c99ddcfd770;ac.user_id=${userinfo.id}`}*/}
+                                <a href={paymeUrl}
+                                   target="_blank"
+                                   className="">
+                                    <img src={Payme} className="" style={{width: "65px", height: "50px"}}/>
+                                </a>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-center"
+                                 style={{
+                                     width: "100px",
+                                     height: "60px",
+                                     border: "2px solid #E8E8E8",
+                                     borderRadius: "10px"
+                                 }}>
+                                <a href={`https://payment.apelsin.uz?cash=f81c68ccf43c462e8334d22b2cb04ce9&description=%D0%9F%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B0&amount=100000&userid=${userinfo.id}`}
+                                   target="_blank"
+                                   className="">
+                                    <img src={Apelsin} className="" style={{width: "70px", height: "30px"}}/>
+                                </a>
+                            </div>
+                        </div>
+                        <div className="text mt-3">
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal")}</p>
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal2")}</p>
+                            <p className="mb-0"
+                               style={{fontFamily: "Manrope", color: "#858585"}}>{getText("paymodal3")}</p>
+                        </div>
+                    </div>
+                </Modal>
+
+
             </div>
             <Footer/>
+
+
         </div>
     );
 };
-
-export default Dovabit;
+const mapStateToProps = (state) => {
+    return {
+        user: state.login.user,
+        dacha: state.dacha.dacha,
+        topTan: state.dacha.topTan,
+        userDachaEdit: state.dacha.userDachaEdit,
+        loca: state.dacha.loca
+    }
+}
+export default connect(mapStateToProps, {getIzbrannoe, updateState})(Dovabit);

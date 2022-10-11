@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {login} from "../redux/action/loginAction";
+import {login} from "../images/loginAction";
 import {Form,Input,Label,Button} from "reactstrap";
 import axios from "axios";
 import {

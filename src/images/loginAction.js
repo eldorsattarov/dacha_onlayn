@@ -1,7 +1,7 @@
 import axios from "axios";
-import {API_PATH, TOKEN_NAME} from "../../tools/constants";
+import {API_PATH, TOKEN_NAME} from "../tools/constants";
 import {toast} from "react-toastify";
-import {LOGIN} from "../types/dachaType";
+import {LOGIN} from "../redux/types/dachaType";
 
 export function updateState(data) {
     return {
